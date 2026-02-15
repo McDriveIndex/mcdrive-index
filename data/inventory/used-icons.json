@@ -1,0 +1,322 @@
+[
+  {
+    "id": "miata-na",
+    "name": "Mazda MX-5 Miata NA",
+    "price_usd": 9500,
+    "vibe": "smiles per gallon",
+    "copy": "Pop-up headlights, down-only portfolio.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/miata-na.jpg"
+  },
+  {
+    "id": "miata-nb",
+    "name": "Mazda MX-5 Miata NB",
+    "price_usd": 8000,
+    "vibe": "cheap fun doctrine",
+    "copy": "Cornering your feelings.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/miata-nb.jpg"
+  },
+  {
+    "id": "bmw-e30",
+    "name": "BMW E30 (project)",
+    "price_usd": 16000,
+    "vibe": "analog royalty",
+    "copy": "You bought a legend and a parts list.",
+    "tags": [
+      "used",
+      "german",
+      "icon"
+    ],
+    "image": "/cars/bmw-e30.jpg"
+  },
+  {
+    "id": "bmw-e36",
+    "name": "BMW E36 (manual)",
+    "price_usd": 12000,
+    "vibe": "parking lot philosopher",
+    "copy": "Drift dreams, coolant leaks.",
+    "tags": [
+      "used",
+      "german",
+      "icon"
+    ],
+    "image": "/cars/bmw-e36.jpg"
+  },
+  {
+    "id": "bmw-e46-330i",
+    "name": "BMW E46 330i",
+    "price_usd": 9500,
+    "vibe": "forum-approved choice",
+    "copy": "Balanced chassis, unbalanced life.",
+    "tags": [
+      "used",
+      "german",
+      "icon"
+    ],
+    "image": "/cars/bmw-e46-330i.jpg"
+  },
+  {
+    "id": "e39-540i",
+    "name": "BMW E39 540i",
+    "price_usd": 14000,
+    "vibe": "V8 dadcore",
+    "copy": "A classy problem.",
+    "tags": [
+      "used",
+      "german",
+      "icon"
+    ],
+    "image": "/cars/e39-540i.jpg"
+  },
+  {
+    "id": "wrx-bugeye",
+    "name": "Subaru WRX (bugeye)",
+    "price_usd": 11500,
+    "vibe": "rally goblin",
+    "copy": "Boost builds character.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/wrx-bugeye.jpg"
+  },
+  {
+    "id": "wrx-hawkeye",
+    "name": "Subaru WRX (hawkeye)",
+    "price_usd": 13500,
+    "vibe": "hood scoop theology",
+    "copy": "Turbo noises drown the doubt.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/wrx-hawkeye.jpg"
+  },
+  {
+    "id": "sti-blobeye",
+    "name": "Subaru STI (blobeye)",
+    "price_usd": 22000,
+    "vibe": "anti-social exhaust",
+    "copy": "Neighbors hate this one trick.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/sti-blobeye.jpg"
+  },
+  {
+    "id": "nissan-350z",
+    "name": "Nissan 350Z",
+    "price_usd": 12500,
+    "vibe": "sideways decisions",
+    "copy": "You will meet curbs.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/nissan-350z.jpg"
+  },
+  {
+    "id": "nissan-370z",
+    "name": "Nissan 370Z",
+    "price_usd": 17500,
+    "vibe": "mature chaos",
+    "copy": "Same energy, newer plastics.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/nissan-370z.jpg"
+  },
+  {
+    "id": "gt86-used",
+    "name": "Toyota 86 / GT86 (used)",
+    "price_usd": 17000,
+    "vibe": "slow car fast",
+    "copy": "Momentum investor.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/gt86-used.jpg"
+  },
+  {
+    "id": "brz-used",
+    "name": "Subaru BRZ (used)",
+    "price_usd": 16500,
+    "vibe": "twin doctrine",
+    "copy": "Same car, different subreddit.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/brz-used.jpg"
+  },
+  {
+    "id": "s2000",
+    "name": "Honda S2000",
+    "price_usd": 28000,
+    "vibe": "VTEC prayer",
+    "copy": "8,000 RPM and zero savings.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/s2000.jpg"
+  },
+  {
+    "id": "integra",
+    "name": "Acura Integra (clean)",
+    "price_usd": 12000,
+    "vibe": "golden era",
+    "copy": "Taste: confirmed.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/integra.jpg"
+  },
+  {
+    "id": "crx",
+    "name": "Honda CRX (rare-ish)",
+    "price_usd": 14000,
+    "vibe": "lightweight religion",
+    "copy": "Weight reduction > risk management.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/crx.jpg"
+  },
+  {
+    "id": "is300",
+    "name": "Lexus IS300",
+    "price_usd": 9500,
+    "vibe": "2JZ adjacent",
+    "copy": "You are now a forum moderator.",
+    "tags": [
+      "used",
+      "jdm",
+      "icon"
+    ],
+    "image": "/cars/is300.jpg"
+  },
+  {
+    "id": "ls400",
+    "name": "Lexus LS400",
+    "price_usd": 6500,
+    "vibe": "stealth couch",
+    "copy": "Luxury, but make it Craigslist.",
+    "tags": [
+      "used",
+      "icon"
+    ],
+    "image": "/cars/ls400.jpg"
+  },
+  {
+    "id": "volvo-240",
+    "name": "Volvo 240",
+    "price_usd": 6000,
+    "vibe": "brick supremacy",
+    "copy": "It will outlive your memecoin.",
+    "tags": [
+      "used",
+      "icon"
+    ],
+    "image": "/cars/volvo-240.jpg"
+  },
+  {
+    "id": "gti-mk5",
+    "name": "VW GTI Mk5",
+    "price_usd": 9000,
+    "vibe": "hot hatch doctrine",
+    "copy": "You’ll say ‘stage 1’ a lot.",
+    "tags": [
+      "used",
+      "euro",
+      "icon"
+    ],
+    "image": "/cars/gti-mk5.jpg"
+  },
+  {
+    "id": "gti-mk7",
+    "name": "VW GTI Mk7 (used)",
+    "price_usd": 18500,
+    "vibe": "adult hot hatch",
+    "copy": "Responsible-ish speed.",
+    "tags": [
+      "used",
+      "euro",
+      "icon"
+    ],
+    "image": "/cars/gti-mk7.jpg"
+  },
+  {
+    "id": "fiesta-st",
+    "name": "Ford Fiesta ST",
+    "price_usd": 11500,
+    "vibe": "tiny menace",
+    "copy": "You laugh in corners.",
+    "tags": [
+      "used",
+      "icon"
+    ],
+    "image": "/cars/fiesta-st.jpg"
+  },
+  {
+    "id": "focus-st",
+    "name": "Ford Focus ST",
+    "price_usd": 14000,
+    "vibe": "hatchback hooligan",
+    "copy": "Torque steer personality.",
+    "tags": [
+      "used",
+      "icon"
+    ],
+    "image": "/cars/focus-st.jpg"
+  },
+  {
+    "id": "boxster-986",
+    "name": "Porsche Boxster 986",
+    "price_usd": 12500,
+    "vibe": "cheap porsche doctrine",
+    "copy": "IMS fear included.",
+    "tags": [
+      "used",
+      "icon"
+    ],
+    "image": "/cars/boxster-986.jpg"
+  },
+  {
+    "id": "mercedes-190e",
+    "name": "Mercedes 190E",
+    "price_usd": 14000,
+    "vibe": "cosy villain",
+    "copy": "You drive like you know things.",
+    "tags": [
+      "used",
+      "german",
+      "icon"
+    ],
+    "image": "/cars/mercedes-190e.jpg"
+  }
+]

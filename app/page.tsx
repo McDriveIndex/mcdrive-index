@@ -1,0 +1,595 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+type Car = {
+  id: string;
+  name: string;
+  price_usd: number;
+  vibe: string;
+  copy?: string;
+  tags?: string[];
+  image?: string;
+};
+
+type BtcPriceResponse = {
+  btc_usd: number;
+  tier?: string | null;
+  bestMatch?: Car | null;
+  alternatives?: Car[];
+};
+
+const TIER_COPY: Record<string, string> = {
+  "poverty": "FULL SEND REGRET",
+  "used-beaters": "BEATED BY A BEATER",
+  "used-icons": "AGED LIKE FINE WINE",
+  "used-legends": "SMILES PER GALLON",
+  "new-cars": "TAX WRITE-OFF",
+  "exotics": "KOL DAILY DRIVER",
+};
+
+export default function Home() {
+  const [date, setDate] = useState("");
+  const [btcPrice, setBtcPrice] = useState<number | null>(null);
+  const [bestMatch, setBestMatch] = useState<Car | null>(null);
+  const [alternatives, setAlternatives] = useState<Car[]>([]);
+  const [tier, setTier] = useState<string | null>(null);
+  const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const [showReceipt, setShowReceipt] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [receiptSrc, setReceiptSrc] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
+  const receiptBestMatch = bestMatch;
+  const receiptBtc = btcPrice;
+
+  const loadForDate = async (d: string) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/btc-price?date=${d}`);
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data?.error ?? "Something went wrong");
+        return { ok: false, data: null as BtcPriceResponse | null };
+      }
+
+      setBtcPrice(data.btc_usd);
+      setBestMatch(data.bestMatch);
+      setAlternatives(data.alternatives || []);
+      setTier(data.tier ?? null);
+      return { ok: true, data: data as BtcPriceResponse };
+    } catch {
+      alert("Something went wrong");
+      return { ok: false, data: null as BtcPriceResponse | null };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClick = async () => {
+    if (!date) {
+      alert("Pick a date first.");
+      return;
+    }
+
+    setIsGenerating(true);
+    setShowReceipt(false);
+    setShowModal(false);
+
+    // Update URL (shareable)
+    const url = new URL(window.location.href);
+    url.searchParams.set("date", date);
+    window.history.pushState({}, "", url.toString());
+
+    try {
+      const result = await loadForDate(date);
+      const ok = result.ok;
+      const data = result.data;
+      await new Promise((r) => setTimeout(r, 0));
+
+      if (ok && data) {
+        const btcUsd = data.btc_usd;
+        const best = data.bestMatch;
+        const loadedTier = data.tier;
+        const extraCopy = best?.copy ?? "";
+        const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
+        const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
+        const btc = btcUsd != null ? `$${Math.floor(btcUsd).toLocaleString()}` : "—";
+        const changeUsd = best ? Math.max(0, Math.floor(btcUsd - best.price_usd)) : null;
+        const change = changeUsd == null ? "—" : `$${changeUsd.toLocaleString()}`;
+        const image = best?.image ?? "/cars/placeholder.jpg";
+        const name = best?.name ?? "—";
+        const params = new URLSearchParams({
+          date,
+          btc,
+          name,
+          price,
+          change,
+          tierCopy,
+          extraCopy,
+          image,
+          v: String(Date.now()),
+        });
+        const newReceiptUrl = `/api/receipt?${params.toString()}`;
+        setReceiptUrl(newReceiptUrl);
+        setReceiptSrc(newReceiptUrl);
+      } else {
+        setReceiptUrl(null);
+        setReceiptSrc("");
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      if (ok && data?.bestMatch) setShowModal(true);
+      else setShowModal(false);
+      setShowReceipt(ok);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const copyLink = async () => {
+    const url = new URL(window.location.href);
+    if (date) url.searchParams.set("date", date);
+
+    try {
+      await navigator.clipboard.writeText(url.toString());
+      setToast("Copied link to clipboard 🍟");
+      setTimeout(() => setToast(null), 1500);
+    } catch {
+      alert("Couldn’t copy automatically. Copy from the address bar.");
+    }
+  };
+
+  // Auto-load if opened with ?date=...
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const d = params.get("date");
+    if (d) {
+      setDate(d);
+      loadForDate(d);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showModal]);
+
+  const todayMax = new Date().toISOString().slice(0, 10);
+  function randomDateIn2017() {
+  const start = new Date("2017-01-01T00:00:00Z").getTime();
+  const end = new Date("2017-12-31T00:00:00Z").getTime();
+  const t = start + Math.floor(Math.random() * (end - start + 1));
+  return new Date(t).toISOString().slice(0, 10);
+}
+
+const runMoment = async (momentDate: string) => {
+  const d = momentDate === "random" ? randomDateIn2017() : momentDate;
+  setDate(d);
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("date", d);
+  window.history.pushState({}, "", url.toString());
+
+  setIsGenerating(true);
+  setShowModal(false);
+  setReceiptSrc("");
+
+  const result = await loadForDate(d);
+  const ok = result.ok;
+  const data = result.data;
+  await new Promise((r) => setTimeout(r, 0));
+  if (ok && data) {
+    const btcUsd = data.btc_usd;
+    const best = data.bestMatch;
+    const loadedTier = data.tier;
+    const extraCopy = best?.copy ?? "";
+    const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
+    const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
+    const btc = btcUsd != null ? `$${Math.floor(btcUsd).toLocaleString()}` : "—";
+    const changeUsd = best ? Math.max(0, Math.floor(btcUsd - best.price_usd)) : null;
+    const change = changeUsd == null ? "—" : `$${changeUsd.toLocaleString()}`;
+    const image = best?.image ?? "/cars/placeholder.jpg";
+    const name = best?.name ?? "—";
+
+    const params = new URLSearchParams({
+      date: d,
+      btc,
+      name,
+      price,
+      change,
+      tierCopy,
+      extraCopy,
+      image,
+      v: String(Date.now()),
+    });
+
+    const newReceiptUrl = `/api/receipt?${params.toString()}`;
+    setReceiptUrl(newReceiptUrl);
+    setReceiptSrc(newReceiptUrl);
+  } else {
+    setReceiptUrl(null);
+    setReceiptSrc("");
+  }
+
+  await new Promise((r) => setTimeout(r, 800));
+
+  if (ok && data?.bestMatch) {
+    setShowModal(true);
+  } else {
+    setShowModal(false);
+  }
+
+  setIsGenerating(false);
+};
+
+
+  return (
+    <main className="min-h-screen paper-bg text-black antialiased overflow-hidden">
+      <div className="pt-6 md:pt-8 pb-6">
+        <div className="text-center mt-2 md:mt-4">
+          <h1 className="text-[34px] md:text-[38px] font-extrabold tracking-tight text-black mb-4">McDrive Index™</h1>
+          <p className="text-sm text-black/60 mb-5">1 BTC = 1 questionable purchase</p>
+        </div>
+
+        <div className="mx-auto max-w-[760px] px-6">
+          <div className="flex items-center justify-between mt-2 mb-3">
+            <p className="text-[16px] font-extrabold tracking-[0.22em] text-black/80">MENU</p>
+            <div className="w-[92px] h-[24px] rounded-md bg-black/10 border border-black/20 flex items-end gap-[2px] px-2 py-[3px]">
+              <span className="w-[2px] h-full bg-black/40" />
+              <span className="w-[3px] h-[80%] bg-black/40" />
+              <span className="w-[2px] h-[95%] bg-black/40" />
+              <span className="w-[4px] h-[70%] bg-black/40" />
+              <span className="w-[2px] h-[92%] bg-black/40" />
+              <span className="w-[3px] h-[78%] bg-black/40" />
+              <span className="w-[2px] h-full bg-black/40" />
+              <span className="w-[4px] h-[66%] bg-black/40" />
+              <span className="w-[2px] h-[88%] bg-black/40" />
+            </div>
+          </div>
+          <div className="border-t border-black/20" />
+
+          <section className="mt-4">
+            <p className="text-[14px] mt-4 mb-2 uppercase">
+              <span className="text-black/55 tracking-[0.28em]">Pick your own</span>
+              <span className="ml-2 font-black text-[15px] tracking-[0.06em] text-black">McDate™</span>
+            </p>
+
+            <div className="flex gap-3">
+              <input
+                type="date"
+                value={date}
+                max={todayMax}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                  setBtcPrice(null);
+                  setBestMatch(null);
+                  setAlternatives([]);
+                  setTier(null);
+                  setReceiptUrl(null);
+                  setShowReceipt(false);
+                  setIsGenerating(false);
+                  setToast(null);
+                  setReceiptSrc("");
+                  setShowModal(false);
+                }}
+                className="w-full rounded-xl border border-black/20 bg-white px-4 py-3 text-[16px]"
+              />
+
+              <button
+                onClick={handleClick}
+                className="rounded-xl bg-yellow-400 px-5 py-3 font-extrabold text-black shadow-[0_6px_0_rgba(0,0,0,0.11)] hover:bg-yellow-300 hover:shadow-[0_6px_0_rgba(0,0,0,0.11)] transition"
+              >
+                Order
+              </button>
+            </div>
+
+            <div className="flex gap-3 mt-3">
+              <button
+                onClick={copyLink}
+                className="flex-1 px-4 py-2 rounded-xl border border-black/20 bg-white text-black font-bold hover:bg-black/[0.035] transition"
+              >
+                Copy link
+              </button>
+
+              <button
+                onClick={() => {
+                  setDate("");
+                  setBtcPrice(null);
+                  setBestMatch(null);
+                  setAlternatives([]);
+                  setTier(null);
+                  setReceiptUrl(null);
+                  setShowReceipt(false);
+                  setIsGenerating(false);
+                  setToast(null);
+                  setReceiptSrc("");
+                  setShowModal(false);
+                  const url = new URL(window.location.href);
+                  url.searchParams.delete("date");
+                  window.history.pushState({}, "", url.toString());
+                }}
+                className="px-4 py-2 rounded-xl border border-black/20 bg-white text-black font-bold hover:bg-black/[0.035] transition"
+              >
+                Reset
+              </button>
+            </div>
+
+            {(isGenerating || loading) && (
+              <div style={{ marginTop: 24, fontSize: 14, opacity: 0.75 }}>
+                Preparing your order...
+              </div>
+            )}
+
+            {toast && (
+              <p className="text-sm mt-4 text-black/70">
+                {toast}
+              </p>
+            )}
+          </section>
+
+          <div className="mt-4 border-t border-black/20" />
+
+          <section className="mt-4">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-black/50 mt-6 mb-3">
+              Signature Meals
+            </p>
+            <div>
+              <button
+                onClick={() => runMoment("2008-09-15")}
+                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
+              >
+                <span className="font-extrabold text-[16px] text-black">McLehman Double Smash</span>
+                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
+                  <span>2008-09-15</span>
+                  <span className="text-black font-bold">→</span>
+                </span>
+              </button>
+              <button
+                onClick={() => runMoment("2020-03-12")}
+                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
+              >
+                <span className="font-extrabold text-[16px] text-black">McCovid Flash Crash</span>
+                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
+                  <span>2020-03-12</span>
+                  <span className="text-black font-bold">→</span>
+                </span>
+              </button>
+              <button
+                onClick={() => runMoment("2021-11-10")}
+                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
+              >
+                <span className="font-extrabold text-[16px] text-black">McATH Supersize</span>
+                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
+                  <span>2021-11-10</span>
+                  <span className="text-black font-bold">→</span>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <div className="mt-4 border-t border-black/20" />
+
+          <section className="mt-4">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-black/55 mt-6 mb-3">Feeling Lucky?</p>
+            <div>
+              <button
+                onClick={() => runMoment("random")}
+                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
+              >
+                <span className="font-extrabold text-[16px] text-black">McRandom™ Ride</span>
+                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
+                  <span>Random</span>
+                  <span className="text-black font-bold">→</span>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <div className="mt-4 border-t border-black/20 pt-2 pb-0">
+            <p className="text-[10px] tracking-[0.18em] text-black/50 text-center">
+              CULTURAL INDEX • Prices are approximate • Vibes are non-refundable.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Receipt-ish Result */}
+      {false && (btcPrice || bestMatch || alternatives.length > 0) && (
+        <div className="w-full max-w-md">
+          <div className="bg-white text-black rounded-2xl p-6 shadow-lg">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <p className="text-xs text-gray-500">MC DRIVE-THRU RECEIPT</p>
+                <p className="font-extrabold tracking-tight text-xl">
+                  1 BTC ORDER
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-xs text-gray-500">DATE</p>
+                <p className="font-semibold">{date || "—"}</p>
+              </div>
+            </div>
+
+            <div className="border-t border-dashed border-gray-300 my-4" />
+
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-gray-600">BTC price (USD)</span>
+              <span className="font-semibold">
+                {receiptBtc != null
+                  ? `$${receiptBtc!.toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}`
+                  : "—"}
+              </span>
+            </div>
+
+            <div className="border-t border-dashed border-gray-300 my-4" />
+
+            {receiptBestMatch ? (
+  <>
+    <p className="text-xs text-gray-500 mb-1">YOU CAN DRIVE</p>
+
+    <img
+  src={receiptBestMatch!.image ?? "/cars/placeholder.jpg"}
+  alt={receiptBestMatch!.name}
+  onError={(e) => {
+    const img = e.currentTarget;
+    if (!img.dataset.fallback) {
+      img.dataset.fallback = "1";
+      img.src = "/cars/placeholder.jpg";
+    }
+  }}
+  className="w-full rounded-xl mb-3"
+/>
+
+
+
+    <p className="text-2xl font-extrabold mb-1">
+      {receiptBestMatch!.name}
+    </p>
+
+    <p className="text-gray-700 mb-2">
+      ${receiptBestMatch!.price_usd.toLocaleString()} •{" "}
+      <span className="italic">{receiptBestMatch!.vibe}</span>
+    </p>
+
+    {receiptBestMatch!.copy && (
+      <p className="text-sm text-gray-600 mt-2">
+        {receiptBestMatch!.copy}
+      </p>
+    )}
+  </>
+) : (
+  <p className="font-semibold">
+    Not even a scooter. Try a different date.
+  </p>
+)}
+
+
+            {alternatives.length > 0 && (
+              <>
+                <div className="border-t border-dashed border-gray-300 my-4" />
+                <p className="text-xs text-gray-500 mb-2">ALSO COULD HAVE DRIVEN</p>
+
+                <div className="space-y-2">
+                  {alternatives.map((car) => (
+                    <div key={car.id} className="flex justify-between text-sm">
+                      <span className="font-semibold">
+                        {car.name}
+                      </span>
+                      <span className="text-gray-700">
+                        ${car.price_usd.toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            <div className="border-t border-dashed border-gray-300 my-4" />
+
+            <p className="text-xs text-gray-500">
+              Tip: share the link. Blame the blockchain.
+            </p>
+          </div>
+
+          <p className="text-gray-500 text-xs text-center mt-4">
+            Prices are approximate. Vibes are non-refundable.
+          </p>
+        </div>
+      )}
+
+      {showModal && receiptSrc && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          onClick={() => {
+            setShowModal(false);
+            setReceiptSrc("");
+          }}
+        >
+          <div
+            className="w-full max-w-md rounded-2xl bg-gray-950 border border-gray-800 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-4 border-b border-gray-800">
+              <div className="text-sm text-gray-200 font-semibold">Your order is ready</div>
+              <button
+                onClick={() => {
+                  setShowModal(false);
+                  setReceiptSrc("");
+                  setShowReceipt(false);
+                }}
+                className="px-3 py-2 rounded-xl bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-900 transition text-sm"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="p-4">
+              <img
+                src={receiptSrc}
+                alt="McDrive receipt PNG"
+                className="w-full rounded-2xl border border-gray-800 bg-black"
+              />
+
+              <div className="mt-4 flex gap-3">
+                <button
+                  onClick={async () => {
+                    try {
+                      const res = await fetch(receiptSrc);
+                      const blob = await res.blob();
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `mcdrive-receipt-${date || "date"}.png`;
+                      document.body.appendChild(a);
+                      a.click();
+                      a.remove();
+                      URL.revokeObjectURL(url);
+                    } catch {
+                      window.open(receiptSrc, "_blank");
+                    }
+                  }}
+                  className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
+                >
+                  Download
+                </button>
+
+                <button
+                  onClick={() => {
+                    const bm = bestMatch;
+                    const carName = bm?.name ?? "something questionable";
+                    const shareUrl = new URL(window.location.href);
+                    if (date) shareUrl.searchParams.set("date", date);
+
+                    const text = `McDrive Index™ — on ${date}, 1 BTC could’ve gotten you: ${carName} 🍟`;
+                    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl.toString())}`;
+                    window.open(intent, "_blank", "noopener,noreferrer");
+                  }}
+                  className="flex-1 px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-white font-semibold hover:bg-gray-800 transition"
+                >
+                  Post on X
+                </button>
+              </div>
+
+              <p className="mt-3 text-xs text-gray-500">
+                Close to try another date.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}

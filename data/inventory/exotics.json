@@ -1,0 +1,134 @@
+[
+  {
+    "id": "911",
+    "name": "Porsche 911 (base)",
+    "price_usd": 120000,
+    "vibe": "cultured menace",
+    "copy": "You’re now fluent in options lists.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/911.jpg"
+  },
+  {
+    "id": "g63",
+    "name": "Mercedes G63 AMG",
+    "price_usd": 185000,
+    "vibe": "boss fight energy",
+    "copy": "You bought a rectangle with ego.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/g63.jpg"
+  },
+  {
+    "id": "r8",
+    "name": "Audi R8",
+    "price_usd": 165000,
+    "vibe": "exit liquidity chic",
+    "copy": "V10 therapy session.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/r8.jpg"
+  },
+  {
+    "id": "huracan",
+    "name": "Lamborghini Huracán",
+    "price_usd": 240000,
+    "vibe": "loud money",
+    "copy": "Everyone hears your decisions.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/huracan.jpg"
+  },
+  {
+    "id": "488",
+    "name": "Ferrari 488 (used-ish)",
+    "price_usd": 260000,
+    "vibe": "redline aristocracy",
+    "copy": "You pay extra for emotions.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/488.jpg"
+  },
+  {
+    "id": "svj",
+    "name": "Lamborghini Aventador SVJ",
+    "price_usd": 650000,
+    "vibe": "final boss",
+    "copy": "Subtlety deleted.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/svj.jpg"
+  },
+  {
+    "id": "sf90",
+    "name": "Ferrari SF90",
+    "price_usd": 520000,
+    "vibe": "overkill respectfully",
+    "copy": "It’s a hybrid, officer.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/sf90.jpg"
+  },
+  {
+    "id": "rolls-ghost",
+    "name": "Rolls-Royce Ghost",
+    "price_usd": 360000,
+    "vibe": "villain arc complete",
+    "copy": "Silence as a feature.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/rolls-ghost.jpg"
+  },
+  {
+    "id": "bentayga",
+    "name": "Bentley Bentayga",
+    "price_usd": 210000,
+    "vibe": "wealth with cupholders",
+    "copy": "Leather smells like victory.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/bentayga.jpg"
+  },
+  {
+    "id": "gt3",
+    "name": "Porsche 911 GT3",
+    "price_usd": 220000,
+    "vibe": "track day zealot",
+    "copy": "You talk in lap times now.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/gt3.jpg"
+  },
+  {
+    "id": "mc20",
+    "name": "Maserati MC20",
+    "price_usd": 240000,
+    "vibe": "beautiful risk",
+    "copy": "Warranty prayers included.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/mc20.jpg"
+  },
+  {
+    "id": "reventon",
+    "name": "Lamborghini Reventón (myth)",
+    "price_usd": 1800000,
+    "vibe": "museum mode",
+    "copy": "This is not a car. It’s a statement.",
+    "tags": [
+      "exotic"
+    ],
+    "image": "/cars/reventon.jpg"
+  }
+]

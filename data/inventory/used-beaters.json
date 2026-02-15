@@ -1,0 +1,182 @@
+[
+  {
+    "id": "civic-99",
+    "name": "Honda Civic (1999, used)",
+    "price_usd": 2800,
+    "vibe": "runs forever energy",
+    "copy": "The car has more conviction than you.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/civic-99.jpg"
+  },
+  {
+    "id": "corolla-05",
+    "name": "Toyota Corolla (2005, used)",
+    "price_usd": 4200,
+    "vibe": "npc durability",
+    "copy": "Reliable. Unlike your thesis.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/corolla-05.jpg"
+  },
+  {
+    "id": "jetta-06",
+    "name": "VW Jetta (2006, used)",
+    "price_usd": 4800,
+    "vibe": "euro beater chic",
+    "copy": "Check engine light as a feature.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/jetta-06.jpg"
+  },
+  {
+    "id": "accord-02",
+    "name": "Honda Accord (2002, used)",
+    "price_usd": 3800,
+    "vibe": "commuter tank",
+    "copy": "It starts every time. Wow.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/accord-02.jpg"
+  },
+  {
+    "id": "camry-04",
+    "name": "Toyota Camry (2004, used)",
+    "price_usd": 4500,
+    "vibe": "quiet persistence",
+    "copy": "It refuses to die. Respect.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/camry-04.jpg"
+  },
+  {
+    "id": "crownvic",
+    "name": "Ford Crown Victoria (ex-cop)",
+    "price_usd": 5200,
+    "vibe": "authority cosplay",
+    "copy": "People move out of your way for no reason.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/crownvic.jpg"
+  },
+  {
+    "id": "cobalt",
+    "name": "Chevy Cobalt (used)",
+    "price_usd": 2400,
+    "vibe": "pure transportation",
+    "copy": "It’s a car. Allegedly.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/cobalt.jpg"
+  },
+  {
+    "id": "ptcruiser",
+    "name": "Chrysler PT Cruiser (cursed)",
+    "price_usd": 1900,
+    "vibe": "ironic suffering",
+    "copy": "Your friends will post about this.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/ptcruiser.jpg"
+  },
+  {
+    "id": "altima",
+    "name": "Nissan Altima (battle scars)",
+    "price_usd": 3200,
+    "vibe": "main character damage",
+    "copy": "Bumper? Optional.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/altima.jpg"
+  },
+  {
+    "id": "escape",
+    "name": "Ford Escape (used)",
+    "price_usd": 5500,
+    "vibe": "mall crawler",
+    "copy": "It escapes nothing. But it tries.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/escape.jpg"
+  },
+  {
+    "id": "rav4-old",
+    "name": "Toyota RAV4 (early gen)",
+    "price_usd": 6200,
+    "vibe": "practical degen",
+    "copy": "Not sexy. Extremely correct.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/rav4-old.jpg"
+  },
+  {
+    "id": "golf-mk4",
+    "name": "VW Golf Mk4 (used)",
+    "price_usd": 3600,
+    "vibe": "euro cube",
+    "copy": "You will learn what ‘electrical gremlins’ means.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/golf-mk4.jpg"
+  },
+  {
+    "id": "prius-old",
+    "name": "Toyota Prius (early gen)",
+    "price_usd": 4800,
+    "vibe": "hyper-mile monk",
+    "copy": "Silent, judgmental, efficient.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/prius-old.jpg"
+  },
+  {
+    "id": "grandmarquis",
+    "name": "Mercury Grand Marquis",
+    "price_usd": 4300,
+    "vibe": "sofa on wheels",
+    "copy": "Comfort spec. Drip questionable.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/grandmarquis.jpg"
+  },
+  {
+    "id": "crv-old",
+    "name": "Honda CR-V (early gen)",
+    "price_usd": 5900,
+    "vibe": "forever appliance",
+    "copy": "A refrigerator with seats.",
+    "tags": [
+      "used",
+      "beater"
+    ],
+    "image": "/cars/crv-old.jpg"
+  }
+]

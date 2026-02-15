@@ -1,0 +1,167 @@
+[
+  {
+    "id": "bus-pass",
+    "name": "Monthly bus pass",
+    "price_usd": 120,
+    "vibe": "public transport maximalist",
+    "copy": "Window seat. No flex. Pure utility.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/bus-pass.jpg"
+  },
+  {
+    "id": "used-bike",
+    "name": "Used bicycle (mystery brand)",
+    "price_usd": 180,
+    "vibe": "chain grease aesthetic",
+    "copy": "Two wheels, infinite cope.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/used-bike.jpg"
+  },
+  {
+    "id": "skateboard",
+    "name": "Skateboard (slightly chipped)",
+    "price_usd": 90,
+    "vibe": "street certified",
+    "copy": "Kickflip your portfolio.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/skateboard.jpg"
+  },
+  {
+    "id": "e-scooter",
+    "name": "Electric scooter (2nd hand)",
+    "price_usd": 350,
+    "vibe": "battery anxiety",
+    "copy": "Range: 8 miles. Regret: unlimited.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/e-scooter.jpg"
+  },
+  {
+    "id": "gaming-pc",
+    "name": "Budget gaming PC build",
+    "price_usd": 900,
+    "vibe": "rgb poverty",
+    "copy": "Your rig pumps harder than your bags.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/gaming-pc.jpg"
+  },
+  {
+    "id": "ps5",
+    "name": "PS5 + one game",
+    "price_usd": 560,
+    "vibe": "escape velocity",
+    "copy": "Grinding levels instead of PnL.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/ps5.jpg"
+  },
+  {
+    "id": "used-iphone",
+    "name": "Used iPhone (last-gen)",
+    "price_usd": 350,
+    "vibe": "camera roll investor",
+    "copy": "New phone, same charts.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/used-iphone.jpg"
+  },
+  {
+    "id": "airpods",
+    "name": "AirPods",
+    "price_usd": 179,
+    "vibe": "noise-cancel the bear",
+    "copy": "Silence the screams.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/airpods.jpg"
+  },
+  {
+    "id": "ikea-desk",
+    "name": "IKEA desk + chair combo",
+    "price_usd": 220,
+    "vibe": "startup core",
+    "copy": "A desk for your delusions.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/ikea-desk.jpg"
+  },
+  {
+    "id": "rent-week",
+    "name": "One week of rent (depending)",
+    "price_usd": 450,
+    "vibe": "adulting speedrun",
+    "copy": "Shelter > shill.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/rent-week.jpg"
+  },
+  {
+    "id": "groceries-month",
+    "name": "Groceries for a month",
+    "price_usd": 300,
+    "vibe": "nutritional alpha",
+    "copy": "Fiber. Vitamins. No moon.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/groceries-month.jpg"
+  },
+  {
+    "id": "gym-year",
+    "name": "Budget gym membership (1 year)",
+    "price_usd": 240,
+    "vibe": "recovery arc",
+    "copy": "Strong body, weak hands.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/gym-year.jpg"
+  },
+  {
+    "id": "tattoo-small",
+    "name": "Small tattoo",
+    "price_usd": 250,
+    "vibe": "permanent thesis",
+    "copy": "Committed harder than your conviction.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/tattoo-small.jpg"
+  },
+  {
+    "id": "festival-ticket",
+    "name": "Music festival ticket",
+    "price_usd": 420,
+    "vibe": "main stage degen",
+    "copy": "You danced. Your BTC didn’t.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/festival-ticket.jpg"
+  },
+  {
+    "id": "therapy-bundle",
+    "name": "Therapy sessions (bundle)",
+    "price_usd": 800,
+    "vibe": "emotional ATH",
+    "copy": "Healing arc > halving cycle.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/therapy-bundle.jpg"
+  }
+]

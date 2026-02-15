@@ -1,0 +1,195 @@
+[
+  {
+    "id": "rx7-fd",
+    "name": "Mazda RX-7 FD",
+    "price_usd": 42000,
+    "vibe": "rotary final boss",
+    "copy": "Beauty, heat, and receipts.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/rx7-fd.jpg"
+  },
+  {
+    "id": "supra-mk4",
+    "name": "Toyota Supra MK4 (taxed)",
+    "price_usd": 85000,
+    "vibe": "2JZ folklore",
+    "copy": "You paid for the legend.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/supra-mk4.jpg"
+  },
+  {
+    "id": "skyline-r32",
+    "name": "Nissan Skyline R32",
+    "price_usd": 55000,
+    "vibe": "godzilla lore",
+    "copy": "Import papers and pride.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/skyline-r32.jpg"
+  },
+  {
+    "id": "skyline-r33",
+    "name": "Nissan Skyline R33",
+    "price_usd": 65000,
+    "vibe": "middle child supremacy",
+    "copy": "You like the deep cuts.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/skyline-r33.jpg"
+  },
+  {
+    "id": "skyline-r34",
+    "name": "Nissan Skyline R34 (myth)",
+    "price_usd": 140000,
+    "vibe": "forbidden fruit",
+    "copy": "You bought a poster.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/skyline-r34.jpg"
+  },
+  {
+    "id": "nsx",
+    "name": "Honda NSX (classic)",
+    "price_usd": 160000,
+    "vibe": "jdm halo car",
+    "copy": "Ferrari vibes, Honda reliability (ish).",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/nsx.jpg"
+  },
+  {
+    "id": "evo-ix",
+    "name": "Mitsubishi Lancer Evo IX",
+    "price_usd": 52000,
+    "vibe": "boosted cult",
+    "copy": "Your turbo has opinions.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/evo-ix.jpg"
+  },
+  {
+    "id": "evo-viii",
+    "name": "Mitsubishi Lancer Evo VIII",
+    "price_usd": 45000,
+    "vibe": "rally paperwork",
+    "copy": "Every pull feels like a thesis.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/evo-viii.jpg"
+  },
+  {
+    "id": "sti-hawkeye-clean",
+    "name": "Subaru STI (hawkeye, clean)",
+    "price_usd": 42000,
+    "vibe": "rarity tax",
+    "copy": "You paid extra for nostalgia.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/sti-hawkeye-clean.jpg"
+  },
+  {
+    "id": "m3-e46",
+    "name": "BMW M3 E46",
+    "price_usd": 48000,
+    "vibe": "driver’s car doctrine",
+    "copy": "Tasteful and slightly unstable.",
+    "tags": [
+      "used",
+      "german",
+      "legend"
+    ],
+    "image": "/cars/m3-e46.jpg"
+  },
+  {
+    "id": "m3-e30",
+    "name": "BMW M3 E30 (dream)",
+    "price_usd": 185000,
+    "vibe": "museum flex",
+    "copy": "Your garage is a gallery.",
+    "tags": [
+      "used",
+      "german",
+      "legend"
+    ],
+    "image": "/cars/m3-e30.jpg"
+  },
+  {
+    "id": "porsche-911-997",
+    "name": "Porsche 911 (997)",
+    "price_usd": 65000,
+    "vibe": "the sweet spot",
+    "copy": "You chose wisely. For once.",
+    "tags": [
+      "used",
+      "legend"
+    ],
+    "image": "/cars/porsche-911-997.jpg"
+  },
+  {
+    "id": "porsche-911-991",
+    "name": "Porsche 911 (991)",
+    "price_usd": 95000,
+    "vibe": "modern classic",
+    "copy": "You’re dangerously reasonable.",
+    "tags": [
+      "used",
+      "legend"
+    ],
+    "image": "/cars/porsche-911-991.jpg"
+  },
+  {
+    "id": "gtr-r35",
+    "name": "Nissan GT-R R35",
+    "price_usd": 90000,
+    "vibe": "robot punch",
+    "copy": "Launch control, life control: none.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/gtr-r35.jpg"
+  },
+  {
+    "id": "ae86-myth",
+    "name": "Toyota AE86 (mythical, clean)",
+    "price_usd": 65000,
+    "vibe": "initial D prophecy",
+    "copy": "Eurobeat not included.",
+    "tags": [
+      "used",
+      "jdm",
+      "legend"
+    ],
+    "image": "/cars/ae86-myth.jpg"
+  }
+]

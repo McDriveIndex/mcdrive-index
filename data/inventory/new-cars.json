@@ -1,0 +1,162 @@
+[
+  {
+    "id": "panda",
+    "make": "Fiat",
+    "model": "Panda",
+    "price_usd": 16000,
+    "vibe": "barefoot billionaire energy",
+    "image": "/cars/panda.jpg"
+  },
+  {
+    "id": "yaris",
+    "make": "Toyota",
+    "model": "Yaris",
+    "price_usd": 21000,
+    "vibe": "recession-proof legend",
+    "image": "/cars/yaris.jpg"
+  },
+  {
+    "id": "civic",
+    "make": "Honda",
+    "model": "Civic",
+    "price_usd": 26000,
+    "vibe": "responsible degen",
+    "image": "/cars/civic.jpg"
+  },
+  {
+    "id": "corolla",
+    "make": "Toyota",
+    "model": "Corolla",
+    "price_usd": 27000,
+    "vibe": "npc car, max efficiency",
+    "image": "/cars/corolla.jpg"
+  },
+  {
+    "id": "miata",
+    "make": "Mazda",
+    "model": "MX-5 Miata",
+    "price_usd": 30000,
+    "vibe": "smiles per gallon",
+    "image": "/cars/miata.jpg"
+  },
+  {
+    "id": "golf",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "price_usd": 31000,
+    "vibe": "euro clean",
+    "image": "/cars/golf.jpg"
+  },
+  {
+    "id": "wrx",
+    "make": "Subaru",
+    "model": "WRX",
+    "price_usd": 36000,
+    "vibe": "rally goblin",
+    "image": "/cars/wrx.jpg"
+  },
+  {
+    "id": "model3",
+    "make": "Tesla",
+    "model": "Model 3",
+    "price_usd": 39000,
+    "vibe": "tweet first, drive later",
+    "image": "/cars/model3.jpg"
+  },
+  {
+    "id": "mustang",
+    "make": "Ford",
+    "model": "Mustang",
+    "price_usd": 42000,
+    "vibe": "main character mode",
+    "image": "/cars/mustang.jpg"
+  },
+  {
+    "id": "bmw3",
+    "make": "BMW",
+    "model": "3 Series",
+    "price_usd": 47000,
+    "vibe": "finance-core",
+    "image": "/cars/bmw3.jpg"
+  },
+  {
+    "id": "a4",
+    "make": "Audi",
+    "model": "A4",
+    "price_usd": 49000,
+    "vibe": "stealth-ish wealth",
+    "image": "/cars/a4.jpg"
+  },
+  {
+    "id": "macan",
+    "make": "Porsche",
+    "model": "Macan",
+    "price_usd": 65000,
+    "vibe": "tasteful flex",
+    "image": "/cars/macan.jpg"
+  },
+  {
+    "id": "cybertruck",
+    "make": "Tesla",
+    "model": "Cybertruck",
+    "price_usd": 80000,
+    "vibe": "polygon-coded reality",
+    "image": "/cars/cybertruck.jpg"
+  },
+  {
+    "id": "m3",
+    "make": "BMW",
+    "model": "M3",
+    "price_usd": 82000,
+    "vibe": "aggressive spreadsheet",
+    "image": "/cars/m3.jpg"
+  },
+  {
+    "id": "911",
+    "make": "Porsche",
+    "model": "911",
+    "price_usd": 120000,
+    "vibe": "cultured menace",
+    "image": "/cars/911.jpg"
+  },
+  {
+    "id": "r8",
+    "make": "Audi",
+    "model": "R8",
+    "price_usd": 165000,
+    "vibe": "exit liquidity chic",
+    "image": "/cars/r8.jpg"
+  },
+  {
+    "id": "g63",
+    "make": "Mercedes",
+    "model": "G63 AMG",
+    "price_usd": 185000,
+    "vibe": "crypto bro boss fight",
+    "image": "/cars/g63.jpg"
+  },
+  {
+    "id": "huracan",
+    "make": "Lamborghini",
+    "model": "Huracán",
+    "price_usd": 240000,
+    "vibe": "loud money",
+    "image": "/cars/huracan.jpg"
+  },
+  {
+    "id": "rolls",
+    "make": "Rolls-Royce",
+    "model": "Ghost",
+    "price_usd": 360000,
+    "vibe": "villain arc complete",
+    "image": "/cars/rolls.jpg"
+  },
+  {
+    "id": "sf90",
+    "make": "Ferrari",
+    "model": "SF90",
+    "price_usd": 520000,
+    "vibe": "overkill, respectfully",
+    "image": "/cars/sf90.jpg"
+  }
+]
