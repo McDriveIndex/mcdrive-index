@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "ensure:car-images": "node scripts/ensureCarPlaceholders.mjs"
+    "ensure:car-images": "node scripts/ensureCarPlaceholders.mjs",
+    "btc:update": "tsx scripts/fetch-btc-history.ts"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -22,6 +23,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4",
     "typescript": "^5"
   }
 }
