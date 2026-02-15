@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { matchCars, type MatchResult } from "@/lib/matchCar";
 
 type Car = {
   id: string;
@@ -13,11 +14,26 @@ type Car = {
 };
 
 type BtcPriceResponse = {
-  btc_usd: number;
-  tier?: string | null;
-  bestMatch?: Car | null;
-  alternatives?: Car[];
+  dateRequested: string;
+  dateUsed: string;
+  close: number;
 };
+
+type LoadForDateResult = {
+  ok: boolean;
+  data: BtcPriceResponse | null;
+  match: MatchResult | null;
+};
+
+function isBtcPriceResponse(value: unknown): value is BtcPriceResponse {
+  if (!value || typeof value !== "object") return false;
+  const maybe = value as Partial<BtcPriceResponse>;
+  return (
+    typeof maybe.dateRequested === "string" &&
+    typeof maybe.dateUsed === "string" &&
+    typeof maybe.close === "number"
+  );
+}
 
 const TIER_COPY: Record<string, string> = {
   "poverty": "FULL SEND REGRET",
@@ -34,6 +50,7 @@ export default function Home() {
   const [bestMatch, setBestMatch] = useState<Car | null>(null);
   const [alternatives, setAlternatives] = useState<Car[]>([]);
   const [tier, setTier] = useState<string | null>(null);
+  const [dateUsed, setDateUsed] = useState<string | null>(null);
   const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -44,25 +61,40 @@ export default function Home() {
   const receiptBestMatch = bestMatch;
   const receiptBtc = btcPrice;
 
-  const loadForDate = async (d: string) => {
+  const loadForDate = async (d: string): Promise<LoadForDateResult> => {
     setLoading(true);
     try {
       const res = await fetch(`/api/btc-price?date=${d}`);
-      const data = await res.json();
+      const payload: unknown = await res.json();
 
       if (!res.ok) {
-        alert(data?.error ?? "Something went wrong");
-        return { ok: false, data: null as BtcPriceResponse | null };
+        const errorMessage =
+          typeof payload === "object" &&
+          payload !== null &&
+          "error" in payload &&
+          typeof (payload as { error?: unknown }).error === "string"
+            ? (payload as { error: string }).error
+            : "Something went wrong";
+        alert(errorMessage);
+        return { ok: false, data: null, match: null };
       }
 
-      setBtcPrice(data.btc_usd);
-      setBestMatch(data.bestMatch);
-      setAlternatives(data.alternatives || []);
-      setTier(data.tier ?? null);
-      return { ok: true, data: data as BtcPriceResponse };
+      if (!isBtcPriceResponse(payload)) {
+        alert("Invalid BTC API response");
+        return { ok: false, data: null, match: null };
+      }
+
+      const data = payload;
+      const match = matchCars(data.close, d);
+      setBtcPrice(data.close);
+      setDateUsed(data.dateUsed);
+      setBestMatch((match.bestMatch as Car | null) ?? null);
+      setAlternatives((match.alternatives as Car[]) || []);
+      setTier(match.tier);
+      return { ok: true, data, match };
     } catch {
       alert("Something went wrong");
-      return { ok: false, data: null as BtcPriceResponse | null };
+      return { ok: false, data: null, match: null };
     } finally {
       setLoading(false);
     }
@@ -87,12 +119,13 @@ export default function Home() {
       const result = await loadForDate(date);
       const ok = result.ok;
       const data = result.data;
+      const match = result.match;
       await new Promise((r) => setTimeout(r, 0));
 
-      if (ok && data) {
-        const btcUsd = data.btc_usd;
-        const best = data.bestMatch;
-        const loadedTier = data.tier;
+      if (ok && data && match) {
+        const btcUsd = data.close;
+        const best = (match.bestMatch as Car | null) ?? null;
+        const loadedTier = match.tier;
         const extraCopy = best?.copy ?? "";
         const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
         const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
@@ -103,6 +136,7 @@ export default function Home() {
         const name = best?.name ?? "—";
         const params = new URLSearchParams({
           date,
+          dateUsed: data.dateUsed,
           btc,
           name,
           price,
@@ -121,7 +155,7 @@ export default function Home() {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 800));
-      if (ok && data?.bestMatch) setShowModal(true);
+      if (ok && match?.bestMatch) setShowModal(true);
       else setShowModal(false);
       setShowReceipt(ok);
     } finally {
@@ -188,11 +222,12 @@ const runMoment = async (momentDate: string) => {
   const result = await loadForDate(d);
   const ok = result.ok;
   const data = result.data;
+  const match = result.match;
   await new Promise((r) => setTimeout(r, 0));
-  if (ok && data) {
-    const btcUsd = data.btc_usd;
-    const best = data.bestMatch;
-    const loadedTier = data.tier;
+  if (ok && data && match) {
+    const btcUsd = data.close;
+    const best = (match.bestMatch as Car | null) ?? null;
+    const loadedTier = match.tier;
     const extraCopy = best?.copy ?? "";
     const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
     const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
@@ -204,6 +239,7 @@ const runMoment = async (momentDate: string) => {
 
     const params = new URLSearchParams({
       date: d,
+      dateUsed: data.dateUsed,
       btc,
       name,
       price,
@@ -224,7 +260,7 @@ const runMoment = async (momentDate: string) => {
 
   await new Promise((r) => setTimeout(r, 800));
 
-  if (ok && data?.bestMatch) {
+  if (ok && match?.bestMatch) {
     setShowModal(true);
   } else {
     setShowModal(false);
@@ -270,12 +306,13 @@ const runMoment = async (momentDate: string) => {
                 type="date"
                 value={date}
                 max={todayMax}
-                onChange={(e) => {
-                  setDate(e.target.value);
-                  setBtcPrice(null);
-                  setBestMatch(null);
-                  setAlternatives([]);
-                  setTier(null);
+                  onChange={(e) => {
+                    setDate(e.target.value);
+                    setBtcPrice(null);
+                    setDateUsed(null);
+                    setBestMatch(null);
+                    setAlternatives([]);
+                    setTier(null);
                   setReceiptUrl(null);
                   setShowReceipt(false);
                   setIsGenerating(false);
@@ -303,12 +340,13 @@ const runMoment = async (momentDate: string) => {
               </button>
 
               <button
-                onClick={() => {
-                  setDate("");
-                  setBtcPrice(null);
-                  setBestMatch(null);
-                  setAlternatives([]);
-                  setTier(null);
+                  onClick={() => {
+                    setDate("");
+                    setBtcPrice(null);
+                    setDateUsed(null);
+                    setBestMatch(null);
+                    setAlternatives([]);
+                    setTier(null);
                   setReceiptUrl(null);
                   setShowReceipt(false);
                   setIsGenerating(false);
@@ -325,11 +363,17 @@ const runMoment = async (momentDate: string) => {
               </button>
             </div>
 
-            {(isGenerating || loading) && (
-              <div style={{ marginTop: 24, fontSize: 14, opacity: 0.75 }}>
-                Preparing your order...
-              </div>
-            )}
+              {(isGenerating || loading) && (
+                <div style={{ marginTop: 24, fontSize: 14, opacity: 0.75 }}>
+                  Preparing your order...
+                </div>
+              )}
+
+              {dateUsed && date && dateUsed !== date && (
+                <p className="text-xs mt-2 text-black/60">
+                  Using last available close: {dateUsed}
+                </p>
+              )}
 
             {toast && (
               <p className="text-sm mt-4 text-black/70">
