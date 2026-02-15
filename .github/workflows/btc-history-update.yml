@@ -28,6 +28,15 @@ jobs:
       - name: Update BTC history
         run: npm run btc:update
 
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet -- data/btc-history.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Read latest date
         id: latest
         shell: bash
@@ -35,6 +44,7 @@ jobs:
           node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('data/btc-history.json','utf8')); const latest=(a && a.length ? a[a.length-1].date : ''); console.log('latest=' + latest);" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
+        if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "chore: update BTC history"

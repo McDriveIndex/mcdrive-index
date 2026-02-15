@@ -556,84 +556,101 @@ const runMoment = async (momentDate: string) => {
 
       {showModal && receiptSrc && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
           onClick={() => {
             setShowModal(false);
             setReceiptSrc("");
           }}
         >
           <div
-            className="w-full max-w-md rounded-2xl bg-gray-950 border border-gray-800 shadow-2xl"
+            className="grain-drift pointer-events-none fixed inset-0 z-0 opacity-[0.05] [background-image:url('/paper-grain.png')] [background-size:900px_900px] [animation:grain-drift_14s_linear_infinite]"
+          />
+          <div className="thermal-scan pointer-events-none fixed inset-0 z-0" />
+
+          <div
+            className="relative z-10 w-full max-w-md flex flex-col items-center opacity-0 translate-y-2 [animation:modalIn_200ms_ease-out_forwards]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-4 border-b border-gray-800">
-              <div className="text-sm text-gray-200 font-semibold">Your order is ready</div>
+            <div className="w-full mb-2 flex items-center justify-between">
+              <div />
               <button
                 onClick={() => {
                   setShowModal(false);
                   setReceiptSrc("");
                   setShowReceipt(false);
                 }}
-                className="px-3 py-2 rounded-xl bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-900 transition text-sm"
+                className="text-xs uppercase tracking-widest opacity-70 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/25 focus-visible:ring-offset-2 rounded-sm px-1"
               >
-                Close
+                × Close
               </button>
             </div>
 
-            <div className="p-4">
+            <div className="relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10">
               <img
                 src={receiptSrc}
                 alt="McDrive receipt PNG"
-                className="w-full rounded-2xl border border-gray-800 bg-black"
+                className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
               />
-
-              <div className="mt-4 flex gap-3">
-                <button
-                  onClick={async () => {
-                    try {
-                      const res = await fetch(receiptSrc);
-                      const blob = await res.blob();
-                      const url = URL.createObjectURL(blob);
-                      const a = document.createElement("a");
-                      a.href = url;
-                      a.download = `mcdrive-receipt-${date || "date"}.png`;
-                      document.body.appendChild(a);
-                      a.click();
-                      a.remove();
-                      URL.revokeObjectURL(url);
-                    } catch {
-                      window.open(receiptSrc, "_blank");
-                    }
-                  }}
-                  className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
-                >
-                  Download
-                </button>
-
-                <button
-                  onClick={() => {
-                    const bm = bestMatch;
-                    const carName = bm?.name ?? "something questionable";
-                    const shareUrl = new URL(window.location.href);
-                    if (date) shareUrl.searchParams.set("date", date);
-
-                    const text = `McDrive Index™ — on ${date}, 1 BTC could’ve gotten you: ${carName} 🍟`;
-                    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl.toString())}`;
-                    window.open(intent, "_blank", "noopener,noreferrer");
-                  }}
-                  className="flex-1 px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-white font-semibold hover:bg-gray-800 transition"
-                >
-                  Post on X
-                </button>
-              </div>
-
-              <p className="mt-3 text-xs text-gray-500">
-                Close to try another date.
-              </p>
             </div>
+
+            <div className="mt-10 w-full flex gap-3 justify-center">
+              <button
+                onClick={async () => {
+                  try {
+                    const res = await fetch(receiptSrc);
+                    const blob = await res.blob();
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `mcdrive-receipt-${date || "date"}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                  } catch {
+                    window.open(receiptSrc, "_blank");
+                  }
+                }}
+                className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
+              >
+                Download
+              </button>
+
+              <button
+                onClick={() => {
+                  const bm = bestMatch;
+                  const carName = bm?.name ?? "something questionable";
+                  const shareUrl = new URL(window.location.href);
+                  if (date) shareUrl.searchParams.set("date", date);
+
+                  const text = `McDrive Index™ — on ${date}, 1 BTC could’ve gotten you: ${carName} 🍟`;
+                  const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl.toString())}`;
+                  window.open(intent, "_blank", "noopener,noreferrer");
+                }}
+                className="flex-1 px-4 py-3 rounded-xl border border-black/20 bg-white text-black font-semibold hover:bg-black/[0.03] transition"
+              >
+                Post on X
+              </button>
+            </div>
+
+            <p className="mt-3 text-xs text-black/60">
+              Close to try another date.
+            </p>
           </div>
         </div>
       )}
+      <style jsx global>{`
+        @keyframes modalIn {
+          from {
+            opacity: 0;
+            transform: translateY(0.5rem);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </main>
   );
 }
