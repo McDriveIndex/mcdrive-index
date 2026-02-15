@@ -30,9 +30,9 @@ jobs:
 
       - name: Read latest date
         id: latest
+        shell: bash
         run: |
-          node -e "const fs=require('fs'); const p='data/btc-history.json'; const a=JSON.parse(fs.readFileSync(p,'utf8')); const last=a[a.length-1]; console.log('latest='+last.date);"
-          echo "latest=$(node -e \"const fs=require('fs'); const a=JSON.parse(fs.readFileSync('data/btc-history.json','utf8')); process.stdout.write(a[a.length-1].date);\")" >> $GITHUB_OUTPUT
+          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('data/btc-history.json','utf8')); const latest=a[a.length-1]?.date || ''; process.stdout.write(`latest=${latest}\n`);" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
