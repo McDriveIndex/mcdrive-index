@@ -1,0 +1,12 @@
+{
+  "id": "used-bike",
+  "name": "Used bicycle (mystery brand)",
+  "vibe": "chain grease aesthetic",
+  "tier": "poverty",
+  "price_usd": 180,
+  "imagePath": "/cars/used-bike.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Two wheels, infinite cope."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "escape",
+  "name": "Ford Escape (used)",
+  "vibe": "mall crawler",
+  "tier": "used-beaters",
+  "price_usd": 5500,
+  "imagePath": "/cars/escape.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "It escapes nothing. But it tries."
+}

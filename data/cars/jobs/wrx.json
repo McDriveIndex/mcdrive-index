@@ -1,0 +1,8 @@
+{
+  "id": "wrx",
+  "name": "Subaru WRX",
+  "vibe": "rally goblin",
+  "tier": "new-cars",
+  "price_usd": 36000,
+  "imagePath": "/cars/wrx.jpg"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "crx",
+  "name": "Honda CRX (rare-ish)",
+  "vibe": "lightweight religion",
+  "tier": "used-icons",
+  "price_usd": 14000,
+  "imagePath": "/cars/crx.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Weight reduction > risk management."
+}

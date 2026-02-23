@@ -1,0 +1,13 @@
+{
+  "id": "ls400",
+  "name": "Lexus LS400",
+  "vibe": "stealth couch",
+  "tier": "used-icons",
+  "price_usd": 6500,
+  "imagePath": "/cars/ls400.jpg",
+  "tags": [
+    "used",
+    "icon"
+  ],
+  "copy": "Luxury, but make it Craigslist."
+}

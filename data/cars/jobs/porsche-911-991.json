@@ -1,0 +1,13 @@
+{
+  "id": "porsche-911-991",
+  "name": "Porsche 911 (991)",
+  "vibe": "modern classic",
+  "tier": "used-legends",
+  "price_usd": 95000,
+  "imagePath": "/cars/porsche-911-991.jpg",
+  "tags": [
+    "used",
+    "legend"
+  ],
+  "copy": "You’re dangerously reasonable."
+}

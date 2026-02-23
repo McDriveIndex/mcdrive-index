@@ -1,0 +1,12 @@
+{
+  "id": "488",
+  "name": "Ferrari 488 (used-ish)",
+  "vibe": "redline aristocracy",
+  "tier": "exotics",
+  "price_usd": 260000,
+  "imagePath": "/cars/488.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "You pay extra for emotions."
+}

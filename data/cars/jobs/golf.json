@@ -1,0 +1,8 @@
+{
+  "id": "golf",
+  "name": "Volkswagen Golf",
+  "vibe": "euro clean",
+  "tier": "new-cars",
+  "price_usd": 31000,
+  "imagePath": "/cars/golf.jpg"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "fiesta-st",
+  "name": "Ford Fiesta ST",
+  "vibe": "tiny menace",
+  "tier": "used-icons",
+  "price_usd": 11500,
+  "imagePath": "/cars/fiesta-st.jpg",
+  "tags": [
+    "used",
+    "icon"
+  ],
+  "copy": "You laugh in corners."
+}

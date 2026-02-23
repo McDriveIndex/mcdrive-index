@@ -1,0 +1,13 @@
+{
+  "id": "altima",
+  "name": "Nissan Altima (battle scars)",
+  "vibe": "main character damage",
+  "tier": "used-beaters",
+  "price_usd": 3200,
+  "imagePath": "/cars/altima.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Bumper? Optional."
+}

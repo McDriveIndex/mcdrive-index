@@ -1,0 +1,14 @@
+{
+  "id": "skyline-r32",
+  "name": "Nissan Skyline R32",
+  "vibe": "godzilla lore",
+  "tier": "used-legends",
+  "price_usd": 55000,
+  "imagePath": "/cars/skyline-r32.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Import papers and pride."
+}

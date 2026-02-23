@@ -1,0 +1,14 @@
+{
+  "id": "miata-nb",
+  "name": "Mazda MX-5 Miata NB",
+  "vibe": "cheap fun doctrine",
+  "tier": "used-icons",
+  "price_usd": 8000,
+  "imagePath": "/cars/miata-nb.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Cornering your feelings."
+}

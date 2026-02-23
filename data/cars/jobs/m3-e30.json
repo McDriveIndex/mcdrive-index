@@ -1,0 +1,14 @@
+{
+  "id": "m3-e30",
+  "name": "BMW M3 E30 (dream)",
+  "vibe": "museum flex",
+  "tier": "used-legends",
+  "price_usd": 185000,
+  "imagePath": "/cars/m3-e30.jpg",
+  "tags": [
+    "used",
+    "german",
+    "legend"
+  ],
+  "copy": "Your garage is a gallery."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "sf90",
+  "name": "Ferrari SF90",
+  "vibe": "overkill respectfully",
+  "tier": "exotics",
+  "price_usd": 520000,
+  "imagePath": "/cars/sf90.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "It’s a hybrid, officer."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "groceries-month",
+  "name": "Groceries for a month",
+  "vibe": "nutritional alpha",
+  "tier": "poverty",
+  "price_usd": 300,
+  "imagePath": "/cars/groceries-month.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Fiber. Vitamins. No moon."
+}

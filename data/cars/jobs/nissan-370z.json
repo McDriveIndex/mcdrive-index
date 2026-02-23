@@ -1,0 +1,14 @@
+{
+  "id": "nissan-370z",
+  "name": "Nissan 370Z",
+  "vibe": "mature chaos",
+  "tier": "used-icons",
+  "price_usd": 17500,
+  "imagePath": "/cars/nissan-370z.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Same energy, newer plastics."
+}

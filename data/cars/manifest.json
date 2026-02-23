@@ -1,0 +1,368 @@
+{
+  "_style": {
+    "locked": true,
+    "note": "style locked; generate once; append only"
+  },
+  "cars": {
+    "488": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.584Z",
+      "source": "import"
+    },
+    "911": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.603Z",
+      "source": "import"
+    },
+    "miata-na": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.614Z",
+      "source": "import"
+    },
+    "huracan": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.395Z",
+      "source": "import"
+    },
+    "a4": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.624Z",
+      "source": "import"
+    },
+    "accord-02": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.649Z",
+      "source": "import"
+    },
+    "ae86-myth": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.669Z",
+      "source": "import"
+    },
+    "airpods": {
+      "status": "done",
+      "importedAt": "2026-02-20T11:50:40.414Z",
+      "source": "import"
+    },
+    "altima": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.694Z",
+      "source": "import"
+    },
+    "bentayga": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.714Z",
+      "source": "import"
+    },
+    "bmw-e30": {
+      "status": "done",
+      "importedAt": "2026-02-20T11:50:40.431Z",
+      "source": "import"
+    },
+    "bmw-e36": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.736Z",
+      "source": "import"
+    },
+    "bmw-e46-330i": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.759Z",
+      "source": "import"
+    },
+    "boxster-986": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.780Z",
+      "source": "import"
+    },
+    "brz-used": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.799Z",
+      "source": "import"
+    },
+    "camry-04": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.822Z",
+      "source": "import"
+    },
+    "civic": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.846Z",
+      "source": "import"
+    },
+    "civic-99": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.870Z",
+      "source": "import"
+    },
+    "cobalt": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.895Z",
+      "source": "import"
+    },
+    "corolla-05": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.920Z",
+      "source": "import"
+    },
+    "crownvic": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.945Z",
+      "source": "import"
+    },
+    "crv-old": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.972Z",
+      "source": "import"
+    },
+    "crx": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:31.996Z",
+      "source": "import"
+    },
+    "cybertruck": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.021Z",
+      "source": "import"
+    },
+    "e-scooter": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.043Z",
+      "source": "import"
+    },
+    "e39-540i": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.067Z",
+      "source": "import"
+    },
+    "escape": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.093Z",
+      "source": "import"
+    },
+    "evo-ix": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.118Z",
+      "source": "import"
+    },
+    "fiesta-st": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.142Z",
+      "source": "import"
+    },
+    "focus-st": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.170Z",
+      "source": "import"
+    },
+    "g63": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.197Z",
+      "source": "import"
+    },
+    "golf": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.222Z",
+      "source": "import"
+    },
+    "golf-mk4": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.247Z",
+      "source": "import"
+    },
+    "grandmarquis": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.274Z",
+      "source": "import"
+    },
+    "gt3": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.300Z",
+      "source": "import"
+    },
+    "gti-mk5": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.325Z",
+      "source": "import"
+    },
+    "gti-mk7": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.343Z",
+      "source": "import"
+    },
+    "gtr-r35": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.369Z",
+      "source": "import"
+    },
+    "integra": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.420Z",
+      "source": "import"
+    },
+    "is300": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.440Z",
+      "source": "import"
+    },
+    "jetta-06": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.466Z",
+      "source": "import"
+    },
+    "ls400": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.491Z",
+      "source": "import"
+    },
+    "m3-e46": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.517Z",
+      "source": "import"
+    },
+    "mc20": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.541Z",
+      "source": "import"
+    },
+    "mercedes-190e": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.564Z",
+      "source": "import"
+    },
+    "miata": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.589Z",
+      "source": "import"
+    },
+    "miata-nb": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.640Z",
+      "source": "import"
+    },
+    "model3": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.663Z",
+      "source": "import"
+    },
+    "mustang": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.687Z",
+      "source": "import"
+    },
+    "nissan-350z": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.716Z",
+      "source": "import"
+    },
+    "nissan-370z": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.741Z",
+      "source": "import"
+    },
+    "nsx": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.766Z",
+      "source": "import"
+    },
+    "panda": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.793Z",
+      "source": "import"
+    },
+    "prius-old": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.820Z",
+      "source": "import"
+    },
+    "ptcruiser": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.844Z",
+      "source": "import"
+    },
+    "r8": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.869Z",
+      "source": "import"
+    },
+    "rav4-old": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.895Z",
+      "source": "import"
+    },
+    "rolls-ghost": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.920Z",
+      "source": "import"
+    },
+    "rx7-fd": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.945Z",
+      "source": "import"
+    },
+    "s2000": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.970Z",
+      "source": "import"
+    },
+    "sf90": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:32.991Z",
+      "source": "import"
+    },
+    "skateboard": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.011Z",
+      "source": "import"
+    },
+    "skyline-r32": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.036Z",
+      "source": "import"
+    },
+    "skyline-r33": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.061Z",
+      "source": "import"
+    },
+    "skyline-r34": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.086Z",
+      "source": "import"
+    },
+    "sti-blobeye": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.111Z",
+      "source": "import"
+    },
+    "sti-hawkeye-clean": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.136Z",
+      "source": "import"
+    },
+    "supra-mk4": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.158Z",
+      "source": "import"
+    },
+    "svj": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.181Z",
+      "source": "import"
+    },
+    "volvo-240": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.206Z",
+      "source": "import"
+    },
+    "wrx-bugeye": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.233Z",
+      "source": "import"
+    },
+    "yaris": {
+      "status": "done",
+      "importedAt": "2026-02-21T15:20:33.257Z",
+      "source": "import"
+    }
+  }
+}

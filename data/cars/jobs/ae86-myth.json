@@ -1,0 +1,14 @@
+{
+  "id": "ae86-myth",
+  "name": "Toyota AE86 (mythical, clean)",
+  "vibe": "initial D prophecy",
+  "tier": "used-legends",
+  "price_usd": 65000,
+  "imagePath": "/cars/ae86-myth.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Eurobeat not included."
+}

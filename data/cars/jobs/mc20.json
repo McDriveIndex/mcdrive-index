@@ -1,0 +1,12 @@
+{
+  "id": "mc20",
+  "name": "Maserati MC20",
+  "vibe": "beautiful risk",
+  "tier": "exotics",
+  "price_usd": 240000,
+  "imagePath": "/cars/mc20.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "Warranty prayers included."
+}

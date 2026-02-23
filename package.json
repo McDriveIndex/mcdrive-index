@@ -7,13 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "cars:plan": "node scripts/cars-plan.mjs",
+    "cars:generate": "node scripts/cars-generate.mjs",
+    "cars:jobs": "node scripts/cars-jobs.mjs",
+    "cars:import": "node scripts/cars-import.mjs",
     "ensure:car-images": "node scripts/ensureCarPlaceholders.mjs",
     "btc:update": "tsx scripts/fetch-btc-history.ts"
   },
   "dependencies": {
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

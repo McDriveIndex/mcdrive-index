@@ -1,0 +1,14 @@
+{
+  "id": "is300",
+  "name": "Lexus IS300",
+  "vibe": "2JZ adjacent",
+  "tier": "used-icons",
+  "price_usd": 9500,
+  "imagePath": "/cars/is300.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "You are now a forum moderator."
+}

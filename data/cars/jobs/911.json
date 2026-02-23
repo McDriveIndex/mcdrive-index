@@ -1,0 +1,12 @@
+{
+  "id": "911",
+  "name": "Porsche 911 (base)",
+  "vibe": "cultured menace",
+  "tier": "exotics",
+  "price_usd": 120000,
+  "imagePath": "/cars/911.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "You’re now fluent in options lists."
+}

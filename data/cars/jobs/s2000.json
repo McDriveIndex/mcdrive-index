@@ -1,0 +1,14 @@
+{
+  "id": "s2000",
+  "name": "Honda S2000",
+  "vibe": "VTEC prayer",
+  "tier": "used-icons",
+  "price_usd": 28000,
+  "imagePath": "/cars/s2000.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "8,000 RPM and zero savings."
+}

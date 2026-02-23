@@ -1,0 +1,13 @@
+{
+  "id": "grandmarquis",
+  "name": "Mercury Grand Marquis",
+  "vibe": "sofa on wheels",
+  "tier": "used-beaters",
+  "price_usd": 4300,
+  "imagePath": "/cars/grandmarquis.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Comfort spec. Drip questionable."
+}

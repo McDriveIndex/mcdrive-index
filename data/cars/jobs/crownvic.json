@@ -1,0 +1,13 @@
+{
+  "id": "crownvic",
+  "name": "Ford Crown Victoria (ex-cop)",
+  "vibe": "authority cosplay",
+  "tier": "used-beaters",
+  "price_usd": 5200,
+  "imagePath": "/cars/crownvic.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "People move out of your way for no reason."
+}

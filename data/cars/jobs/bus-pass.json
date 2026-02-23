@@ -1,0 +1,12 @@
+{
+  "id": "bus-pass",
+  "name": "Monthly bus pass",
+  "vibe": "public transport maximalist",
+  "tier": "poverty",
+  "price_usd": 120,
+  "imagePath": "/cars/bus-pass.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Window seat. No flex. Pure utility."
+}

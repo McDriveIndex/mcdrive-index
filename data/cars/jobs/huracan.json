@@ -1,0 +1,12 @@
+{
+  "id": "huracan",
+  "name": "Lamborghini Huracán",
+  "vibe": "loud money",
+  "tier": "exotics",
+  "price_usd": 240000,
+  "imagePath": "/cars/huracan.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "Everyone hears your decisions."
+}

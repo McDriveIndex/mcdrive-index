@@ -1,0 +1,12 @@
+{
+  "id": "rent-week",
+  "name": "One week of rent (depending)",
+  "vibe": "adulting speedrun",
+  "tier": "poverty",
+  "price_usd": 450,
+  "imagePath": "/cars/rent-week.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Shelter > shill."
+}

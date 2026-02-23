@@ -1,0 +1,14 @@
+{
+  "id": "brz-used",
+  "name": "Subaru BRZ (used)",
+  "vibe": "twin doctrine",
+  "tier": "used-icons",
+  "price_usd": 16500,
+  "imagePath": "/cars/brz-used.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Same car, different subreddit."
+}

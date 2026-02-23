@@ -1,0 +1,14 @@
+{
+  "id": "evo-ix",
+  "name": "Mitsubishi Lancer Evo IX",
+  "vibe": "boosted cult",
+  "tier": "used-legends",
+  "price_usd": 52000,
+  "imagePath": "/cars/evo-ix.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Your turbo has opinions."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "corolla-05",
+  "name": "Toyota Corolla (2005, used)",
+  "vibe": "npc durability",
+  "tier": "used-beaters",
+  "price_usd": 4200,
+  "imagePath": "/cars/corolla-05.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Reliable. Unlike your thesis."
+}

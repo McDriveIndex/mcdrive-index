@@ -1,0 +1,12 @@
+{
+  "id": "bentayga",
+  "name": "Bentley Bentayga",
+  "vibe": "wealth with cupholders",
+  "tier": "exotics",
+  "price_usd": 210000,
+  "imagePath": "/cars/bentayga.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "Leather smells like victory."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cobalt",
+  "name": "Chevy Cobalt (used)",
+  "vibe": "pure transportation",
+  "tier": "used-beaters",
+  "price_usd": 2400,
+  "imagePath": "/cars/cobalt.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "It’s a car. Allegedly."
+}

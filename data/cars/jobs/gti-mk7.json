@@ -1,0 +1,14 @@
+{
+  "id": "gti-mk7",
+  "name": "VW GTI Mk7 (used)",
+  "vibe": "adult hot hatch",
+  "tier": "used-icons",
+  "price_usd": 18500,
+  "imagePath": "/cars/gti-mk7.jpg",
+  "tags": [
+    "used",
+    "euro",
+    "icon"
+  ],
+  "copy": "Responsible-ish speed."
+}

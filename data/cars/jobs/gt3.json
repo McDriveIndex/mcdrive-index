@@ -1,0 +1,12 @@
+{
+  "id": "gt3",
+  "name": "Porsche 911 GT3",
+  "vibe": "track day zealot",
+  "tier": "exotics",
+  "price_usd": 220000,
+  "imagePath": "/cars/gt3.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "You talk in lap times now."
+}

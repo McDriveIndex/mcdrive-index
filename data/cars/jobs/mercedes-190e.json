@@ -1,0 +1,14 @@
+{
+  "id": "mercedes-190e",
+  "name": "Mercedes 190E",
+  "vibe": "cosy villain",
+  "tier": "used-icons",
+  "price_usd": 14000,
+  "imagePath": "/cars/mercedes-190e.jpg",
+  "tags": [
+    "used",
+    "german",
+    "icon"
+  ],
+  "copy": "You drive like you know things."
+}

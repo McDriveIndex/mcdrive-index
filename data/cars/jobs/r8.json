@@ -1,0 +1,12 @@
+{
+  "id": "r8",
+  "name": "Audi R8",
+  "vibe": "exit liquidity chic",
+  "tier": "exotics",
+  "price_usd": 165000,
+  "imagePath": "/cars/r8.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "V10 therapy session."
+}

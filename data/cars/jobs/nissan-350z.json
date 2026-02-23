@@ -1,0 +1,14 @@
+{
+  "id": "nissan-350z",
+  "name": "Nissan 350Z",
+  "vibe": "sideways decisions",
+  "tier": "used-icons",
+  "price_usd": 12500,
+  "imagePath": "/cars/nissan-350z.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "You will meet curbs."
+}

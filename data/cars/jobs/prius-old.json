@@ -1,0 +1,13 @@
+{
+  "id": "prius-old",
+  "name": "Toyota Prius (early gen)",
+  "vibe": "hyper-mile monk",
+  "tier": "used-beaters",
+  "price_usd": 4800,
+  "imagePath": "/cars/prius-old.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Silent, judgmental, efficient."
+}

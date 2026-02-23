@@ -1,0 +1,12 @@
+{
+  "id": "gaming-pc",
+  "name": "Budget gaming PC build",
+  "vibe": "rgb poverty",
+  "tier": "poverty",
+  "price_usd": 900,
+  "imagePath": "/cars/gaming-pc.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "Your rig pumps harder than your bags."
+}

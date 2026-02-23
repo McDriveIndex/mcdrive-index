@@ -1,0 +1,13 @@
+{
+  "id": "porsche-911-997",
+  "name": "Porsche 911 (997)",
+  "vibe": "the sweet spot",
+  "tier": "used-legends",
+  "price_usd": 65000,
+  "imagePath": "/cars/porsche-911-997.jpg",
+  "tags": [
+    "used",
+    "legend"
+  ],
+  "copy": "You chose wisely. For once."
+}

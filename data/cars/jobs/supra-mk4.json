@@ -1,0 +1,14 @@
+{
+  "id": "supra-mk4",
+  "name": "Toyota Supra MK4 (taxed)",
+  "vibe": "2JZ folklore",
+  "tier": "used-legends",
+  "price_usd": 85000,
+  "imagePath": "/cars/supra-mk4.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "You paid for the legend."
+}

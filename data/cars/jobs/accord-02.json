@@ -1,0 +1,13 @@
+{
+  "id": "accord-02",
+  "name": "Honda Accord (2002, used)",
+  "vibe": "commuter tank",
+  "tier": "used-beaters",
+  "price_usd": 3800,
+  "imagePath": "/cars/accord-02.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "It starts every time. Wow."
+}

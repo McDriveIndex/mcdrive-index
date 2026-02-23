@@ -1,0 +1,13 @@
+{
+  "id": "boxster-986",
+  "name": "Porsche Boxster 986",
+  "vibe": "cheap porsche doctrine",
+  "tier": "used-icons",
+  "price_usd": 12500,
+  "imagePath": "/cars/boxster-986.jpg",
+  "tags": [
+    "used",
+    "icon"
+  ],
+  "copy": "IMS fear included."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "a4",
+  "name": "Audi A4",
+  "vibe": "stealth-ish wealth",
+  "tier": "new-cars",
+  "price_usd": 49000,
+  "imagePath": "/cars/a4.jpg"
+}

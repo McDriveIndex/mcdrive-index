@@ -1,0 +1,13 @@
+{
+  "id": "camry-04",
+  "name": "Toyota Camry (2004, used)",
+  "vibe": "quiet persistence",
+  "tier": "used-beaters",
+  "price_usd": 4500,
+  "imagePath": "/cars/camry-04.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "It refuses to die. Respect."
+}

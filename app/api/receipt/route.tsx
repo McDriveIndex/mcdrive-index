@@ -262,7 +262,7 @@ export async function GET(req: Request) {
                 style={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "contain",
+                  objectFit: "cover",
                 }}
               />
             </div>

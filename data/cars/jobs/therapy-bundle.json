@@ -1,0 +1,12 @@
+{
+  "id": "therapy-bundle",
+  "name": "Therapy sessions (bundle)",
+  "vibe": "emotional ATH",
+  "tier": "poverty",
+  "price_usd": 800,
+  "imagePath": "/cars/therapy-bundle.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Healing arc > halving cycle."
+}

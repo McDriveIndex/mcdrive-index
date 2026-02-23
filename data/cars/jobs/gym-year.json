@@ -1,0 +1,12 @@
+{
+  "id": "gym-year",
+  "name": "Budget gym membership (1 year)",
+  "vibe": "recovery arc",
+  "tier": "poverty",
+  "price_usd": 240,
+  "imagePath": "/cars/gym-year.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Strong body, weak hands."
+}

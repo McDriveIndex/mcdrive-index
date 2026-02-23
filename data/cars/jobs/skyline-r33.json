@@ -1,0 +1,14 @@
+{
+  "id": "skyline-r33",
+  "name": "Nissan Skyline R33",
+  "vibe": "middle child supremacy",
+  "tier": "used-legends",
+  "price_usd": 65000,
+  "imagePath": "/cars/skyline-r33.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "You like the deep cuts."
+}

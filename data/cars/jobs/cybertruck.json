@@ -1,0 +1,8 @@
+{
+  "id": "cybertruck",
+  "name": "Tesla Cybertruck",
+  "vibe": "polygon-coded reality",
+  "tier": "new-cars",
+  "price_usd": 80000,
+  "imagePath": "/cars/cybertruck.jpg"
+}

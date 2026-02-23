@@ -1,0 +1,14 @@
+{
+  "id": "rx7-fd",
+  "name": "Mazda RX-7 FD",
+  "vibe": "rotary final boss",
+  "tier": "used-legends",
+  "price_usd": 42000,
+  "imagePath": "/cars/rx7-fd.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Beauty, heat, and receipts."
+}

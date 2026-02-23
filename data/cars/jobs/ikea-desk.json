@@ -1,0 +1,12 @@
+{
+  "id": "ikea-desk",
+  "name": "IKEA desk + chair combo",
+  "vibe": "startup core",
+  "tier": "poverty",
+  "price_usd": 220,
+  "imagePath": "/cars/ikea-desk.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "A desk for your delusions."
+}

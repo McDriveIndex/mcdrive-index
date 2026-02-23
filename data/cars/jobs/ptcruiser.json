@@ -1,0 +1,13 @@
+{
+  "id": "ptcruiser",
+  "name": "Chrysler PT Cruiser (cursed)",
+  "vibe": "ironic suffering",
+  "tier": "used-beaters",
+  "price_usd": 1900,
+  "imagePath": "/cars/ptcruiser.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Your friends will post about this."
+}

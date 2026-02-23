@@ -1,0 +1,13 @@
+{
+  "id": "volvo-240",
+  "name": "Volvo 240",
+  "vibe": "brick supremacy",
+  "tier": "used-icons",
+  "price_usd": 6000,
+  "imagePath": "/cars/volvo-240.jpg",
+  "tags": [
+    "used",
+    "icon"
+  ],
+  "copy": "It will outlive your memecoin."
+}

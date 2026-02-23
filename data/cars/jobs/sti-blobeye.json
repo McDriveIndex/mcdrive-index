@@ -1,0 +1,14 @@
+{
+  "id": "sti-blobeye",
+  "name": "Subaru STI (blobeye)",
+  "vibe": "anti-social exhaust",
+  "tier": "used-icons",
+  "price_usd": 22000,
+  "imagePath": "/cars/sti-blobeye.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Neighbors hate this one trick."
+}

@@ -10,6 +10,7 @@ export type InventoryItem = {
   name: string;
   price_usd: number;
   vibe: string;
+  image: string;
   copy?: string;
   tags?: string[];
 };
@@ -23,25 +24,57 @@ type LegacyNewCar = {
   vibe: string;
 };
 
+function slugifyName(name: string): string {
+  const slug = name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return slug || "car";
+}
+
+const usedIdsGlobal = new Set<string>();
+const warnedDuplicateExplicitIds = new Set<string>();
+
 function normalize(list: any[]): InventoryItem[] {
   return (list || []).map((x) => {
-    if (typeof x?.name === "string") return x as InventoryItem;
+    const fromLegacy = typeof x?.make === "string" && typeof x?.model === "string";
+    const name =
+      typeof x?.name === "string"
+        ? x.name
+        : fromLegacy
+          ? `${(x as LegacyNewCar).make} ${(x as LegacyNewCar).model}`
+          : String(x?.name ?? "Unknown item");
 
-    if (typeof x?.make === "string" && typeof x?.model === "string") {
-      const legacy = x as LegacyNewCar;
-      return {
-        id: legacy.id,
-        name: `${legacy.make} ${legacy.model}`,
-        price_usd: legacy.price_usd,
-        vibe: legacy.vibe,
-      };
+    const hasExplicitId = typeof x?.id === "string" && x.id.trim().length > 0;
+    const baseId = hasExplicitId ? x.id.trim() : slugifyName(name);
+
+    let id = baseId || "car";
+    if (!hasExplicitId) {
+      let suffix = 2;
+      while (usedIdsGlobal.has(id)) {
+        id = `${baseId}-${suffix}`;
+        suffix += 1;
+      }
+    } else if (usedIdsGlobal.has(id) && !warnedDuplicateExplicitIds.has(id)) {
+      console.warn(`[inventory] duplicate explicit id: ${id} (${name})`);
+      warnedDuplicateExplicitIds.add(id);
     }
+    usedIdsGlobal.add(id);
+
+    const image =
+      typeof x?.image === "string" && x.image.trim().length > 0
+        ? x.image
+        : `/cars/${id}.jpg`;
 
     return {
-      id: String(x?.id ?? "unknown"),
-      name: String(x?.name ?? "Unknown item"),
+      id,
+      name,
       price_usd: Number(x?.price_usd ?? 0),
       vibe: String(x?.vibe ?? ""),
+      image: image || "/cars/placeholder.jpg",
       copy: typeof x?.copy === "string" ? x.copy : undefined,
       tags: Array.isArray(x?.tags) ? x.tags : undefined,
     };
@@ -124,6 +157,23 @@ function pickPersonaDeterministic(seed: string) {
   return roll < 60 ? "normie" : "enthusiast";
 }
 
+function ensureBestMatchFields(best: InventoryItem | null): InventoryItem | null {
+  if (!best) return best;
+
+  const fallbackId = slugifyName(best.name || "car");
+  const id = typeof best.id === "string" && best.id.trim().length > 0 ? best.id : fallbackId;
+  const image =
+    typeof best.image === "string" && best.image.trim().length > 0
+      ? best.image
+      : `/cars/${id}.jpg`;
+
+  return {
+    ...best,
+    id,
+    image: image || "/cars/placeholder.jpg",
+  };
+}
+
 export function matchCars(btcUsd: number, dateSeed?: string): MatchResult {
   const date = dateSeed ?? "no-date";
   const baseSeed = `${date}:${Math.floor(btcUsd)}`;
@@ -131,17 +181,38 @@ export function matchCars(btcUsd: number, dateSeed?: string): MatchResult {
   // Base tiers (pre-30k)
   if (btcUsd < 5000) {
     const { best, alts } = pickIndexStyle(poverty, btcUsd, `${baseSeed}:poverty`);
-    return { tier: "poverty", bestMatch: best, alternatives: alts };
+    const alternatives = alts
+      .map((alt) => ensureBestMatchFields(alt))
+      .filter((alt): alt is InventoryItem => alt !== null);
+    return {
+      tier: "poverty",
+      bestMatch: ensureBestMatchFields(best),
+      alternatives,
+    };
   }
 
   if (btcUsd < 10000) {
     const { best, alts } = pickIndexStyle(usedBeaters, btcUsd, `${baseSeed}:beater`);
-    return { tier: "used-beaters", bestMatch: best, alternatives: alts };
+    const alternatives = alts
+      .map((alt) => ensureBestMatchFields(alt))
+      .filter((alt): alt is InventoryItem => alt !== null);
+    return {
+      tier: "used-beaters",
+      bestMatch: ensureBestMatchFields(best),
+      alternatives,
+    };
   }
 
   if (btcUsd < 30000) {
     const { best, alts } = pickIndexStyle(usedIcons, btcUsd, `${baseSeed}:icons`);
-    return { tier: "used-icons", bestMatch: best, alternatives: alts };
+    const alternatives = alts
+      .map((alt) => ensureBestMatchFields(alt))
+      .filter((alt): alt is InventoryItem => alt !== null);
+    return {
+      tier: "used-icons",
+      bestMatch: ensureBestMatchFields(best),
+      alternatives,
+    };
   }
 
   // Persona engine (>= 30k) — single result, invisible persona
@@ -191,7 +262,8 @@ export function matchCars(btcUsd: number, dateSeed?: string): MatchResult {
   }
 
   const { best, alts } = pickIndexStyle(catalog, btcUsd, `${baseSeed}:${tier}`);
-  return { tier, bestMatch: best, alternatives: alts };
+  const alternatives = alts
+    .map((alt) => ensureBestMatchFields(alt))
+    .filter((alt): alt is InventoryItem => alt !== null);
+  return { tier, bestMatch: ensureBestMatchFields(best), alternatives };
 }
-
-

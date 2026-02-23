@@ -1,0 +1,13 @@
+{
+  "id": "focus-st",
+  "name": "Ford Focus ST",
+  "vibe": "hatchback hooligan",
+  "tier": "used-icons",
+  "price_usd": 14000,
+  "imagePath": "/cars/focus-st.jpg",
+  "tags": [
+    "used",
+    "icon"
+  ],
+  "copy": "Torque steer personality."
+}

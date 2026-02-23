@@ -1,0 +1,14 @@
+{
+  "id": "integra",
+  "name": "Acura Integra (clean)",
+  "vibe": "golden era",
+  "tier": "used-icons",
+  "price_usd": 12000,
+  "imagePath": "/cars/integra.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Taste: confirmed."
+}

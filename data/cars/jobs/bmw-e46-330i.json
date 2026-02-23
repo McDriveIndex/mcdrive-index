@@ -1,0 +1,14 @@
+{
+  "id": "bmw-e46-330i",
+  "name": "BMW E46 330i",
+  "vibe": "forum-approved choice",
+  "tier": "used-icons",
+  "price_usd": 9500,
+  "imagePath": "/cars/bmw-e46-330i.jpg",
+  "tags": [
+    "used",
+    "german",
+    "icon"
+  ],
+  "copy": "Balanced chassis, unbalanced life."
+}

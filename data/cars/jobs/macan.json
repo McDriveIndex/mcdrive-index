@@ -1,0 +1,8 @@
+{
+  "id": "macan",
+  "name": "Porsche Macan",
+  "vibe": "tasteful flex",
+  "tier": "new-cars",
+  "price_usd": 65000,
+  "imagePath": "/cars/macan.jpg"
+}

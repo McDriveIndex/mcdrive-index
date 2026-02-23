@@ -1,0 +1,14 @@
+{
+  "id": "m3-e46",
+  "name": "BMW M3 E46",
+  "vibe": "driver’s car doctrine",
+  "tier": "used-legends",
+  "price_usd": 48000,
+  "imagePath": "/cars/m3-e46.jpg",
+  "tags": [
+    "used",
+    "german",
+    "legend"
+  ],
+  "copy": "Tasteful and slightly unstable."
+}

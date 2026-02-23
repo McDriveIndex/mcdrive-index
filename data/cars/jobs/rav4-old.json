@@ -1,0 +1,13 @@
+{
+  "id": "rav4-old",
+  "name": "Toyota RAV4 (early gen)",
+  "vibe": "practical degen",
+  "tier": "used-beaters",
+  "price_usd": 6200,
+  "imagePath": "/cars/rav4-old.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Not sexy. Extremely correct."
+}

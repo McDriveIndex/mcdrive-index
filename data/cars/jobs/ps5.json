@@ -1,0 +1,12 @@
+{
+  "id": "ps5",
+  "name": "PS5 + one game",
+  "vibe": "escape velocity",
+  "tier": "poverty",
+  "price_usd": 560,
+  "imagePath": "/cars/ps5.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "Grinding levels instead of PnL."
+}

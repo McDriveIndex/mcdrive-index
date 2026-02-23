@@ -1,0 +1,8 @@
+{
+  "id": "bmw3",
+  "name": "BMW 3 Series",
+  "vibe": "finance-core",
+  "tier": "new-cars",
+  "price_usd": 47000,
+  "imagePath": "/cars/bmw3.jpg"
+}

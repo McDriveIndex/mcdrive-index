@@ -1,0 +1,12 @@
+{
+  "id": "reventon",
+  "name": "Lamborghini Reventón (myth)",
+  "vibe": "museum mode",
+  "tier": "exotics",
+  "price_usd": 1800000,
+  "imagePath": "/cars/reventon.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "This is not a car. It’s a statement."
+}

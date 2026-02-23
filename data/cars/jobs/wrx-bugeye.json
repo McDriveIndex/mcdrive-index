@@ -1,0 +1,14 @@
+{
+  "id": "wrx-bugeye",
+  "name": "Subaru WRX (bugeye)",
+  "vibe": "rally goblin",
+  "tier": "used-icons",
+  "price_usd": 11500,
+  "imagePath": "/cars/wrx-bugeye.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Boost builds character."
+}

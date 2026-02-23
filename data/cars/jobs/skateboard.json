@@ -1,0 +1,12 @@
+{
+  "id": "skateboard",
+  "name": "Skateboard (slightly chipped)",
+  "vibe": "street certified",
+  "tier": "poverty",
+  "price_usd": 90,
+  "imagePath": "/cars/skateboard.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Kickflip your portfolio."
+}

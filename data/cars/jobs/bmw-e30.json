@@ -1,0 +1,14 @@
+{
+  "id": "bmw-e30",
+  "name": "BMW E30 (project)",
+  "vibe": "analog royalty",
+  "tier": "used-icons",
+  "price_usd": 16000,
+  "imagePath": "/cars/bmw-e30.jpg",
+  "tags": [
+    "used",
+    "german",
+    "icon"
+  ],
+  "copy": "You bought a legend and a parts list."
+}

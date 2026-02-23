@@ -1,0 +1,8 @@
+{
+  "id": "panda",
+  "name": "Fiat Panda",
+  "vibe": "barefoot billionaire energy",
+  "tier": "new-cars",
+  "price_usd": 16000,
+  "imagePath": "/cars/panda.jpg"
+}

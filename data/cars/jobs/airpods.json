@@ -1,0 +1,12 @@
+{
+  "id": "airpods",
+  "name": "AirPods",
+  "vibe": "noise-cancel the bear",
+  "tier": "poverty",
+  "price_usd": 179,
+  "imagePath": "/cars/airpods.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "Silence the screams."
+}

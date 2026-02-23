@@ -1,0 +1,13 @@
+{
+  "id": "civic-99",
+  "name": "Honda Civic (1999, used)",
+  "vibe": "runs forever energy",
+  "tier": "used-beaters",
+  "price_usd": 2800,
+  "imagePath": "/cars/civic-99.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "The car has more conviction than you."
+}

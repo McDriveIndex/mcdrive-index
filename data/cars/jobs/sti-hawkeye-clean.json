@@ -1,0 +1,14 @@
+{
+  "id": "sti-hawkeye-clean",
+  "name": "Subaru STI (hawkeye, clean)",
+  "vibe": "rarity tax",
+  "tier": "used-legends",
+  "price_usd": 42000,
+  "imagePath": "/cars/sti-hawkeye-clean.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "You paid extra for nostalgia."
+}

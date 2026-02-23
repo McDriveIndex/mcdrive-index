@@ -1,0 +1,8 @@
+{
+  "id": "mustang",
+  "name": "Ford Mustang",
+  "vibe": "main character mode",
+  "tier": "new-cars",
+  "price_usd": 42000,
+  "imagePath": "/cars/mustang.jpg"
+}

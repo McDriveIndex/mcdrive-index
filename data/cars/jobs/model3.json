@@ -1,0 +1,8 @@
+{
+  "id": "model3",
+  "name": "Tesla Model 3",
+  "vibe": "tweet first, drive later",
+  "tier": "new-cars",
+  "price_usd": 39000,
+  "imagePath": "/cars/model3.jpg"
+}

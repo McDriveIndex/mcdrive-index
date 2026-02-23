@@ -1,0 +1,14 @@
+{
+  "id": "e39-540i",
+  "name": "BMW E39 540i",
+  "vibe": "V8 dadcore",
+  "tier": "used-icons",
+  "price_usd": 14000,
+  "imagePath": "/cars/e39-540i.jpg",
+  "tags": [
+    "used",
+    "german",
+    "icon"
+  ],
+  "copy": "A classy problem."
+}

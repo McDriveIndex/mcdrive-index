@@ -1,0 +1,14 @@
+{
+  "id": "gtr-r35",
+  "name": "Nissan GT-R R35",
+  "vibe": "robot punch",
+  "tier": "used-legends",
+  "price_usd": 90000,
+  "imagePath": "/cars/gtr-r35.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Launch control, life control: none."
+}

@@ -1,0 +1,14 @@
+{
+  "id": "evo-viii",
+  "name": "Mitsubishi Lancer Evo VIII",
+  "vibe": "rally paperwork",
+  "tier": "used-legends",
+  "price_usd": 45000,
+  "imagePath": "/cars/evo-viii.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Every pull feels like a thesis."
+}

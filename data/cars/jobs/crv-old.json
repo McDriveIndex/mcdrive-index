@@ -1,0 +1,13 @@
+{
+  "id": "crv-old",
+  "name": "Honda CR-V (early gen)",
+  "vibe": "forever appliance",
+  "tier": "used-beaters",
+  "price_usd": 5900,
+  "imagePath": "/cars/crv-old.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "A refrigerator with seats."
+}

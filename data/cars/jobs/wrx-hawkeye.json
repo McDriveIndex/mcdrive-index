@@ -1,0 +1,14 @@
+{
+  "id": "wrx-hawkeye",
+  "name": "Subaru WRX (hawkeye)",
+  "vibe": "hood scoop theology",
+  "tier": "used-icons",
+  "price_usd": 13500,
+  "imagePath": "/cars/wrx-hawkeye.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Turbo noises drown the doubt."
+}

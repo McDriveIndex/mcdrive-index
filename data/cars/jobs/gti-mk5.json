@@ -1,0 +1,14 @@
+{
+  "id": "gti-mk5",
+  "name": "VW GTI Mk5",
+  "vibe": "hot hatch doctrine",
+  "tier": "used-icons",
+  "price_usd": 9000,
+  "imagePath": "/cars/gti-mk5.jpg",
+  "tags": [
+    "used",
+    "euro",
+    "icon"
+  ],
+  "copy": "You’ll say ‘stage 1’ a lot."
+}

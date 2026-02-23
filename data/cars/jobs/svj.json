@@ -1,0 +1,12 @@
+{
+  "id": "svj",
+  "name": "Lamborghini Aventador SVJ",
+  "vibe": "final boss",
+  "tier": "exotics",
+  "price_usd": 650000,
+  "imagePath": "/cars/svj.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "Subtlety deleted."
+}

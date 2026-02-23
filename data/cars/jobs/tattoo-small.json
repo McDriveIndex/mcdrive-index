@@ -1,0 +1,12 @@
+{
+  "id": "tattoo-small",
+  "name": "Small tattoo",
+  "vibe": "permanent thesis",
+  "tier": "poverty",
+  "price_usd": 250,
+  "imagePath": "/cars/tattoo-small.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Committed harder than your conviction."
+}

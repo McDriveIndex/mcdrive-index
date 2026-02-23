@@ -1,0 +1,14 @@
+{
+  "id": "bmw-e36",
+  "name": "BMW E36 (manual)",
+  "vibe": "parking lot philosopher",
+  "tier": "used-icons",
+  "price_usd": 12000,
+  "imagePath": "/cars/bmw-e36.jpg",
+  "tags": [
+    "used",
+    "german",
+    "icon"
+  ],
+  "copy": "Drift dreams, coolant leaks."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "e-scooter",
+  "name": "Electric scooter (2nd hand)",
+  "vibe": "battery anxiety",
+  "tier": "poverty",
+  "price_usd": 350,
+  "imagePath": "/cars/e-scooter.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Range: 8 miles. Regret: unlimited."
+}

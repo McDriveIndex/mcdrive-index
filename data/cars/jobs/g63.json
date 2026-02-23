@@ -1,0 +1,12 @@
+{
+  "id": "g63",
+  "name": "Mercedes G63 AMG",
+  "vibe": "boss fight energy",
+  "tier": "exotics",
+  "price_usd": 185000,
+  "imagePath": "/cars/g63.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "You bought a rectangle with ego."
+}

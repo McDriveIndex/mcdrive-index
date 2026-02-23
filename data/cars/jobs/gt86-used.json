@@ -1,0 +1,14 @@
+{
+  "id": "gt86-used",
+  "name": "Toyota 86 / GT86 (used)",
+  "vibe": "slow car fast",
+  "tier": "used-icons",
+  "price_usd": 17000,
+  "imagePath": "/cars/gt86-used.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Momentum investor."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "used-iphone",
+  "name": "Used iPhone (last-gen)",
+  "vibe": "camera roll investor",
+  "tier": "poverty",
+  "price_usd": 350,
+  "imagePath": "/cars/used-iphone.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "New phone, same charts."
+}

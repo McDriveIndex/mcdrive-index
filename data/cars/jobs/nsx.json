@@ -1,0 +1,14 @@
+{
+  "id": "nsx",
+  "name": "Honda NSX (classic)",
+  "vibe": "jdm halo car",
+  "tier": "used-legends",
+  "price_usd": 160000,
+  "imagePath": "/cars/nsx.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "legend"
+  ],
+  "copy": "Ferrari vibes, Honda reliability (ish)."
+}

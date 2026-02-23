@@ -1,0 +1,12 @@
+{
+  "id": "rolls-ghost",
+  "name": "Rolls-Royce Ghost",
+  "vibe": "villain arc complete",
+  "tier": "exotics",
+  "price_usd": 360000,
+  "imagePath": "/cars/rolls-ghost.jpg",
+  "tags": [
+    "exotic"
+  ],
+  "copy": "Silence as a feature."
+}

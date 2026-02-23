@@ -1,0 +1,13 @@
+{
+  "id": "jetta-06",
+  "name": "VW Jetta (2006, used)",
+  "vibe": "euro beater chic",
+  "tier": "used-beaters",
+  "price_usd": 4800,
+  "imagePath": "/cars/jetta-06.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "Check engine light as a feature."
+}

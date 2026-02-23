@@ -1,0 +1,12 @@
+{
+  "id": "festival-ticket",
+  "name": "Music festival ticket",
+  "vibe": "main stage degen",
+  "tier": "poverty",
+  "price_usd": 420,
+  "imagePath": "/cars/festival-ticket.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "You danced. Your BTC didn’t."
+}

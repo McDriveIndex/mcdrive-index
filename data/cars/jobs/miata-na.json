@@ -1,0 +1,14 @@
+{
+  "id": "miata-na",
+  "name": "Mazda MX-5 Miata NA",
+  "vibe": "smiles per gallon",
+  "tier": "used-icons",
+  "price_usd": 9500,
+  "imagePath": "/cars/miata-na.jpg",
+  "tags": [
+    "used",
+    "jdm",
+    "icon"
+  ],
+  "copy": "Pop-up headlights, down-only portfolio."
+}

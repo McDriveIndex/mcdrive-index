@@ -1,0 +1,13 @@
+{
+  "id": "golf-mk4",
+  "name": "VW Golf Mk4 (used)",
+  "vibe": "euro cube",
+  "tier": "used-beaters",
+  "price_usd": 3600,
+  "imagePath": "/cars/golf-mk4.jpg",
+  "tags": [
+    "used",
+    "beater"
+  ],
+  "copy": "You will learn what ‘electrical gremlins’ means."
+}
