@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update:
@@ -28,32 +27,19 @@ jobs:
       - name: Update BTC history
         run: npm run btc:update
 
-      - name: Detect changes
-        id: diff
-        run: |
-          if git diff --quiet -- data/btc-history.json; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Read latest date
-        id: latest
+      - name: Commit and push if changed
         shell: bash
         run: |
-          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('data/btc-history.json','utf8')); const latest=(a && a.length ? a[a.length-1].date : ''); console.log('latest=' + latest);" >> $GITHUB_OUTPUT
+          if git diff --quiet -- data/btc-history.json; then
+            echo "No changes"
+            exit 0
+          fi
 
-      - name: Create Pull Request
-        if: steps.diff.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "chore: update BTC history"
-          title: "chore: update BTC history"
-          body: |
-            Automated BTC history update.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            Latest date in dataset: ${{ steps.latest.outputs.latest }}
-          branch: "chore/btc-history-update"
-          delete-branch: true
-          add-paths: |
-            data/btc-history.json
+          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('data/btc-history.json','utf8')); const last=(Array.isArray(a)&&a.length?a[a.length-1]:null); console.log('Latest BTC date:', last?.date ?? 'N/A');"
+
+          git add data/btc-history.json
+          git commit -m "chore: update BTC history"
+          git push origin HEAD:main

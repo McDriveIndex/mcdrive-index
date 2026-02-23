@@ -5,7 +5,8 @@
     "model": "Panda",
     "price_usd": 16000,
     "vibe": "barefoot billionaire energy",
-    "image": "/cars/panda.jpg"
+    "image": "/cars/panda.jpg",
+    "copy": "Base model.\nMax cope."
   },
   {
     "id": "yaris",
@@ -13,7 +14,8 @@
     "model": "Yaris",
     "price_usd": 21000,
     "vibe": "recession-proof legend",
-    "image": "/cars/yaris.jpg"
+    "image": "/cars/yaris.jpg",
+    "copy": "Recession-proof.\nSo is the regret."
   },
   {
     "id": "civic",
@@ -21,7 +23,8 @@
     "model": "Civic",
     "price_usd": 26000,
     "vibe": "responsible degen",
-    "image": "/cars/civic.jpg"
+    "image": "/cars/civic.jpg",
+    "copy": "Good decisions.\nIn a bad market."
   },
   {
     "id": "corolla",
@@ -29,7 +32,8 @@
     "model": "Corolla",
     "price_usd": 27000,
     "vibe": "npc car, max efficiency",
-    "image": "/cars/corolla.jpg"
+    "image": "/cars/corolla.jpg",
+    "copy": "NPC spec.\nS-tier reliability."
   },
   {
     "id": "miata",
@@ -37,7 +41,8 @@
     "model": "MX-5 Miata",
     "price_usd": 30000,
     "vibe": "smiles per gallon",
-    "image": "/cars/miata.jpg"
+    "image": "/cars/miata.jpg",
+    "copy": "Top down.\nCharts down."
   },
   {
     "id": "golf",
@@ -45,7 +50,8 @@
     "model": "Golf",
     "price_usd": 31000,
     "vibe": "euro clean",
-    "image": "/cars/golf.jpg"
+    "image": "/cars/golf.jpg",
+    "copy": "Euro clean.\nMaintenance lore included."
   },
   {
     "id": "wrx",
@@ -53,7 +59,8 @@
     "model": "WRX",
     "price_usd": 36000,
     "vibe": "rally goblin",
-    "image": "/cars/wrx.jpg"
+    "image": "/cars/wrx.jpg",
+    "copy": "Boost, gravel, chaos.\nBuy earplugs."
   },
   {
     "id": "model3",
@@ -61,7 +68,8 @@
     "model": "Model 3",
     "price_usd": 39000,
     "vibe": "tweet first, drive later",
-    "image": "/cars/model3.jpg"
+    "image": "/cars/model3.jpg",
+    "copy": "Silent launch.\nLoud opinions."
   },
   {
     "id": "mustang",
@@ -69,7 +77,8 @@
     "model": "Mustang",
     "price_usd": 42000,
     "vibe": "main character mode",
-    "image": "/cars/mustang.jpg"
+    "image": "/cars/mustang.jpg",
+    "copy": "Crowd control.\nRear tires sold separately."
   },
   {
     "id": "bmw3",
@@ -77,7 +86,8 @@
     "model": "3 Series",
     "price_usd": 47000,
     "vibe": "finance-core",
-    "image": "/cars/bmw3.jpg"
+    "image": "/cars/bmw3.jpg",
+    "copy": "Lease-coded confidence.\nPark it diagonally."
   },
   {
     "id": "a4",
@@ -85,7 +95,8 @@
     "model": "A4",
     "price_usd": 49000,
     "vibe": "stealth-ish wealth",
-    "image": "/cars/a4.jpg"
+    "image": "/cars/a4.jpg",
+    "copy": "Quiet flex.\nSuspiciously composed."
   },
   {
     "id": "macan",
@@ -93,7 +104,8 @@
     "model": "Macan",
     "price_usd": 65000,
     "vibe": "tasteful flex",
-    "image": "/cars/macan.jpg"
+    "image": "/cars/macan.jpg",
+    "copy": "Tasteful badge.\nUnreasonable vibes."
   },
   {
     "id": "cybertruck",
@@ -101,7 +113,8 @@
     "model": "Cybertruck",
     "price_usd": 80000,
     "vibe": "polygon-coded reality",
-    "image": "/cars/cybertruck.jpg"
+    "image": "/cars/cybertruck.jpg",
+    "copy": "Low-poly apocalypse.\nStill won’t fix your PnL."
   },
   {
     "id": "m3",
@@ -109,7 +122,8 @@
     "model": "M3",
     "price_usd": 82000,
     "vibe": "aggressive spreadsheet",
-    "image": "/cars/m3.jpg"
+    "image": "/cars/m3.jpg",
+    "copy": "Spreadsheet violence.\nWith a warranty."
   },
   {
     "id": "911",
@@ -117,7 +131,8 @@
     "model": "911",
     "price_usd": 120000,
     "vibe": "cultured menace",
-    "image": "/cars/911.jpg"
+    "image": "/cars/911.jpg",
+    "copy": "The safe bet.\nStill a gamble."
   },
   {
     "id": "r8",
@@ -125,7 +140,8 @@
     "model": "R8",
     "price_usd": 165000,
     "vibe": "exit liquidity chic",
-    "image": "/cars/r8.jpg"
+    "image": "/cars/r8.jpg",
+    "copy": "Supercar, dailyable.\nUntil the bill arrives."
   },
   {
     "id": "g63",
@@ -133,7 +149,8 @@
     "model": "G63 AMG",
     "price_usd": 185000,
     "vibe": "crypto bro boss fight",
-    "image": "/cars/g63.jpg"
+    "image": "/cars/g63.jpg",
+    "copy": "Boxy flex.\nFuel economy is a rumor."
   },
   {
     "id": "huracan",
@@ -141,7 +158,8 @@
     "model": "Huracán",
     "price_usd": 240000,
     "vibe": "loud money",
-    "image": "/cars/huracan.jpg"
+    "image": "/cars/huracan.jpg",
+    "copy": "Loud money.\nEven louder startup."
   },
   {
     "id": "rolls",
@@ -149,7 +167,8 @@
     "model": "Ghost",
     "price_usd": 360000,
     "vibe": "villain arc complete",
-    "image": "/cars/rolls.jpg"
+    "image": "/cars/rolls.jpg",
+    "copy": "Whispered power.\nNo one says no."
   },
   {
     "id": "sf90",
@@ -157,6 +176,7 @@
     "model": "SF90",
     "price_usd": 520000,
     "vibe": "overkill, respectfully",
-    "image": "/cars/sf90.jpg"
+    "image": "/cars/sf90.jpg",
+    "copy": "Overkill.\nIn 3.0 seconds."
   }
 ]
