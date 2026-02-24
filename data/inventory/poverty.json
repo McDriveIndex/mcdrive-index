@@ -4,7 +4,7 @@
     "name": "Monthly bus pass",
     "price_usd": 120,
     "vibe": "public transport maximalist",
-    "copy": "Window seat. No flex. Pure utility.",
+    "copy": "You roundtripped the bus to never ever land.",
     "tags": [
       "life"
     ],
@@ -103,7 +103,7 @@
     "name": "One week of rent (depending)",
     "price_usd": 450,
     "vibe": "adulting speedrun",
-    "copy": "Shelter > shill.",
+    "copy": "4ever rent free in your head.",
     "tags": [
       "life"
     ],
@@ -147,7 +147,7 @@
     "name": "Music festival ticket",
     "price_usd": 420,
     "vibe": "main stage degen",
-    "copy": "You danced. Your BTC didn’t.",
+    "copy": "Broker than a broken record.",
     "tags": [
       "life"
     ],
@@ -158,7 +158,7 @@
     "name": "Therapy sessions (bundle)",
     "price_usd": 800,
     "vibe": "emotional ATH",
-    "copy": "Healing arc > halving cycle.",
+    "copy": "Might need this. Again.",
     "tags": [
       "life"
     ],
@@ -180,7 +180,7 @@
     "name": "Whole pizza",
     "price_usd": 10,
     "vibe": "historic transaction",
-    "copy": "Could be worse, someone spent 10k BTC on this",
+    "copy": "Could've been worse. RIP Laszlo.",
     "tags": [
       "food",
       "history"
@@ -358,7 +358,7 @@
     "name": "Used book",
     "price_usd": 45,
     "vibe": "learned helplessness",
-    "copy": "Read it.\nStill won’t time it.",
+    "copy": "Hope you at least gained knowledge.",
     "tags": [
       "life"
     ],

@@ -49,6 +49,41 @@ function isBtcRangeResponse(value: unknown): value is BtcRangeResponse {
   return typeof maybe.minDate === "string" && typeof maybe.maxDate === "string";
 }
 
+function formatDisplayDate(dateStr: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return dateStr;
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+    .format(d)
+    .replaceAll("/", "-");
+}
+
+function formatUsdDisplay(value: number): string {
+  if (value >= 1000) {
+    return value.toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  }
+
+  if (value >= 1) {
+    return value.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 4,
+  });
+}
+
 const TIER_COPY: Record<string, string> = {
   "poverty": "FULL SEND REGRET",
   "used-beaters": "BEATED BY A BEATER",
@@ -146,9 +181,9 @@ export default function Home() {
         const extraCopy = best?.copy ?? "";
         const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
         const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
-        const btc = btcUsd != null ? `$${Math.floor(btcUsd).toLocaleString()}` : "—";
-        const changeUsd = best ? Math.max(0, Math.floor(btcUsd - best.price_usd)) : null;
-        const change = changeUsd == null ? "—" : `$${changeUsd.toLocaleString()}`;
+        const btc = btcUsd != null ? String(btcUsd) : "—";
+        const changeValue = best ? Math.max(0, btcUsd - best.price_usd) : null;
+        const change = changeValue == null ? "—" : `$${formatUsdDisplay(changeValue)}`;
         const image = best?.image ?? "/cars/placeholder.jpg";
         const name = best?.name ?? "—";
         const params = new URLSearchParams({
@@ -269,9 +304,9 @@ const runMoment = async (momentDate: string) => {
     const extraCopy = best?.copy ?? "";
     const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
     const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
-    const btc = btcUsd != null ? `$${Math.floor(btcUsd).toLocaleString()}` : "—";
-    const changeUsd = best ? Math.max(0, Math.floor(btcUsd - best.price_usd)) : null;
-    const change = changeUsd == null ? "—" : `$${changeUsd.toLocaleString()}`;
+    const btc = btcUsd != null ? String(btcUsd) : "—";
+    const changeValue = best ? Math.max(0, btcUsd - best.price_usd) : null;
+    const change = changeValue == null ? "—" : `$${formatUsdDisplay(changeValue)}`;
     const image = best?.image ?? "/cars/placeholder.jpg";
     const name = best?.name ?? "—";
 
@@ -412,13 +447,13 @@ const runMoment = async (momentDate: string) => {
 
               {dateUsed && date && dateUsed !== date && (
                 <p className="text-xs mt-2 text-black/60">
-                  Using last available close: {dateUsed}
+                  Using last available close: {formatDisplayDate(dateUsed)}
                 </p>
               )}
 
               {wasClamped && dateUsed && (
                 <p className="text-xs mt-1 text-black/60">
-                  Selected date out of range. Clamped to {dateUsed}.
+                  Selected date out of range. Clamped to {formatDisplayDate(dateUsed)}.
                 </p>
               )}
 
@@ -442,7 +477,7 @@ const runMoment = async (momentDate: string) => {
               >
                 <span className="font-extrabold text-[16px] text-black">McLehman Double Smash</span>
                 <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>2008-09-15</span>
+                  <span>{formatDisplayDate("2008-09-15")}</span>
                   <span className="text-black font-bold">→</span>
                 </span>
               </button>
@@ -452,7 +487,7 @@ const runMoment = async (momentDate: string) => {
               >
                 <span className="font-extrabold text-[16px] text-black">McCovid Flash Crash</span>
                 <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>2020-03-12</span>
+                  <span>{formatDisplayDate("2020-03-12")}</span>
                   <span className="text-black font-bold">→</span>
                 </span>
               </button>
@@ -462,7 +497,7 @@ const runMoment = async (momentDate: string) => {
               >
                 <span className="font-extrabold text-[16px] text-black">McATH Supersize</span>
                 <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>2021-11-10</span>
+                  <span>{formatDisplayDate("2021-11-10")}</span>
                   <span className="text-black font-bold">→</span>
                 </span>
               </button>
@@ -670,8 +705,9 @@ const runMoment = async (momentDate: string) => {
                   const shareUrl = new URL(window.location.href);
                   if (date) shareUrl.searchParams.set("date", date);
 
-                  const text = `McDrive Index™ — on ${date}, 1 BTC could’ve gotten you: ${carName} 🍟`;
-                  const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl.toString())}`;
+                  const displayDate = date ? formatDisplayDate(date) : "—";
+                  const text = `McDrive Index™ — ${displayDate}\n1 BTC → ${carName}`;
+                  const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
                   window.open(intent, "_blank", "noopener,noreferrer");
                 }}
                 className="flex-1 px-4 py-3 rounded-xl border border-black/20 bg-white text-black font-semibold hover:bg-black/[0.03] transition"
@@ -680,8 +716,8 @@ const runMoment = async (momentDate: string) => {
               </button>
             </div>
 
-            <p className="mt-3 text-xs text-black/60">
-              Close to try another date.
+            <p className="mt-3 text-sm text-black/70">
+              Download the receipt → attach it to your post.
             </p>
           </div>
         </div>

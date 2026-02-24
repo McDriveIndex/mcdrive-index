@@ -5,11 +5,46 @@ import { readFile } from "fs/promises";
 
 export const runtime = "nodejs";
 
+function formatDisplayDate(dateStr: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return dateStr;
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+    .format(d)
+    .replaceAll("/", "-");
+}
+
+function formatBtcPrice(value: number): string {
+  if (value >= 1000) {
+    return value.toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  }
+
+  if (value >= 1) {
+    return value.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 4,
+  });
+}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
-  const date = searchParams.get("date") ?? "—";
-  const btc = searchParams.get("btc") ?? "—";
+  const dateRaw = searchParams.get("date") ?? "—";
+  const btcRaw = searchParams.get("btc") ?? "—";
   const name = searchParams.get("name") ?? "—";
   const price = searchParams.get("price") ?? "—";
   const change = searchParams.get("change") ?? "—";
@@ -17,6 +52,11 @@ export async function GET(req: Request) {
   const extraCopy = searchParams.get("extraCopy") ?? "";
   const origin = new URL(req.url).origin;
   const imagePath = searchParams.get("image") ?? "/cars/placeholder.jpg";
+  const date = formatDisplayDate(dateRaw);
+  const btcNumeric = Number(btcRaw);
+  const btc = Number.isFinite(btcNumeric) && btcNumeric >= 0
+    ? `$${formatBtcPrice(btcNumeric)}`
+    : btcRaw;
 
   const PAPER_WIDTH = 660;
   const PAPER_LEFT = Math.round((1080 - PAPER_WIDTH) / 2);
