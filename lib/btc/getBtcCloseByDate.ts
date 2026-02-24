@@ -60,6 +60,10 @@ async function loadHistory(): Promise<BtcHistoryRow[] | null> {
   return historyLoadPromise;
 }
 
+export async function getBtcHistoryRows(): Promise<BtcHistoryRow[] | null> {
+  return loadHistory();
+}
+
 export async function getBtcCloseByDate(
   dateISO: string
 ): Promise<{ dateUsed: string; close: number } | null> {

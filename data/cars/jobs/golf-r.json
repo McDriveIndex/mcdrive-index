@@ -1,0 +1,13 @@
+{
+  "id": "golf-r",
+  "name": "VW Golf R (new)",
+  "vibe": "all-weather degen",
+  "tier": "new-cars",
+  "price_usd": 47000,
+  "imagePath": "/cars/golf-r.jpg",
+  "tags": [
+    "eu",
+    "awd"
+  ],
+  "copy": "Sleeper look.\nUn-sleeper launches."
+}

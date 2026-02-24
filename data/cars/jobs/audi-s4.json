@@ -1,0 +1,13 @@
+{
+  "id": "audi-s4",
+  "name": "Audi S4 (new)",
+  "vibe": "quiet flex",
+  "tier": "new-cars",
+  "price_usd": 59000,
+  "imagePath": "/cars/audi-s4.jpg",
+  "tags": [
+    "german",
+    "awd"
+  ],
+  "copy": "Looks calm.\nIs not calm."
+}

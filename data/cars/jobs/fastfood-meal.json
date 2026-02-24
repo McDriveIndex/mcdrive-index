@@ -1,0 +1,12 @@
+{
+  "id": "fastfood-meal",
+  "name": "Fast food meal (value menu)",
+  "vibe": "utility dining",
+  "tier": "poverty",
+  "price_usd": 25,
+  "imagePath": "/cars/fastfood-meal.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Nutrition: maybe.\nMemes: guaranteed."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "metro-token",
+  "name": "Metro token",
+  "vibe": "one stop closer",
+  "tier": "poverty",
+  "price_usd": 4,
+  "imagePath": "/cars/metro-token.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Next station: reality."
+}

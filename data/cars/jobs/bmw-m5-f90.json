@@ -1,0 +1,13 @@
+{
+  "id": "bmw-m5-f90",
+  "name": "BMW M5 (F90, used)",
+  "vibe": "business-class brutality",
+  "tier": "used-legends",
+  "price_usd": 112000,
+  "imagePath": "/cars/bmw-m5-f90.jpg",
+  "tags": [
+    "german",
+    "sport-sedan"
+  ],
+  "copy": "Four doors.\nNo mercy."
+}

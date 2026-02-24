@@ -1,0 +1,13 @@
+{
+  "id": "lexus-lc500",
+  "name": "Lexus LC 500 (used)",
+  "vibe": "japanese grand tour",
+  "tier": "used-legends",
+  "price_usd": 78000,
+  "imagePath": "/cars/lexus-lc500.jpg",
+  "tags": [
+    "jdm",
+    "gt"
+  ],
+  "copy": "V8 symphony.\nSilk gloves, brass knuckles."
+}

@@ -1,0 +1,14 @@
+{
+  "id": "audi-rs6-c7",
+  "name": "Audi RS6 (C7, used)",
+  "vibe": "dad wagon final boss",
+  "tier": "used-legends",
+  "price_usd": 105000,
+  "imagePath": "/cars/audi-rs6-c7.jpg",
+  "tags": [
+    "german",
+    "wagon",
+    "awd"
+  ],
+  "copy": "Wagon.\nWeapon."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bmw-m2-new",
+  "name": "BMW M2 (new)",
+  "vibe": "compact violence",
+  "tier": "new-cars",
+  "price_usd": 70000,
+  "imagePath": "/cars/bmw-m2-new.jpg",
+  "tags": [
+    "german",
+    "track"
+  ],
+  "copy": "Short wheelbase.\nLong list of enemies."
+}

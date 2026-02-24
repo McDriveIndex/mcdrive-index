@@ -1,0 +1,13 @@
+{
+  "id": "civic-type-r",
+  "name": "Honda Civic Type R (new)",
+  "vibe": "front-wheel prophecy",
+  "tier": "new-cars",
+  "price_usd": 46000,
+  "imagePath": "/cars/civic-type-r.jpg",
+  "tags": [
+    "jdm",
+    "hot-hatch"
+  ],
+  "copy": "FWD that embarrasses egos."
+}

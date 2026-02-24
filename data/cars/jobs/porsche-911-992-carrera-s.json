@@ -1,0 +1,13 @@
+{
+  "id": "porsche-911-992-carrera-s",
+  "name": "Porsche 911 Carrera S (992, used-ish)",
+  "vibe": "the default legend",
+  "tier": "used-legends",
+  "price_usd": 108000,
+  "imagePath": "/cars/porsche-911-992-carrera-s.jpg",
+  "tags": [
+    "eu",
+    "icon"
+  ],
+  "copy": "It’s always the answer.\nUnfortunately."
+}

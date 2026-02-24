@@ -1,0 +1,12 @@
+{
+  "id": "street-hotdog",
+  "name": "Street hot dog",
+  "vibe": "late night liquidity",
+  "tier": "poverty",
+  "price_usd": 7,
+  "imagePath": "/cars/street-hotdog.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Questionable alpha.\nGuaranteed regret."
+}

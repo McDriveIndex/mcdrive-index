@@ -1,0 +1,13 @@
+{
+  "id": "bmw-m4-f82",
+  "name": "BMW M4 (F82, used)",
+  "vibe": "rear-tire extinction",
+  "tier": "used-legends",
+  "price_usd": 78000,
+  "imagePath": "/cars/bmw-m4-f82.jpg",
+  "tags": [
+    "german",
+    "enthusiast"
+  ],
+  "copy": "Coupe.\nChaos."
+}

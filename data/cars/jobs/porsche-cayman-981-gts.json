@@ -1,0 +1,13 @@
+{
+  "id": "porsche-cayman-981-gts",
+  "name": "Porsche Cayman GTS (981, used)",
+  "vibe": "driver tax paid",
+  "tier": "used-legends",
+  "price_usd": 75000,
+  "imagePath": "/cars/porsche-cayman-981-gts.jpg",
+  "tags": [
+    "eu",
+    "track"
+  ],
+  "copy": "Mid-engine.\nMaximum smug."
+}

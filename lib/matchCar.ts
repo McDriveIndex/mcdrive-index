@@ -151,6 +151,35 @@ function pickIndexStyle(
   return { best, alts };
 }
 
+function pickPovertyMicroStyle(
+  list: InventoryItem[],
+  budgetUsd: number,
+  seed: string
+): { best: InventoryItem | null; alts: InventoryItem[] } {
+  const affordable = list.filter((x) => x.price_usd <= budgetUsd);
+  if (affordable.length === 0) return { best: null, alts: [] };
+
+  const closest = affordable
+    .slice()
+    .sort((a, b) => {
+      const da = Math.abs(a.price_usd - budgetUsd);
+      const db = Math.abs(b.price_usd - budgetUsd);
+      if (da !== db) return da - db;
+      return b.price_usd - a.price_usd;
+    })
+    .slice(0, 3);
+
+  const idx = hashStringToInt(seed) % closest.length;
+  const best = closest[idx];
+  const alts = closest
+    .filter((x) => x.id !== best.id)
+    .slice()
+    .sort((a, b) => b.price_usd - a.price_usd)
+    .slice(0, 3);
+
+  return { best, alts };
+}
+
 function pickPersonaDeterministic(seed: string) {
   // 60% normie, 40% enthusiast
   const roll = hashStringToInt(seed) % 100;
@@ -179,8 +208,11 @@ export function matchCars(btcUsd: number, dateSeed?: string): MatchResult {
   const baseSeed = `${date}:${Math.floor(btcUsd)}`;
 
   // Base tiers (pre-30k)
-  if (btcUsd < 5000) {
-    const { best, alts } = pickIndexStyle(poverty, btcUsd, `${baseSeed}:poverty`);
+  if (btcUsd <= 1000) {
+    const { best, alts } =
+      btcUsd < 50
+        ? pickPovertyMicroStyle(poverty, btcUsd, `${baseSeed}:poverty`)
+        : pickIndexStyle(poverty, btcUsd, `${baseSeed}:poverty`);
     const alternatives = alts
       .map((alt) => ensureBestMatchFields(alt))
       .filter((alt): alt is InventoryItem => alt !== null);
@@ -191,8 +223,9 @@ export function matchCars(btcUsd: number, dateSeed?: string): MatchResult {
     };
   }
 
-  if (btcUsd < 10000) {
-    const { best, alts } = pickIndexStyle(usedBeaters, btcUsd, `${baseSeed}:beater`);
+  if (btcUsd <= 8000) {
+    const merged = [...usedBeaters, ...usedIcons];
+    const { best, alts } = pickIndexStyle(merged, btcUsd, `${baseSeed}:beaters-icons`);
     const alternatives = alts
       .map((alt) => ensureBestMatchFields(alt))
       .filter((alt): alt is InventoryItem => alt !== null);
@@ -203,13 +236,32 @@ export function matchCars(btcUsd: number, dateSeed?: string): MatchResult {
     };
   }
 
-  if (btcUsd < 30000) {
+  if (btcUsd <= 20000) {
     const { best, alts } = pickIndexStyle(usedIcons, btcUsd, `${baseSeed}:icons`);
     const alternatives = alts
       .map((alt) => ensureBestMatchFields(alt))
       .filter((alt): alt is InventoryItem => alt !== null);
     return {
       tier: "used-icons",
+      bestMatch: ensureBestMatchFields(best),
+      alternatives,
+    };
+  }
+
+  if (btcUsd < 30000) {
+    const roll = hashStringToInt(`${baseSeed}:icons-new-bias`) % 100;
+    const pickedTier: MatchResult["tier"] = roll < 70 ? "used-icons" : "new-cars";
+    const sourceList = pickedTier === "used-icons" ? usedIcons : newCars;
+    const { best, alts } = pickIndexStyle(
+      sourceList,
+      btcUsd,
+      `${baseSeed}:icons-new:${pickedTier}`
+    );
+    const alternatives = alts
+      .map((alt) => ensureBestMatchFields(alt))
+      .filter((alt): alt is InventoryItem => alt !== null);
+    return {
+      tier: pickedTier,
       bestMatch: ensureBestMatchFields(best),
       alternatives,
     };

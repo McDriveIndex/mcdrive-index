@@ -1,0 +1,12 @@
+{
+  "id": "bus-ticket",
+  "name": "Single bus ticket",
+  "vibe": "one-way cope",
+  "tier": "poverty",
+  "price_usd": 1,
+  "imagePath": "/cars/bus-ticket.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "From ATH to downtown."
+}

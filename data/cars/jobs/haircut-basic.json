@@ -1,0 +1,12 @@
+{
+  "id": "haircut-basic",
+  "name": "Basic haircut",
+  "vibe": "risk management",
+  "tier": "poverty",
+  "price_usd": 12,
+  "imagePath": "/cars/haircut-basic.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Trim the hair.\nNot the bag."
+}

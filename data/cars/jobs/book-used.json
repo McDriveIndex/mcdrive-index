@@ -1,0 +1,12 @@
+{
+  "id": "book-used",
+  "name": "Used book",
+  "vibe": "learned helplessness",
+  "tier": "poverty",
+  "price_usd": 45,
+  "imagePath": "/cars/book-used.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Read it.\nStill won’t time it."
+}

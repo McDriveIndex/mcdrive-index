@@ -1,0 +1,13 @@
+{
+  "id": "corvette-c8",
+  "name": "Chevrolet Corvette C8 (new)",
+  "vibe": "mid-engine shockwave",
+  "tier": "new-cars",
+  "price_usd": 100000,
+  "imagePath": "/cars/corvette-c8.jpg",
+  "tags": [
+    "us",
+    "icon"
+  ],
+  "copy": "America discovered corners.\nFinally."
+}

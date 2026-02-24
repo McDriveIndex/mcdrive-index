@@ -1,0 +1,13 @@
+{
+  "id": "brz-new",
+  "name": "Subaru BRZ (new)",
+  "vibe": "balanced chaos",
+  "tier": "new-cars",
+  "price_usd": 33000,
+  "imagePath": "/cars/brz-new.jpg",
+  "tags": [
+    "jdm",
+    "enthusiast"
+  ],
+  "copy": "Same twins.\nDifferent demons."
+}

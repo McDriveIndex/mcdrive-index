@@ -17,6 +17,12 @@ type BtcPriceResponse = {
   dateRequested: string;
   dateUsed: string;
   close: number;
+  clamped?: boolean;
+};
+
+type BtcRangeResponse = {
+  minDate: string;
+  maxDate: string;
 };
 
 type LoadForDateResult = {
@@ -27,12 +33,20 @@ type LoadForDateResult = {
 
 function isBtcPriceResponse(value: unknown): value is BtcPriceResponse {
   if (!value || typeof value !== "object") return false;
-  const maybe = value as Partial<BtcPriceResponse>;
-  return (
+  const maybe = value as any;
+  const baseOk =
     typeof maybe.dateRequested === "string" &&
     typeof maybe.dateUsed === "string" &&
-    typeof maybe.close === "number"
-  );
+    typeof maybe.close === "number";
+  if (!baseOk) return false;
+  if ("clamped" in maybe && typeof maybe.clamped !== "boolean") return false;
+  return true;
+}
+
+function isBtcRangeResponse(value: unknown): value is BtcRangeResponse {
+  if (!value || typeof value !== "object") return false;
+  const maybe = value as Partial<BtcRangeResponse>;
+  return typeof maybe.minDate === "string" && typeof maybe.maxDate === "string";
 }
 
 const TIER_COPY: Record<string, string> = {
@@ -51,6 +65,8 @@ export default function Home() {
   const [alternatives, setAlternatives] = useState<Car[]>([]);
   const [tier, setTier] = useState<string | null>(null);
   const [dateUsed, setDateUsed] = useState<string | null>(null);
+  const [wasClamped, setWasClamped] = useState(false);
+  const [btcRange, setBtcRange] = useState<BtcRangeResponse | null>(null);
   const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -88,6 +104,7 @@ export default function Home() {
       const match = matchCars(data.close, d);
       setBtcPrice(data.close);
       setDateUsed(data.dateUsed);
+      setWasClamped(Boolean(data.clamped));
       setBestMatch((match.bestMatch as Car | null) ?? null);
       setAlternatives((match.alternatives as Car[]) || []);
       setTier(match.tier);
@@ -188,6 +205,25 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    let active = true;
+
+    (async () => {
+      try {
+        const res = await fetch("/api/btc-range", { cache: "no-store" });
+        const payload: unknown = await res.json();
+        if (!res.ok || !isBtcRangeResponse(payload) || !active) return;
+        setBtcRange(payload);
+      } catch {
+        // keep UI usable even if range endpoint fails
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
     if (showModal) {
       document.body.style.overflow = "hidden";
     } else {
@@ -200,6 +236,8 @@ export default function Home() {
   }, [showModal]);
 
   const todayMax = new Date().toISOString().slice(0, 10);
+  const pickerMin = btcRange?.minDate;
+  const pickerMax = btcRange?.maxDate ?? todayMax;
   function randomDateIn2017() {
   const start = new Date("2017-01-01T00:00:00Z").getTime();
   const end = new Date("2017-12-31T00:00:00Z").getTime();
@@ -305,11 +343,13 @@ const runMoment = async (momentDate: string) => {
               <input
                 type="date"
                 value={date}
-                max={todayMax}
+                min={pickerMin}
+                max={pickerMax}
                   onChange={(e) => {
                     setDate(e.target.value);
                     setBtcPrice(null);
                     setDateUsed(null);
+                    setWasClamped(false);
                     setBestMatch(null);
                     setAlternatives([]);
                     setTier(null);
@@ -344,6 +384,7 @@ const runMoment = async (momentDate: string) => {
                     setDate("");
                     setBtcPrice(null);
                     setDateUsed(null);
+                    setWasClamped(false);
                     setBestMatch(null);
                     setAlternatives([]);
                     setTier(null);
@@ -372,6 +413,12 @@ const runMoment = async (momentDate: string) => {
               {dateUsed && date && dateUsed !== date && (
                 <p className="text-xs mt-2 text-black/60">
                   Using last available close: {dateUsed}
+                </p>
+              )}
+
+              {wasClamped && dateUsed && (
+                <p className="text-xs mt-1 text-black/60">
+                  Selected date out of range. Clamped to {dateUsed}.
                 </p>
               )}
 

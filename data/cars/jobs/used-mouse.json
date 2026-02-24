@@ -1,0 +1,12 @@
+{
+  "id": "used-mouse",
+  "name": "Used computer mouse",
+  "vibe": "click-to-cope",
+  "tier": "poverty",
+  "price_usd": 5,
+  "imagePath": "/cars/used-mouse.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "Still clicks.\nUnlike your plan."
+}

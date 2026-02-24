@@ -178,5 +178,197 @@
     "vibe": "overkill, respectfully",
     "image": "/cars/sf90.jpg",
     "copy": "Overkill.\nIn 3.0 seconds."
+  },
+  {
+    "id": "mini-cooper-s",
+    "name": "Mini Cooper S (new)",
+    "price_usd": 32000,
+    "vibe": "tiny menace",
+    "copy": "Small car.\nBig attitude.",
+    "tags": [
+      "hot-hatch",
+      "eu"
+    ],
+    "image": "/cars/mini-cooper-s.jpg"
+  },
+  {
+    "id": "gr86",
+    "name": "Toyota GR86 (new)",
+    "price_usd": 32000,
+    "vibe": "driver's handshake",
+    "copy": "RWD.\nGood decisions, finally.",
+    "tags": [
+      "jdm",
+      "enthusiast"
+    ],
+    "image": "/cars/gr86.jpg"
+  },
+  {
+    "id": "brz-new",
+    "name": "Subaru BRZ (new)",
+    "price_usd": 33000,
+    "vibe": "balanced chaos",
+    "copy": "Same twins.\nDifferent demons.",
+    "tags": [
+      "jdm",
+      "enthusiast"
+    ],
+    "image": "/cars/brz-new.jpg"
+  },
+  {
+    "id": "elantra-n",
+    "name": "Hyundai Elantra N (new)",
+    "price_usd": 35000,
+    "vibe": "track goblin",
+    "copy": "Loud exhaust.\nLouder opinions.",
+    "tags": [
+      "sport",
+      "budget"
+    ],
+    "image": "/cars/elantra-n.jpg"
+  },
+  {
+    "id": "civic-type-r",
+    "name": "Honda Civic Type R (new)",
+    "price_usd": 46000,
+    "vibe": "front-wheel prophecy",
+    "copy": "FWD that embarrasses egos.",
+    "tags": [
+      "jdm",
+      "hot-hatch"
+    ],
+    "image": "/cars/civic-type-r.jpg"
+  },
+  {
+    "id": "golf-r",
+    "name": "VW Golf R (new)",
+    "price_usd": 47000,
+    "vibe": "all-weather degen",
+    "copy": "Sleeper look.\nUn-sleeper launches.",
+    "tags": [
+      "eu",
+      "awd"
+    ],
+    "image": "/cars/golf-r.jpg"
+  },
+  {
+    "id": "gr-corolla",
+    "name": "Toyota GR Corolla (new)",
+    "price_usd": 42000,
+    "vibe": "rally in sneakers",
+    "copy": "Three cylinders.\nZero chill.",
+    "tags": [
+      "jdm",
+      "awd"
+    ],
+    "image": "/cars/gr-corolla.jpg"
+  },
+  {
+    "id": "camaro-ss",
+    "name": "Chevrolet Camaro SS (new-ish)",
+    "price_usd": 52000,
+    "vibe": "v8 therapy",
+    "copy": "Noise is a feature.",
+    "tags": [
+      "us",
+      "muscle"
+    ],
+    "image": "/cars/camaro-ss.jpg"
+  },
+  {
+    "id": "challenger-scat-pack",
+    "name": "Dodge Challenger Scat Pack (new-ish)",
+    "price_usd": 54000,
+    "vibe": "straight-line philosopher",
+    "copy": "Turns are optional.\nSmiles aren’t.",
+    "tags": [
+      "us",
+      "muscle"
+    ],
+    "image": "/cars/challenger-scat-pack.jpg"
+  },
+  {
+    "id": "bmw-m340i",
+    "name": "BMW M340i (new)",
+    "price_usd": 60000,
+    "vibe": "daily missile",
+    "copy": "Office commute.\nAutobahn intentions.",
+    "tags": [
+      "german",
+      "sport-sedan"
+    ],
+    "image": "/cars/bmw-m340i.jpg"
+  },
+  {
+    "id": "audi-s4",
+    "name": "Audi S4 (new)",
+    "price_usd": 59000,
+    "vibe": "quiet flex",
+    "copy": "Looks calm.\nIs not calm.",
+    "tags": [
+      "german",
+      "awd"
+    ],
+    "image": "/cars/audi-s4.jpg"
+  },
+  {
+    "id": "supra-a90",
+    "name": "Toyota GR Supra (A90, new)",
+    "price_usd": 72000,
+    "vibe": "modern myth",
+    "copy": "It’s back.\nAnd it’s mad.",
+    "tags": [
+      "jdm",
+      "enthusiast"
+    ],
+    "image": "/cars/supra-a90.jpg"
+  },
+  {
+    "id": "bmw-m2-new",
+    "name": "BMW M2 (new)",
+    "price_usd": 70000,
+    "vibe": "compact violence",
+    "copy": "Short wheelbase.\nLong list of enemies.",
+    "tags": [
+      "german",
+      "track"
+    ],
+    "image": "/cars/bmw-m2-new.jpg"
+  },
+  {
+    "id": "porsche-718-cayman-gts-new",
+    "name": "Porsche 718 Cayman GTS (new-ish)",
+    "price_usd": 78000,
+    "vibe": "mid-engine perfection",
+    "copy": "Balance so good it feels illegal.",
+    "tags": [
+      "eu",
+      "track"
+    ],
+    "image": "/cars/porsche-718-cayman-gts-new.jpg"
+  },
+  {
+    "id": "corvette-c8",
+    "name": "Chevrolet Corvette C8 (new)",
+    "price_usd": 100000,
+    "vibe": "mid-engine shockwave",
+    "copy": "America discovered corners.\nFinally.",
+    "tags": [
+      "us",
+      "icon"
+    ],
+    "image": "/cars/corvette-c8.jpg"
+  },
+  {
+    "id": "lotus-emira",
+    "name": "Lotus Emira (new)",
+    "price_usd": 105000,
+    "vibe": "analog miracle",
+    "copy": "Steering feel.\nInternet disbelief.",
+    "tags": [
+      "uk",
+      "enthusiast"
+    ],
+    "image": "/cars/lotus-emira.jpg"
   }
 ]

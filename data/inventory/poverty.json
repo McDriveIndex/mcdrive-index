@@ -163,5 +163,205 @@
       "life"
     ],
     "image": "/cars/therapy-bundle.jpg"
+  },
+  {
+    "id": "mcd-fries",
+    "name": "McDonald's fries (small)",
+    "price_usd": 0.10,
+    "vibe": "bottom signal snack",
+    "copy": "Liquidity event.\nExtra salt.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/mcd-fries.jpg"
+  },
+  {
+    "id": "btc-pizza",
+    "name": "Whole pizza",
+    "price_usd": 10,
+    "vibe": "historic transaction",
+    "copy": "Could be worse, someone spent 10k BTC on this",
+    "tags": [
+      "food",
+      "history"
+    ],
+    "image": "/cars/btc-pizza.jpg"
+  },
+  {
+    "id": "water-cup",
+    "name": "Cup of water",
+    "price_usd": 0.01,
+    "vibe": "liquidity provider",
+    "copy": "Stay liquid.\nLiterally.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/water-cup.jpg"
+  },
+  {
+    "id": "plastic-bag",
+    "name": "Plastic bag",
+    "price_usd": 0.05,
+    "vibe": "bagholder starter pack",
+    "copy": "Congrats.\nYou own a bag.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/plastic-bag.jpg"
+  },
+  {
+    "id": "vending-gum",
+    "name": "Vending machine gum ball",
+    "price_usd": 0.25,
+    "vibe": "microcap chew",
+    "copy": "Sticky entry.\nNo exit.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/vending-gum.jpg"
+  },
+  {
+    "id": "instant-noodles",
+    "name": "Instant noodles",
+    "price_usd": 0.50,
+    "vibe": "ramen thesis",
+    "copy": "Ramen era.\nLegend loading.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/instant-noodles.jpg"
+  },
+  {
+    "id": "bus-ticket",
+    "name": "Single bus ticket",
+    "price_usd": 1,
+    "vibe": "one-way cope",
+    "copy": "From ATH to downtown.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/bus-ticket.jpg"
+  },
+  {
+    "id": "energy-drink",
+    "name": "Energy drink",
+    "price_usd": 3,
+    "vibe": "chart watcher fuel",
+    "copy": "Caffeine > conviction.",
+    "tags": [
+      "food",
+      "tech"
+    ],
+    "image": "/cars/energy-drink.jpg"
+  },
+  {
+    "id": "used-mouse",
+    "name": "Used computer mouse",
+    "price_usd": 5,
+    "vibe": "click-to-cope",
+    "copy": "Still clicks.\nUnlike your plan.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/used-mouse.jpg"
+  },
+  {
+    "id": "cheap-keyboard",
+    "name": "Budget keyboard",
+    "price_usd": 20,
+    "vibe": "low latency delusion",
+    "copy": "Type faster.\nLose slower.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/cheap-keyboard.jpg"
+  },
+  {
+    "id": "espresso-shot",
+    "name": "Single espresso shot",
+    "price_usd": 2,
+    "vibe": "micro-dose motivation",
+    "copy": "Small cup.\nBig delusion.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/espresso-shot.jpg"
+  },
+  {
+    "id": "metro-token",
+    "name": "Metro token",
+    "price_usd": 4,
+    "vibe": "one stop closer",
+    "copy": "Next station: reality.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/metro-token.jpg"
+  },
+  {
+    "id": "street-hotdog",
+    "name": "Street hot dog",
+    "price_usd": 7,
+    "vibe": "late night liquidity",
+    "copy": "Questionable alpha.\nGuaranteed regret.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/street-hotdog.jpg"
+  },
+  {
+    "id": "haircut-basic",
+    "name": "Basic haircut",
+    "price_usd": 12,
+    "vibe": "risk management",
+    "copy": "Trim the hair.\nNot the bag.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/haircut-basic.jpg"
+  },
+  {
+    "id": "phone-charger",
+    "name": "Phone charger (generic)",
+    "price_usd": 15,
+    "vibe": "keep it alive",
+    "copy": "Charge the phone.\nNot the cope.",
+    "tags": [
+      "tech"
+    ],
+    "image": "/cars/phone-charger.jpg"
+  },
+  {
+    "id": "fastfood-meal",
+    "name": "Fast food meal (value menu)",
+    "price_usd": 25,
+    "vibe": "utility dining",
+    "copy": "Nutrition: maybe.\nMemes: guaranteed.",
+    "tags": [
+      "food"
+    ],
+    "image": "/cars/fastfood-meal.jpg"
+  },
+  {
+    "id": "thrift-hoodie",
+    "name": "Thrift store hoodie",
+    "price_usd": 35,
+    "vibe": "bear market drip",
+    "copy": "Warm fit.\nCold wallet.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/thrift-hoodie.jpg"
+  },
+  {
+    "id": "book-used",
+    "name": "Used book",
+    "price_usd": 45,
+    "vibe": "learned helplessness",
+    "copy": "Read it.\nStill won’t time it.",
+    "tags": [
+      "life"
+    ],
+    "image": "/cars/book-used.jpg"
   }
 ]

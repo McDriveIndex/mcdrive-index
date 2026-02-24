@@ -1,0 +1,13 @@
+{
+  "id": "mini-cooper-s",
+  "name": "Mini Cooper S (new)",
+  "vibe": "tiny menace",
+  "tier": "new-cars",
+  "price_usd": 32000,
+  "imagePath": "/cars/mini-cooper-s.jpg",
+  "tags": [
+    "hot-hatch",
+    "eu"
+  ],
+  "copy": "Small car.\nBig attitude."
+}

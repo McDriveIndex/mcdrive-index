@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBtcCloseByDate } from "@/lib/btc/getBtcCloseByDate";
+import { getBtcDateRange } from "@/lib/btc/getBtcDateRange";
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -14,11 +15,29 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const result = await getBtcCloseByDate(date);
+  const range = await getBtcDateRange();
+  if (!range) {
+    return NextResponse.json(
+      { error: "BTC history dataset unavailable" },
+      { status: 500, headers: { "Cache-Control": "no-store" } }
+    );
+  }
+
+  let dateEffective = date;
+  let clamped = false;
+  if (date < range.minDate) {
+    dateEffective = range.minDate;
+    clamped = true;
+  } else if (date > range.maxDate) {
+    dateEffective = range.maxDate;
+    clamped = true;
+  }
+
+  const result = await getBtcCloseByDate(dateEffective);
   if (!result) {
     return NextResponse.json(
       { error: "No BTC data available for that date" },
-      { status: 404 }
+      { status: 404, headers: { "Cache-Control": "no-store" } }
     );
   }
 
@@ -27,11 +46,12 @@ export async function GET(req: NextRequest) {
       dateRequested: date,
       dateUsed: result.dateUsed,
       close: result.close,
+      clamped,
     },
     {
       status: 200,
       headers: {
-        "Cache-Control": "public, max-age=3600",
+        "Cache-Control": "no-store",
       },
     }
   );

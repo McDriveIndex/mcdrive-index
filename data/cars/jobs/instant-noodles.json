@@ -1,0 +1,12 @@
+{
+  "id": "instant-noodles",
+  "name": "Instant noodles",
+  "vibe": "ramen thesis",
+  "tier": "poverty",
+  "price_usd": 0.5,
+  "imagePath": "/cars/instant-noodles.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Ramen era.\nLegend loading."
+}

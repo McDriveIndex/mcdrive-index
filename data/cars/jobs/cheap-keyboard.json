@@ -1,0 +1,12 @@
+{
+  "id": "cheap-keyboard",
+  "name": "Budget keyboard",
+  "vibe": "low latency delusion",
+  "tier": "poverty",
+  "price_usd": 20,
+  "imagePath": "/cars/cheap-keyboard.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "Type faster.\nLose slower."
+}

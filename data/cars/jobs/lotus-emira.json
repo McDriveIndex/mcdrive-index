@@ -1,0 +1,13 @@
+{
+  "id": "lotus-emira",
+  "name": "Lotus Emira (new)",
+  "vibe": "analog miracle",
+  "tier": "new-cars",
+  "price_usd": 105000,
+  "imagePath": "/cars/lotus-emira.jpg",
+  "tags": [
+    "uk",
+    "enthusiast"
+  ],
+  "copy": "Steering feel.\nInternet disbelief."
+}

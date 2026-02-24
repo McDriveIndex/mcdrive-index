@@ -1,0 +1,13 @@
+{
+  "id": "gr-corolla",
+  "name": "Toyota GR Corolla (new)",
+  "vibe": "rally in sneakers",
+  "tier": "new-cars",
+  "price_usd": 42000,
+  "imagePath": "/cars/gr-corolla.jpg",
+  "tags": [
+    "jdm",
+    "awd"
+  ],
+  "copy": "Three cylinders.\nZero chill."
+}

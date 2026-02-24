@@ -1,0 +1,12 @@
+{
+  "id": "plastic-bag",
+  "name": "Plastic bag",
+  "vibe": "bagholder starter pack",
+  "tier": "poverty",
+  "price_usd": 0.05,
+  "imagePath": "/cars/plastic-bag.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Congrats.\nYou own a bag."
+}

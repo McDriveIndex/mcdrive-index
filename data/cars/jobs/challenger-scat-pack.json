@@ -1,0 +1,13 @@
+{
+  "id": "challenger-scat-pack",
+  "name": "Dodge Challenger Scat Pack (new-ish)",
+  "vibe": "straight-line philosopher",
+  "tier": "new-cars",
+  "price_usd": 54000,
+  "imagePath": "/cars/challenger-scat-pack.jpg",
+  "tags": [
+    "us",
+    "muscle"
+  ],
+  "copy": "Turns are optional.\nSmiles aren’t."
+}

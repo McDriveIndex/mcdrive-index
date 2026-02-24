@@ -1,0 +1,13 @@
+{
+  "id": "camaro-ss",
+  "name": "Chevrolet Camaro SS (new-ish)",
+  "vibe": "v8 therapy",
+  "tier": "new-cars",
+  "price_usd": 52000,
+  "imagePath": "/cars/camaro-ss.jpg",
+  "tags": [
+    "us",
+    "muscle"
+  ],
+  "copy": "Noise is a feature."
+}

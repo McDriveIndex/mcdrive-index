@@ -1,0 +1,13 @@
+{
+  "id": "porsche-718-cayman-gts-new",
+  "name": "Porsche 718 Cayman GTS (new-ish)",
+  "vibe": "mid-engine perfection",
+  "tier": "new-cars",
+  "price_usd": 78000,
+  "imagePath": "/cars/porsche-718-cayman-gts-new.jpg",
+  "tags": [
+    "eu",
+    "track"
+  ],
+  "copy": "Balance so good it feels illegal."
+}

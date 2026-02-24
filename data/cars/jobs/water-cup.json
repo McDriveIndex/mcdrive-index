@@ -1,0 +1,12 @@
+{
+  "id": "water-cup",
+  "name": "Cup of water",
+  "vibe": "liquidity provider",
+  "tier": "poverty",
+  "price_usd": 0.01,
+  "imagePath": "/cars/water-cup.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Stay liquid.\nLiterally."
+}

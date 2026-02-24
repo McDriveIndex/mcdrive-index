@@ -11,6 +11,7 @@
     "cars:generate": "node scripts/cars-generate.mjs",
     "cars:jobs": "node scripts/cars-jobs.mjs",
     "cars:import": "node scripts/cars-import.mjs",
+    "inventory:audit-picks": "node scripts/inventory-pick-audit.mjs",
     "ensure:car-images": "node scripts/ensureCarPlaceholders.mjs",
     "btc:update": "tsx scripts/fetch-btc-history.ts"
   },

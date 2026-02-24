@@ -1,0 +1,12 @@
+{
+  "id": "mcd-fries",
+  "name": "McDonald's fries (small)",
+  "vibe": "bottom signal snack",
+  "tier": "poverty",
+  "price_usd": 0.1,
+  "imagePath": "/cars/mcd-fries.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Liquidity event.\nExtra salt."
+}

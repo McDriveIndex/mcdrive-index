@@ -1,0 +1,12 @@
+{
+  "id": "espresso-shot",
+  "name": "Single espresso shot",
+  "vibe": "micro-dose motivation",
+  "tier": "poverty",
+  "price_usd": 2,
+  "imagePath": "/cars/espresso-shot.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Small cup.\nBig delusion."
+}

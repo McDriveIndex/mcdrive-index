@@ -1,0 +1,12 @@
+{
+  "id": "vending-gum",
+  "name": "Vending machine gum ball",
+  "vibe": "microcap chew",
+  "tier": "poverty",
+  "price_usd": 0.25,
+  "imagePath": "/cars/vending-gum.jpg",
+  "tags": [
+    "food"
+  ],
+  "copy": "Sticky entry.\nNo exit."
+}

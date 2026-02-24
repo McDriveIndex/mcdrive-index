@@ -1,0 +1,13 @@
+{
+  "id": "gr86",
+  "name": "Toyota GR86 (new)",
+  "vibe": "driver's handshake",
+  "tier": "new-cars",
+  "price_usd": 32000,
+  "imagePath": "/cars/gr86.jpg",
+  "tags": [
+    "jdm",
+    "enthusiast"
+  ],
+  "copy": "RWD.\nGood decisions, finally."
+}

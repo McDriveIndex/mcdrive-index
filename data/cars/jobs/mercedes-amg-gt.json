@@ -1,0 +1,13 @@
+{
+  "id": "mercedes-amg-gt",
+  "name": "Mercedes-AMG GT (used)",
+  "vibe": "long-hood menace",
+  "tier": "used-legends",
+  "price_usd": 110000,
+  "imagePath": "/cars/mercedes-amg-gt.jpg",
+  "tags": [
+    "german",
+    "gt"
+  ],
+  "copy": "Front engine.\nBackfires included."
+}

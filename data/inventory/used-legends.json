@@ -191,5 +191,127 @@
       "legend"
     ],
     "image": "/cars/ae86-myth.jpg"
+  },
+  {
+    "id": "bmw-m4-f82",
+    "name": "BMW M4 (F82, used)",
+    "price_usd": 78000,
+    "vibe": "rear-tire extinction",
+    "copy": "Coupe.\nChaos.",
+    "tags": [
+      "german",
+      "enthusiast"
+    ],
+    "image": "/cars/bmw-m4-f82.jpg"
+  },
+  {
+    "id": "porsche-cayman-981-gts",
+    "name": "Porsche Cayman GTS (981, used)",
+    "price_usd": 75000,
+    "vibe": "driver tax paid",
+    "copy": "Mid-engine.\nMaximum smug.",
+    "tags": [
+      "eu",
+      "track"
+    ],
+    "image": "/cars/porsche-cayman-981-gts.jpg"
+  },
+  {
+    "id": "mercedes-amg-gt",
+    "name": "Mercedes-AMG GT (used)",
+    "price_usd": 110000,
+    "vibe": "long-hood menace",
+    "copy": "Front engine.\nBackfires included.",
+    "tags": [
+      "german",
+      "gt"
+    ],
+    "image": "/cars/mercedes-amg-gt.jpg"
+  },
+  {
+    "id": "audi-rs6-c7",
+    "name": "Audi RS6 (C7, used)",
+    "price_usd": 105000,
+    "vibe": "dad wagon final boss",
+    "copy": "Wagon.\nWeapon.",
+    "tags": [
+      "german",
+      "wagon",
+      "awd"
+    ],
+    "image": "/cars/audi-rs6-c7.jpg"
+  },
+  {
+    "id": "bmw-m5-f90",
+    "name": "BMW M5 (F90, used)",
+    "price_usd": 112000,
+    "vibe": "business-class brutality",
+    "copy": "Four doors.\nNo mercy.",
+    "tags": [
+      "german",
+      "sport-sedan"
+    ],
+    "image": "/cars/bmw-m5-f90.jpg"
+  },
+  {
+    "id": "porsche-911-992-carrera-s",
+    "name": "Porsche 911 Carrera S (992, used-ish)",
+    "price_usd": 108000,
+    "vibe": "the default legend",
+    "copy": "It’s always the answer.\nUnfortunately.",
+    "tags": [
+      "eu",
+      "icon"
+    ],
+    "image": "/cars/porsche-911-992-carrera-s.jpg"
+  },
+  {
+    "id": "alfa-4c",
+    "name": "Alfa Romeo 4C (used)",
+    "price_usd": 65000,
+    "vibe": "carbon chaos",
+    "copy": "Tiny.\nLoud.\nAlive.",
+    "tags": [
+      "italian",
+      "enthusiast"
+    ],
+    "image": "/cars/alfa-4c.jpg"
+  },
+  {
+    "id": "jaguar-f-type-r",
+    "name": "Jaguar F-Type R (used)",
+    "price_usd": 74000,
+    "vibe": "british thunder",
+    "copy": "Starts.\nNeighbors complain.\nYou smile.",
+    "tags": [
+      "uk",
+      "gt"
+    ],
+    "image": "/cars/jaguar-f-type-r.jpg"
+  },
+  {
+    "id": "lexus-lc500",
+    "name": "Lexus LC 500 (used)",
+    "price_usd": 78000,
+    "vibe": "japanese grand tour",
+    "copy": "V8 symphony.\nSilk gloves, brass knuckles.",
+    "tags": [
+      "jdm",
+      "gt"
+    ],
+    "image": "/cars/lexus-lc500.jpg"
+  },
+  {
+    "id": "aston-martin-vantage",
+    "name": "Aston Martin Vantage (used)",
+    "price_usd": 115000,
+    "vibe": "british dagger",
+    "copy": "Classy suit.\nViolent intent.",
+    "tags": [
+      "uk",
+      "gt",
+      "icon"
+    ],
+    "image": "/cars/aston-martin-vantage.jpg"
   }
 ]

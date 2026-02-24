@@ -1,0 +1,12 @@
+{
+  "id": "thrift-hoodie",
+  "name": "Thrift store hoodie",
+  "vibe": "bear market drip",
+  "tier": "poverty",
+  "price_usd": 35,
+  "imagePath": "/cars/thrift-hoodie.jpg",
+  "tags": [
+    "life"
+  ],
+  "copy": "Warm fit.\nCold wallet."
+}

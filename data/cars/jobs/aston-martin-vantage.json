@@ -1,0 +1,14 @@
+{
+  "id": "aston-martin-vantage",
+  "name": "Aston Martin Vantage (used)",
+  "vibe": "british dagger",
+  "tier": "used-legends",
+  "price_usd": 115000,
+  "imagePath": "/cars/aston-martin-vantage.jpg",
+  "tags": [
+    "uk",
+    "gt",
+    "icon"
+  ],
+  "copy": "Classy suit.\nViolent intent."
+}

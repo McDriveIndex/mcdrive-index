@@ -1,0 +1,13 @@
+{
+  "id": "supra-a90",
+  "name": "Toyota GR Supra (A90, new)",
+  "vibe": "modern myth",
+  "tier": "new-cars",
+  "price_usd": 72000,
+  "imagePath": "/cars/supra-a90.jpg",
+  "tags": [
+    "jdm",
+    "enthusiast"
+  ],
+  "copy": "It’s back.\nAnd it’s mad."
+}

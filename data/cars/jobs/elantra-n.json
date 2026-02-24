@@ -1,0 +1,13 @@
+{
+  "id": "elantra-n",
+  "name": "Hyundai Elantra N (new)",
+  "vibe": "track goblin",
+  "tier": "new-cars",
+  "price_usd": 35000,
+  "imagePath": "/cars/elantra-n.jpg",
+  "tags": [
+    "sport",
+    "budget"
+  ],
+  "copy": "Loud exhaust.\nLouder opinions."
+}

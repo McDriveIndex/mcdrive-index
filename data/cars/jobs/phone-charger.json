@@ -1,0 +1,12 @@
+{
+  "id": "phone-charger",
+  "name": "Phone charger (generic)",
+  "vibe": "keep it alive",
+  "tier": "poverty",
+  "price_usd": 15,
+  "imagePath": "/cars/phone-charger.jpg",
+  "tags": [
+    "tech"
+  ],
+  "copy": "Charge the phone.\nNot the cope."
+}

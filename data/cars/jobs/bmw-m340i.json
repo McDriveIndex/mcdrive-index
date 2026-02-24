@@ -1,0 +1,13 @@
+{
+  "id": "bmw-m340i",
+  "name": "BMW M340i (new)",
+  "vibe": "daily missile",
+  "tier": "new-cars",
+  "price_usd": 60000,
+  "imagePath": "/cars/bmw-m340i.jpg",
+  "tags": [
+    "german",
+    "sport-sedan"
+  ],
+  "copy": "Office commute.\nAutobahn intentions."
+}

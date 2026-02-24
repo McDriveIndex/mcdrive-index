@@ -1,0 +1,13 @@
+{
+  "id": "energy-drink",
+  "name": "Energy drink",
+  "vibe": "chart watcher fuel",
+  "tier": "poverty",
+  "price_usd": 3,
+  "imagePath": "/cars/energy-drink.jpg",
+  "tags": [
+    "food",
+    "tech"
+  ],
+  "copy": "Caffeine > conviction."
+}

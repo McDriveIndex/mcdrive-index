@@ -1,0 +1,13 @@
+{
+  "id": "alfa-4c",
+  "name": "Alfa Romeo 4C (used)",
+  "vibe": "carbon chaos",
+  "tier": "used-legends",
+  "price_usd": 65000,
+  "imagePath": "/cars/alfa-4c.jpg",
+  "tags": [
+    "italian",
+    "enthusiast"
+  ],
+  "copy": "Tiny.\nLoud.\nAlive."
+}

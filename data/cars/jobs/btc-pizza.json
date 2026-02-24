@@ -1,0 +1,13 @@
+{
+  "id": "btc-pizza",
+  "name": "Whole pizza",
+  "vibe": "historic transaction",
+  "tier": "poverty",
+  "price_usd": 10,
+  "imagePath": "/cars/btc-pizza.jpg",
+  "tags": [
+    "food",
+    "history"
+  ],
+  "copy": "Could be worse. RIP Laszlo."
+}

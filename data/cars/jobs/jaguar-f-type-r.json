@@ -1,0 +1,13 @@
+{
+  "id": "jaguar-f-type-r",
+  "name": "Jaguar F-Type R (used)",
+  "vibe": "british thunder",
+  "tier": "used-legends",
+  "price_usd": 74000,
+  "imagePath": "/cars/jaguar-f-type-r.jpg",
+  "tags": [
+    "uk",
+    "gt"
+  ],
+  "copy": "Starts.\nNeighbors complain.\nYou smile."
+}
