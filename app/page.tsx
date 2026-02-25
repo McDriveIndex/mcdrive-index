@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { matchCars, type MatchResult } from "@/lib/matchCar";
+import AnimatedBorder from "@/app/components/AnimatedBorder";
 import HeroHeadline from "@/app/components/HeroHeadline";
 
 type Car = {
@@ -346,6 +347,7 @@ const runMoment = async (momentDate: string) => {
 
   return (
     <main className="min-h-screen paper-bg text-black antialiased overflow-hidden">
+      <AnimatedBorder />
       <HeroHeadline />
       <div className="pt-6 md:pt-8 pb-6">
         <div className="text-center mt-2 md:mt-4">
