@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { matchCars, type MatchResult } from "@/lib/matchCar";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
 import HeroHeadline from "@/app/components/HeroHeadline";
+import MenuCard from "@/app/components/MenuCard";
 
 type Car = {
   id: string;
@@ -104,6 +105,7 @@ export default function Home() {
   const [dateUsed, setDateUsed] = useState<string | null>(null);
   const [wasClamped, setWasClamped] = useState(false);
   const [btcRange, setBtcRange] = useState<BtcRangeResponse | null>(null);
+  const [frameW, setFrameW] = useState<number | null>(null);
   const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -346,191 +348,51 @@ const runMoment = async (momentDate: string) => {
 
 
   return (
-    <main className="min-h-screen paper-bg text-black antialiased overflow-hidden">
+    <main className="h-screen min-h-[100svh] paper-bg text-black antialiased overflow-hidden">
       <AnimatedBorder />
-      <HeroHeadline />
-      <div className="pt-6 md:pt-8 pb-6">
-        <div className="text-center mt-2 md:mt-4">
-          <h1 className="text-[34px] md:text-[38px] font-extrabold tracking-tight text-black mb-4">McDrive Index™</h1>
-          <p className="text-sm text-black/60 mb-5">1 BTC = 1 questionable purchase</p>
-        </div>
-
-        <div className="mx-auto max-w-[760px] px-6">
-          <div className="flex items-center justify-between mt-2 mb-3">
-            <p className="text-[16px] font-extrabold tracking-[0.22em] text-black/80">MENU</p>
-            <div className="w-[92px] h-[24px] rounded-md bg-black/10 border border-black/20 flex items-end gap-[2px] px-2 py-[3px]">
-              <span className="w-[2px] h-full bg-black/40" />
-              <span className="w-[3px] h-[80%] bg-black/40" />
-              <span className="w-[2px] h-[95%] bg-black/40" />
-              <span className="w-[4px] h-[70%] bg-black/40" />
-              <span className="w-[2px] h-[92%] bg-black/40" />
-              <span className="w-[3px] h-[78%] bg-black/40" />
-              <span className="w-[2px] h-full bg-black/40" />
-              <span className="w-[4px] h-[66%] bg-black/40" />
-              <span className="w-[2px] h-[88%] bg-black/40" />
-            </div>
-          </div>
-          <div className="border-t border-black/20" />
-
-          <section className="mt-4">
-            <p className="text-[14px] mt-4 mb-2 uppercase">
-              <span className="text-black/55 tracking-[0.28em]">Pick your own</span>
-              <span className="ml-2 font-black text-[15px] tracking-[0.06em] text-black">McDate™</span>
-            </p>
-
-            <div className="flex gap-3">
-              <input
-                type="date"
-                value={date}
-                min={pickerMin}
-                max={pickerMax}
-                  onChange={(e) => {
-                    setDate(e.target.value);
-                    setBtcPrice(null);
-                    setDateUsed(null);
-                    setWasClamped(false);
-                    setBestMatch(null);
-                    setAlternatives([]);
-                    setTier(null);
-                  setReceiptUrl(null);
-                  setShowReceipt(false);
-                  setIsGenerating(false);
-                  setToast(null);
-                  setReceiptSrc("");
-                  setShowModal(false);
-                }}
-                className="w-full rounded-xl border border-black/20 bg-white px-4 py-3 text-[16px]"
-              />
-
-              <button
-                onClick={handleClick}
-                className="rounded-xl bg-yellow-400 px-5 py-3 font-extrabold text-black shadow-[0_6px_0_rgba(0,0,0,0.11)] hover:bg-yellow-300 hover:shadow-[0_6px_0_rgba(0,0,0,0.11)] transition"
-              >
-                Order
-              </button>
-            </div>
-
-            <div className="flex gap-3 mt-3">
-              <button
-                onClick={copyLink}
-                className="flex-1 px-4 py-2 rounded-xl border border-black/20 bg-white text-black font-bold hover:bg-black/[0.035] transition"
-              >
-                Copy link
-              </button>
-
-              <button
-                  onClick={() => {
-                    setDate("");
-                    setBtcPrice(null);
-                    setDateUsed(null);
-                    setWasClamped(false);
-                    setBestMatch(null);
-                    setAlternatives([]);
-                    setTier(null);
-                  setReceiptUrl(null);
-                  setShowReceipt(false);
-                  setIsGenerating(false);
-                  setToast(null);
-                  setReceiptSrc("");
-                  setShowModal(false);
-                  const url = new URL(window.location.href);
-                  url.searchParams.delete("date");
-                  window.history.pushState({}, "", url.toString());
-                }}
-                className="px-4 py-2 rounded-xl border border-black/20 bg-white text-black font-bold hover:bg-black/[0.035] transition"
-              >
-                Reset
-              </button>
-            </div>
-
-              {(isGenerating || loading) && (
-                <div style={{ marginTop: 24, fontSize: 14, opacity: 0.75 }}>
-                  Preparing your order...
-                </div>
-              )}
-
-              {dateUsed && date && dateUsed !== date && (
-                <p className="text-xs mt-2 text-black/60">
-                  Using last available close: {formatDisplayDate(dateUsed)}
-                </p>
-              )}
-
-              {wasClamped && dateUsed && (
-                <p className="text-xs mt-1 text-black/60">
-                  Selected date out of range. Clamped to {formatDisplayDate(dateUsed)}.
-                </p>
-              )}
-
-            {toast && (
-              <p className="text-sm mt-4 text-black/70">
-                {toast}
-              </p>
-            )}
-          </section>
-
-          <div className="mt-4 border-t border-black/20" />
-
-          <section className="mt-4">
-            <p className="text-[11px] uppercase tracking-[0.28em] text-black/50 mt-6 mb-3">
-              Signature Meals
-            </p>
-            <div>
-              <button
-                onClick={() => runMoment("2008-09-15")}
-                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
-              >
-                <span className="font-extrabold text-[16px] text-black">McLehman Double Smash</span>
-                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>{formatDisplayDate("2008-09-15")}</span>
-                  <span className="text-black font-bold">→</span>
-                </span>
-              </button>
-              <button
-                onClick={() => runMoment("2020-03-12")}
-                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
-              >
-                <span className="font-extrabold text-[16px] text-black">McCovid Flash Crash</span>
-                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>{formatDisplayDate("2020-03-12")}</span>
-                  <span className="text-black font-bold">→</span>
-                </span>
-              </button>
-              <button
-                onClick={() => runMoment("2021-11-10")}
-                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
-              >
-                <span className="font-extrabold text-[16px] text-black">McATH Supersize</span>
-                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>{formatDisplayDate("2021-11-10")}</span>
-                  <span className="text-black font-bold">→</span>
-                </span>
-              </button>
-            </div>
-          </section>
-
-          <div className="mt-4 border-t border-black/20" />
-
-          <section className="mt-4">
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-black/55 mt-6 mb-3">Feeling Lucky?</p>
-            <div>
-              <button
-                onClick={() => runMoment("random")}
-                className="w-full flex items-center justify-between py-2.5 text-left border-t border-black/20 hover:bg-black/[0.03] transition"
-              >
-                <span className="font-extrabold text-[16px] text-black">McRandom™ Ride</span>
-                <span className="flex gap-2 items-center text-black/70 text-[14px] font-medium">
-                  <span>Random</span>
-                  <span className="text-black font-bold">→</span>
-                </span>
-              </button>
-            </div>
-          </section>
-
-          <div className="mt-4 border-t border-black/20 pt-2 pb-0">
-            <p className="text-[10px] tracking-[0.18em] text-black/50 text-center">
-              CULTURAL INDEX • Prices are approximate • Vibes are non-refundable.
-            </p>
-          </div>
+      <div
+        className="h-[100svh] max-w-full overflow-hidden flex flex-col items-center justify-start px-[clamp(16px,3vw,28px)] pt-[clamp(44px,6.5vh,96px)] gap-[clamp(10px,2.2vh,22px)]"
+        style={frameW ? ({ ["--headline-frame-w" as any]: `${frameW}px` } as any) : undefined}
+      >
+        <HeroHeadline onFrameWidth={setFrameW} />
+        <div className="mt-[clamp(-6px,-1vh,-16px)] w-full flex justify-center">
+          <MenuCard
+            date={date}
+            minDate={pickerMin}
+            maxDate={pickerMax}
+            onDateChange={(value) => {
+              setDate(value);
+              setBtcPrice(null);
+              setDateUsed(null);
+              setWasClamped(false);
+              setBestMatch(null);
+              setAlternatives([]);
+              setTier(null);
+              setReceiptUrl(null);
+              setShowReceipt(false);
+              setIsGenerating(false);
+              setToast(null);
+              setReceiptSrc("");
+              setShowModal(false);
+            }}
+            onOrder={handleClick}
+            meals={[
+              { label: "McLehman Double Smash", onClick: () => runMoment("2008-09-15") },
+              { label: "McCovid Flash Crash", onClick: () => runMoment("2020-03-12") },
+              { label: "McATH Supersize", onClick: () => runMoment("2021-11-10") },
+              { label: "McRandom Ride™", onClick: () => runMoment("random") },
+            ]}
+            busyLabel={isGenerating || loading ? "Preparing your order..." : null}
+            infoLine={
+              wasClamped && dateUsed
+                ? `Selected date out of range. Clamped to ${formatDisplayDate(dateUsed)}.`
+                : dateUsed && date && dateUsed !== date
+                  ? `Using last available close: ${formatDisplayDate(dateUsed)}`
+                  : toast
+                    ? toast
+                    : null
+            }
+          />
         </div>
       </div>
 

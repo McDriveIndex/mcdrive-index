@@ -6,7 +6,11 @@ import styles from "./HeroHeadline.module.css";
 
 const LOOP_MS = 1300;
 
-export default function HeroHeadline() {
+type HeroHeadlineProps = {
+  onFrameWidth?: (px: number) => void;
+};
+
+export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   const [index, setIndex] = useState(0);
   const [frameWidth, setFrameWidth] = useState<number | null>(null);
   const [orWorseScale, setOrWorseScale] = useState(1);
@@ -56,6 +60,12 @@ export default function HeroHeadline() {
       window.removeEventListener("resize", measure);
     };
   }, []);
+
+  useEffect(() => {
+    if (frameWidth != null) {
+      onFrameWidth?.(frameWidth);
+    }
+  }, [frameWidth, onFrameWidth]);
 
   useLayoutEffect(() => {
     const measureOrWorseScale = () => {

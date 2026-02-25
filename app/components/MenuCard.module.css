@@ -1,0 +1,213 @@
+.card {
+  width: min(var(--headline-frame-w, 640px), 100%);
+  max-width: 100%;
+  padding: clamp(4px, 1vh, 8px) 0 clamp(8px, 1.4vh, 14px);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 100%;
+}
+
+.menuLabel {
+  margin: 0;
+  font-size: clamp(18px, 1.9vw, 20px);
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.barcode {
+  width: clamp(120px, 14vw, 170px);
+  height: 18px;
+  border-radius: 0;
+  border: 0;
+  color: rgba(0, 0, 0, 0.62);
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='420'%20height='18'%20viewBox='0%200%20420%2018'%3E%3Crect%20width='420'%20height='18'%20fill='white'/%3E%3Cg%20fill='black'%3E%3Crect%20x='10'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='13'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='16'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='20'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='24'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='30'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='33'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='37'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='41'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='47'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='50'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='54'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='58'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='63'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='66'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='70'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='74'%20y='0'%20width='5'%20height='18'/%3E%3Crect%20x='82'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='85'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='89'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='93'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='98'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='101'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='105'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='109'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='115'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='118'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='122'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='126'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='131'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='134'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='138'%20y='0'%20width='6'%20height='18'/%3E%3Crect%20x='147'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='150'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='154'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='158'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='163'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='166'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='170'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='174'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='180'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='183'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='187'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='191'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='196'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='199'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='203'%20y='0'%20width='5'%20height='18'/%3E%3Crect%20x='211'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='214'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='218'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='222'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='227'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='230'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='234'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='238'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='244'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='247'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='251'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='255'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='260'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='263'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='267'%20y='0'%20width='6'%20height='18'/%3E%3Crect%20x='276'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='279'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='283'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='287'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='292'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='295'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='299'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='303'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='309'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='312'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='316'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='320'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='325'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='328'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='332'%20y='0'%20width='5'%20height='18'/%3E%3Crect%20x='340'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='343'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='347'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='351'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='356'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='359'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='363'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='367'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='373'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='376'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='380'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='384'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='389'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='392'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='396'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='400'%20y='0'%20width='4'%20height='18'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: center;
+  opacity: 0.78;
+}
+
+.rule {
+  margin-top: 6px;
+  max-width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+.pickerBlock {
+  margin-top: 10px;
+}
+
+.pickLine {
+  margin: 0 0 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+}
+
+.pickLight {
+  font-size: clamp(13px, 1.4vw, 14px);
+  letter-spacing: 0.28em;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.pickStrong {
+  font-size: clamp(17px, 1.9vw, 18px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #000;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: clamp(22px, 3vw, 32px);
+  max-width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dateInput {
+  flex: 0 1 auto;
+  min-width: 0;
+  width: clamp(200px, 28vw, 360px);
+  height: 52px;
+  border-radius: 12px;
+  border: 0;
+  background: #fff;
+  padding: 0 12px;
+  color: #000;
+  font-size: 16px;
+}
+
+.orderButton {
+  flex: 0 0 auto;
+  height: 52px;
+  min-width: clamp(160px, 20vw, 260px);
+  padding: 0 clamp(22px, 3vw, 36px);
+  border: 0;
+  border-radius: 12px;
+  background: #facc15;
+  color: #000;
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.orderButton:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+.busyLine {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.infoLine {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.62);
+  white-space: pre-line;
+}
+
+.mealsBlock {
+  margin-top: clamp(22px, 3vh, 34px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mealsTitle {
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.46);
+}
+
+.mealsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 20px);
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.mealButton {
+  position: relative;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: 280px;
+  height: 72px;
+  flex: 0 0 auto;
+  transition: transform 140ms ease;
+  will-change: transform;
+}
+
+.strip {
+  position: absolute;
+  inset: 0;
+  background-image: url("/paper-strip.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mealText {
+  position: relative;
+  z-index: 2;
+  padding: 0 22px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: clamp(15px, 1.25vw, 17px);
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.mealButton:hover {
+  transform: translateY(-1px);
+}
+
+.mealButton:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.35);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orderButton,
+  .mealButton {
+    transition: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .mealsList {
+    flex-wrap: wrap;
+  }
+}
