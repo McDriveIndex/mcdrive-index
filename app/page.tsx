@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { matchCars, type MatchResult } from "@/lib/matchCar";
+import HeroHeadline from "@/app/components/HeroHeadline";
 
 type Car = {
   id: string;
@@ -345,6 +346,7 @@ const runMoment = async (momentDate: string) => {
 
   return (
     <main className="min-h-screen paper-bg text-black antialiased overflow-hidden">
+      <HeroHeadline />
       <div className="pt-6 md:pt-8 pb-6">
         <div className="text-center mt-2 md:mt-4">
           <h1 className="text-[34px] md:text-[38px] font-extrabold tracking-tight text-black mb-4">McDrive Index™</h1>

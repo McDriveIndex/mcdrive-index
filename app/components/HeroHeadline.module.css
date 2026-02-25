@@ -1,0 +1,110 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 2vw, 28px);
+  width: 100%;
+  padding-inline: clamp(12px, 3vw, 28px);
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 2px;
+}
+
+.checker {
+  width: 100%;
+  height: 64px;
+  margin: 0;
+  padding: 0;
+  background: repeating-conic-gradient(#000 0 25%, transparent 0 50%) 0 0 / 32px 32px;
+}
+
+.headlineArea {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(132px, 15vw, 288px);
+  margin: 0;
+  padding: 0;
+}
+
+.oneLine {
+  font-family: "Nimbus Sans L", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  white-space: nowrap;
+  font-size: clamp(140px, 16vw, 300px);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  color: #000;
+}
+
+.orWorse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  width: max-content;
+  gap: 0;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.or {
+  font-family: "Nimbus Sans L", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  font-size: clamp(48px, 5vw, 90px);
+  margin: 0;
+  margin-bottom: -18px;
+  width: max-content;
+  text-align: center;
+  color: #000;
+}
+
+.worse {
+  display: inline-block;
+  font-family: "Nimbus Sans L", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  white-space: nowrap;
+  font-size: clamp(140px, 16vw, 300px);
+  width: max-content;
+  text-align: center;
+  margin: 0;
+  color: #000;
+}
+
+.measurer {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  left: -9999px;
+  top: -9999px;
+}
+
+.hiddenMeasure {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  visibility: hidden;
+  pointer-events: none;
+}
