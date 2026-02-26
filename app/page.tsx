@@ -378,10 +378,10 @@ const runMoment = async (momentDate: string) => {
             }}
             onOrder={handleClick}
             meals={[
-              { label: "McLehman Double Smash", onClick: () => runMoment("2008-09-15") },
-              { label: "McCovid Flash Crash", onClick: () => runMoment("2020-03-12") },
-              { label: "McATH Supersize", onClick: () => runMoment("2021-11-10") },
-              { label: "McRandom Ride™", onClick: () => runMoment("random") },
+              { label: "McGME™ Big Squeeze", onClick: () => runMoment("2021-01-28") },
+              { label: "McCovid™ Flash Crash", onClick: () => runMoment("2020-03-12") },
+              { label: "McTwitter™ Takeover XXL", onClick: () => runMoment("2022-10-27") },
+              { label: "McRandom™ Ride", onClick: () => runMoment("random") },
             ]}
             busyLabel={isGenerating || loading ? "Preparing your order..." : null}
             infoLine={
