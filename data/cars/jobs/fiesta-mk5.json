@@ -1,0 +1,14 @@
+{
+  "id": "fiesta-mk5",
+  "name": "Ford Fiesta Mk5 (used)",
+  "vibe": "budget hatch chaos",
+  "tier": "used-beaters",
+  "price_usd": 1700,
+  "imagePath": "/cars/fiesta-mk5.jpg",
+  "tags": [
+    "used",
+    "beater",
+    "hatch"
+  ],
+  "copy": "Budget thrills, premium rattles."
+}

@@ -313,5 +313,89 @@
       "icon"
     ],
     "image": "/cars/aston-martin-vantage.jpg"
+  },
+  {
+    "id": "rx8-r3",
+    "name": "Mazda RX-8 R3 (used)",
+    "price_usd": 27000,
+    "vibe": "rotary cope ritual",
+    "copy": "High revs.\nHigher oil budget.",
+    "tags": [
+      "used",
+      "legend",
+      "enthusiast",
+      "jdm"
+    ],
+    "image": "/cars/rx8-r3.jpg"
+  },
+  {
+    "id": "mr2-sw20-turbo",
+    "name": "Toyota MR2 Turbo (SW20, used)",
+    "price_usd": 30000,
+    "vibe": "snap oversteer nostalgia",
+    "copy": "Mid-engine confidence.\nUntil the corner exits.",
+    "tags": [
+      "used",
+      "legend",
+      "enthusiast",
+      "jdm"
+    ],
+    "image": "/cars/mr2-sw20-turbo.jpg"
+  },
+  {
+    "id": "elise-s2",
+    "name": "Lotus Elise S2 (used)",
+    "price_usd": 35000,
+    "vibe": "lightness tax fraud",
+    "copy": "No power.\nAll consequences.",
+    "tags": [
+      "used",
+      "legend",
+      "track",
+      "enthusiast"
+    ],
+    "image": "/cars/elise-s2.jpg"
+  },
+  {
+    "id": "corvette-c6",
+    "name": "Chevrolet Corvette C6 (used)",
+    "price_usd": 36000,
+    "vibe": "budget v8 menace",
+    "copy": "American thunder.\nPanel gaps included.",
+    "tags": [
+      "used",
+      "legend",
+      "v8",
+      "enthusiast"
+    ],
+    "image": "/cars/corvette-c6.jpg"
+  },
+  {
+    "id": "z4m-coupe-e86",
+    "name": "BMW Z4 M Coupé (E86, used)",
+    "price_usd": 37000,
+    "vibe": "clown shoe menace",
+    "copy": "Rare, weird, and absolutely your problem now.",
+    "tags": [
+      "used",
+      "legend",
+      "enthusiast",
+      "german"
+    ],
+    "image": "/cars/z4m-coupe-e86.jpg"
+  },
+  {
+    "id": "tt-rs-8j",
+    "name": "Audi TT RS (8J, used)",
+    "price_usd": 38000,
+    "vibe": "five-cylinder mischief",
+    "copy": "Quattro grip.\nQuestionable decisions at speed.",
+    "tags": [
+      "used",
+      "legend",
+      "enthusiast",
+      "german"
+    ],
+    "image": "/cars/tt-rs-8j.jpg"
   }
 ]

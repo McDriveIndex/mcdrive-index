@@ -1,0 +1,14 @@
+{
+  "id": "corsa-c",
+  "name": "Opel Corsa C (used)",
+  "vibe": "small town survivor",
+  "tier": "used-beaters",
+  "price_usd": 1500,
+  "imagePath": "/cars/corsa-c.jpg",
+  "tags": [
+    "used",
+    "beater",
+    "euro"
+  ],
+  "copy": "Small footprint. Big coping energy."
+}

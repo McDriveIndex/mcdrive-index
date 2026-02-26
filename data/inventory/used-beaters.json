@@ -84,6 +84,58 @@
     "image": "/cars/cobalt.jpg"
   },
   {
+    "id": "panda-141",
+    "name": "Fiat Panda (141, used)",
+    "price_usd": 1000,
+    "vibe": "tin box resilience",
+    "copy": "MoMA Worthy.",
+    "tags": [
+      "used",
+      "beater",
+      "eu"
+    ],
+    "image": "/cars/panda-141.jpg"
+  },
+  {
+    "id": "peugeot-206",
+    "name": "Peugeot 206 (used)",
+    "price_usd": 1300,
+    "vibe": "french budget chaos",
+    "copy": "Stylish parking ticket with seats.",
+    "tags": [
+      "used",
+      "beater",
+      "eu"
+    ],
+    "image": "/cars/peugeot-206.jpg"
+  },
+  {
+    "id": "corsa-c",
+    "name": "Opel Corsa C (used)",
+    "price_usd": 1500,
+    "vibe": "city rat survivor",
+    "copy": "Small footprint. Big coping energy.",
+    "tags": [
+      "used",
+      "beater",
+      "eu"
+    ],
+    "image": "/cars/corsa-c.jpg"
+  },
+  {
+    "id": "fiesta-mk5",
+    "name": "Ford Fiesta Mk5 (used)",
+    "price_usd": 1700,
+    "vibe": "cheap fun adjacent",
+    "copy": "Budget thrills, premium rattles.",
+    "tags": [
+      "used",
+      "beater",
+      "hatch"
+    ],
+    "image": "/cars/fiesta-mk5.jpg"
+  },
+  {
     "id": "ptcruiser",
     "name": "Chrysler PT Cruiser (cursed)",
     "price_usd": 1900,

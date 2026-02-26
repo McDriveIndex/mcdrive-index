@@ -1,0 +1,13 @@
+{
+  "id": "bmw-135i-e82",
+  "name": "BMW 135i (E82, used)",
+  "vibe": "baby m energy",
+  "tier": "used-icons",
+  "price_usd": 25000,
+  "imagePath": "/cars/bmw-135i-e82.jpg",
+  "tags": [
+    "used",
+    "icon"
+  ],
+  "copy": "Short wheelbase. Long problems."
+}

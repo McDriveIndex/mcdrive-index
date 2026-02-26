@@ -1,0 +1,15 @@
+{
+  "id": "tt-rs-8j",
+  "name": "Audi TT RS (8J, used)",
+  "vibe": "five-cylinder mischief",
+  "tier": "used-legends",
+  "price_usd": 38000,
+  "imagePath": "/cars/tt-rs-8j.jpg",
+  "tags": [
+    "used",
+    "legend",
+    "enthusiast",
+    "german"
+  ],
+  "copy": "Quattro grip. Questionable decisions at speed."
+}

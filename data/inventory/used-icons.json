@@ -169,6 +169,18 @@
     "image": "/cars/brz-used.jpg"
   },
   {
+    "id": "bmw-135i-e82",
+    "name": "BMW 135i (E82, used)",
+    "price_usd": 25000,
+    "vibe": "baby m energy",
+    "copy": "Short wheelbase. Long problems.",
+    "tags": [
+      "used",
+      "icon"
+    ],
+    "image": "/cars/bmw-135i-e82.jpg"
+  },
+  {
     "id": "s2000",
     "name": "Honda S2000",
     "price_usd": 28000,

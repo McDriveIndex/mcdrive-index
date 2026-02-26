@@ -1,0 +1,14 @@
+{
+  "id": "peugeot-206",
+  "name": "Peugeot 206 (used)",
+  "vibe": "french hatch cope",
+  "tier": "used-beaters",
+  "price_usd": 1300,
+  "imagePath": "/cars/peugeot-206.jpg",
+  "tags": [
+    "used",
+    "beater",
+    "euro"
+  ],
+  "copy": "Stylish parking ticket with seats."
+}

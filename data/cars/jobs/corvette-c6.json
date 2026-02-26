@@ -1,0 +1,15 @@
+{
+  "id": "corvette-c6",
+  "name": "Chevrolet Corvette C6 (used)",
+  "vibe": "budget v8 menace",
+  "tier": "used-legends",
+  "price_usd": 36000,
+  "imagePath": "/cars/corvette-c6.jpg",
+  "tags": [
+    "used",
+    "legend",
+    "v8",
+    "enthusiast"
+  ],
+  "copy": "American thunder. Panel gaps included."
+}

@@ -1,38 +1,5 @@
 [
   {
-    "id": "911",
-    "name": "Porsche 911 (base)",
-    "price_usd": 120000,
-    "vibe": "cultured menace",
-    "copy": "You’re now fluent in options lists.",
-    "tags": [
-      "exotic"
-    ],
-    "image": "/cars/911.jpg"
-  },
-  {
-    "id": "g63",
-    "name": "Mercedes G63 AMG",
-    "price_usd": 185000,
-    "vibe": "boss fight energy",
-    "copy": "You bought a rectangle with ego.",
-    "tags": [
-      "exotic"
-    ],
-    "image": "/cars/g63.jpg"
-  },
-  {
-    "id": "r8",
-    "name": "Audi R8",
-    "price_usd": 165000,
-    "vibe": "exit liquidity chic",
-    "copy": "V10 therapy session.",
-    "tags": [
-      "exotic"
-    ],
-    "image": "/cars/r8.jpg"
-  },
-  {
     "id": "huracan",
     "name": "Lamborghini Huracán",
     "price_usd": 240000,

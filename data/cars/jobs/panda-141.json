@@ -1,0 +1,14 @@
+{
+  "id": "panda-141",
+  "name": "Fiat Panda (141, used)",
+  "vibe": "boxy art school",
+  "tier": "used-beaters",
+  "price_usd": 1000,
+  "imagePath": "/cars/panda-141.jpg",
+  "tags": [
+    "used",
+    "beater",
+    "euro"
+  ],
+  "copy": "MoMA Worthy."
+}

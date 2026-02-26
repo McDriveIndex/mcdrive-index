@@ -173,6 +173,7 @@ export default function Home() {
     window.history.pushState({}, "", url.toString());
 
     try {
+      let nextReceiptUrl = "";
       const result = await loadForDate(date);
       const ok = result.ok;
       const data = result.data;
@@ -204,16 +205,17 @@ export default function Home() {
           v: String(Date.now()),
         });
         const newReceiptUrl = `/api/receipt?${params.toString()}`;
+        nextReceiptUrl = newReceiptUrl;
         setReceiptUrl(newReceiptUrl);
         setReceiptSrc(newReceiptUrl);
       } else {
+        nextReceiptUrl = "";
         setReceiptUrl(null);
         setReceiptSrc("");
       }
 
       await new Promise((resolve) => setTimeout(resolve, 800));
-      if (ok && match?.bestMatch) setShowModal(true);
-      else setShowModal(false);
+      setShowModal(Boolean(ok && nextReceiptUrl));
       setShowReceipt(ok);
     } finally {
       setIsGenerating(false);
@@ -297,6 +299,7 @@ const runMoment = async (momentDate: string) => {
   setShowModal(false);
   setReceiptSrc("");
 
+  let nextReceiptUrl = "";
   const result = await loadForDate(d);
   const ok = result.ok;
   const data = result.data;
@@ -329,20 +332,18 @@ const runMoment = async (momentDate: string) => {
     });
 
     const newReceiptUrl = `/api/receipt?${params.toString()}`;
+    nextReceiptUrl = newReceiptUrl;
     setReceiptUrl(newReceiptUrl);
     setReceiptSrc(newReceiptUrl);
   } else {
+    nextReceiptUrl = "";
     setReceiptUrl(null);
     setReceiptSrc("");
   }
 
   await new Promise((r) => setTimeout(r, 800));
 
-  if (ok && match?.bestMatch) {
-    setShowModal(true);
-  } else {
-    setShowModal(false);
-  }
+  setShowModal(Boolean(ok && nextReceiptUrl));
 
   setIsGenerating(false);
 };
@@ -387,11 +388,9 @@ const runMoment = async (momentDate: string) => {
             infoLine={
               wasClamped && dateUsed
                 ? `Selected date out of range. Clamped to ${formatDisplayDate(dateUsed)}.`
-                : dateUsed && date && dateUsed !== date
-                  ? `Using last available close: ${formatDisplayDate(dateUsed)}`
-                  : toast
-                    ? toast
-                    : null
+                : toast
+                  ? toast
+                  : null
             }
           />
         </div>

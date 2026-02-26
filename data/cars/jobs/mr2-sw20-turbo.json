@@ -1,0 +1,15 @@
+{
+  "id": "mr2-sw20-turbo",
+  "name": "Toyota MR2 Turbo (SW20, used)",
+  "vibe": "snap oversteer nostalgia",
+  "tier": "used-legends",
+  "price_usd": 30000,
+  "imagePath": "/cars/mr2-sw20-turbo.jpg",
+  "tags": [
+    "used",
+    "legend",
+    "enthusiast",
+    "jdm"
+  ],
+  "copy": "Mid-engine confidence. Until the corner exits."
+}

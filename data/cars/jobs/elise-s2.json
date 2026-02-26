@@ -1,0 +1,15 @@
+{
+  "id": "elise-s2",
+  "name": "Lotus Elise S2 (used)",
+  "vibe": "lightness worship cult",
+  "tier": "used-legends",
+  "price_usd": 35000,
+  "imagePath": "/cars/elise-s2.jpg",
+  "tags": [
+    "used",
+    "legend",
+    "track",
+    "enthusiast"
+  ],
+  "copy": "No power. All consequences."
+}
