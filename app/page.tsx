@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { matchCars, type MatchResult } from "@/lib/matchCar";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
 import HeroHeadline from "@/app/components/HeroHeadline";
@@ -98,6 +99,7 @@ const TIER_COPY: Record<string, string> = {
 };
 
 export default function Home() {
+  const MIN_PRINT_MS = 650;
   const [date, setDate] = useState("");
   const [btcPrice, setBtcPrice] = useState<number | null>(null);
   const [bestMatch, setBestMatch] = useState<Car | null>(null);
@@ -114,6 +116,10 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [receiptSrc, setReceiptSrc] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
+  const [printHoldDone, setPrintHoldDone] = useState(false);
+  const [imgReady, setImgReady] = useState(false);
+  const openedAtRef = useRef<number | null>(null);
+  const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const receiptBestMatch = bestMatch;
   const receiptBtc = btcPrice;
 
@@ -165,7 +171,8 @@ export default function Home() {
 
     setIsGenerating(true);
     setShowReceipt(false);
-    setShowModal(false);
+    setShowModal(true);
+    setReceiptSrc("");
 
     // Update URL (shareable)
     const url = new URL(window.location.href);
@@ -277,6 +284,61 @@ export default function Home() {
     };
   }, [showModal]);
 
+  useEffect(() => {
+    if (showModal) {
+      openedAtRef.current = performance.now();
+      setPrintHoldDone(false);
+      setImgReady(false);
+      if (holdTimeoutRef.current) {
+        clearTimeout(holdTimeoutRef.current);
+        holdTimeoutRef.current = null;
+      }
+      return;
+    }
+
+    openedAtRef.current = null;
+    setPrintHoldDone(false);
+    setImgReady(false);
+    if (holdTimeoutRef.current) {
+      clearTimeout(holdTimeoutRef.current);
+      holdTimeoutRef.current = null;
+    }
+  }, [showModal]);
+
+  useEffect(() => {
+    if (!showModal || !receiptSrc) return;
+
+    if (holdTimeoutRef.current) {
+      clearTimeout(holdTimeoutRef.current);
+      holdTimeoutRef.current = null;
+    }
+
+    const started = openedAtRef.current ?? performance.now();
+    const elapsed = performance.now() - started;
+    const remaining = MIN_PRINT_MS - elapsed;
+
+    if (remaining <= 0) {
+      setPrintHoldDone(true);
+      return;
+    }
+
+    holdTimeoutRef.current = setTimeout(() => {
+      setPrintHoldDone(true);
+      holdTimeoutRef.current = null;
+    }, remaining);
+
+    return () => {
+      if (holdTimeoutRef.current) {
+        clearTimeout(holdTimeoutRef.current);
+        holdTimeoutRef.current = null;
+      }
+    };
+  }, [showModal, receiptSrc, MIN_PRINT_MS]);
+
+  useEffect(() => {
+    setImgReady(false);
+  }, [receiptSrc]);
+
   const todayMax = new Date().toISOString().slice(0, 10);
   const pickerMin = btcRange?.minDate;
   const pickerMax = btcRange?.maxDate ?? todayMax;
@@ -296,7 +358,7 @@ const runMoment = async (momentDate: string) => {
   window.history.pushState({}, "", url.toString());
 
   setIsGenerating(true);
-  setShowModal(false);
+  setShowModal(true);
   setReceiptSrc("");
 
   let nextReceiptUrl = "";
@@ -348,6 +410,8 @@ const runMoment = async (momentDate: string) => {
   setIsGenerating(false);
 };
 
+  const isReceiptReady = Boolean(receiptSrc) && printHoldDone;
+  const showReceiptUi = isReceiptReady && imgReady;
 
   return (
     <main className="h-screen min-h-[100svh] paper-bg text-black antialiased overflow-hidden">
@@ -384,7 +448,6 @@ const runMoment = async (momentDate: string) => {
               { label: "McTwitter™ Takeover XXL", onClick: () => runMoment("2022-10-27") },
               { label: "McRandom™ Ride", onClick: () => runMoment("random") },
             ]}
-            busyLabel={isGenerating || loading ? "Preparing your order..." : null}
             infoLine={
               wasClamped && dateUsed
                 ? `Selected date out of range. Clamped to ${formatDisplayDate(dateUsed)}.`
@@ -505,7 +568,7 @@ const runMoment = async (momentDate: string) => {
         </div>
       )}
 
-      {showModal && receiptSrc && (
+      {showModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
           onClick={() => {
@@ -522,72 +585,119 @@ const runMoment = async (momentDate: string) => {
             className="relative z-10 w-full max-w-md flex flex-col items-center opacity-0 translate-y-2 [animation:modalIn_200ms_ease-out_forwards]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-full mb-2 flex items-center justify-between">
-              <div />
-              <button
-                onClick={() => {
-                  setShowModal(false);
-                  setReceiptSrc("");
-                  setShowReceipt(false);
-                }}
-                className="text-xs uppercase tracking-widest opacity-70 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/25 focus-visible:ring-offset-2 rounded-sm px-1"
-              >
-                × Close
-              </button>
-            </div>
+            <AnimatePresence mode="wait">
+              {!isReceiptReady ? (
+                <motion.div
+                  key="print-mode"
+                  initial={{ opacity: 0, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.995 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className={`w-full min-h-[340px] flex flex-col items-center justify-center ${styles.printModeWrap}`}
+                >
+                  <div className={styles.printModeTitle}>
+                    PRINTING RECEIPT™
+                  </div>
+                  <div className={styles.printModeSlot}>
+                    <div className={styles.printModeTrack}>
+                      <motion.div
+                        className={styles.printModeBar}
+                        animate={{ x: ["-7px", "0px"] }}
+                        transition={{ duration: 1.8, ease: "linear", repeat: Infinity }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="receipt-mode"
+                  initial={{ opacity: 0, y: 18, scale: 0.94 }}
+                  animate={{
+                    opacity: showReceiptUi ? 1 : 0,
+                    y: showReceiptUi ? 0 : 18,
+                    scale: showReceiptUi ? 1 : 0.94,
+                  }}
+                  exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  className="w-full flex flex-col items-center"
+                >
+                  <div className="w-full mb-2 flex items-center justify-between">
+                    <div />
+                    <button
+                      onClick={() => {
+                        setShowModal(false);
+                        setReceiptSrc("");
+                        setShowReceipt(false);
+                      }}
+                      className={`text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/25 focus-visible:ring-offset-2 rounded-sm px-1 ${styles.modalClose}`}
+                    >
+                      × Close
+                    </button>
+                  </div>
 
-            <div className="relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10">
-              <img
-                src={receiptSrc}
-                alt="McDrive receipt PNG"
-                className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
-              />
-            </div>
+                  <div className={`relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10 ${styles.receiptStage}`}>
+                    <img
+                      src={receiptSrc}
+                      alt="McDrive receipt PNG"
+                      onLoad={() => setImgReady(true)}
+                      className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
+                    />
+                    <motion.div
+                      key={`wipe-${receiptSrc}`}
+                      className={styles.thermalWipe}
+                      initial={{ y: "0%", opacity: 1 }}
+                      animate={{ y: "130%", opacity: 0 }}
+                      transition={{ duration: 0.36, ease: "easeOut", delay: 0.06 }}
+                    />
+                  </div>
 
-            <div className="mt-10 w-full flex gap-3 justify-center">
-              <button
-                onClick={async () => {
-                  try {
-                    const res = await fetch(receiptSrc);
-                    const blob = await res.blob();
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = `mcdrive-receipt-${date || "date"}.png`;
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                    URL.revokeObjectURL(url);
-                  } catch {
-                    window.open(receiptSrc, "_blank");
-                  }
-                }}
-                className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
-              >
-                Download
-              </button>
+                  <div className="mt-10 w-full flex gap-3 justify-center">
+                    <button
+                      onClick={async () => {
+                        try {
+                          const res = await fetch(receiptSrc);
+                          const blob = await res.blob();
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement("a");
+                          a.href = url;
+                          a.download = `mcdrive-receipt-${date || "date"}.png`;
+                          document.body.appendChild(a);
+                          a.click();
+                          a.remove();
+                          URL.revokeObjectURL(url);
+                        } catch {
+                          window.open(receiptSrc, "_blank");
+                        }
+                      }}
+                      className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
+                    >
+                      Download
+                    </button>
 
-              <button
-                onClick={() => {
-                  const bm = bestMatch;
-                  const carName = bm?.name ?? "something questionable";
-                  const shareUrl = new URL(window.location.href);
-                  if (date) shareUrl.searchParams.set("date", date);
+                    <button
+                      onClick={() => {
+                        const bm = bestMatch;
+                        const carName = bm?.name ?? "something questionable";
+                        const shareUrl = new URL(window.location.href);
+                        if (date) shareUrl.searchParams.set("date", date);
 
-                  const displayDate = date ? formatDisplayDate(date) : "—";
-                  const text = `McDrive Index™ — ${displayDate}\n1 BTC → ${carName}`;
-                  const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-                  window.open(intent, "_blank", "noopener,noreferrer");
-                }}
-                className="flex-1 px-4 py-3 rounded-xl border border-black/20 bg-white text-black font-semibold hover:bg-black/[0.03] transition"
-              >
-                Post on X
-              </button>
-            </div>
+                        const displayDate = date ? formatDisplayDate(date) : "—";
+                        const text = `McDrive Index™ — ${displayDate}\n1 BTC → ${carName}`;
+                        const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                        window.open(intent, "_blank", "noopener,noreferrer");
+                      }}
+                      className="flex-1 px-4 py-3 rounded-xl border border-black/20 bg-white text-black font-semibold hover:bg-black/[0.03] transition"
+                    >
+                      Post on X
+                    </button>
+                  </div>
 
-            <p className="mt-3 text-sm text-black/70">
-              Download the receipt → attach it to your post.
-            </p>
+                  <p className={`mt-3 text-sm ${styles.receiptHint}`}>
+                    Download the receipt → attach it to your post.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       )}
