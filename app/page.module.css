@@ -1,0 +1,8 @@
+.homeFooter {
+  margin-top: 24px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  user-select: none;
+}

@@ -5,6 +5,7 @@ import { matchCars, type MatchResult } from "@/lib/matchCar";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
 import HeroHeadline from "@/app/components/HeroHeadline";
 import MenuCard from "@/app/components/MenuCard";
+import styles from "./page.module.css";
 
 type Car = {
   id: string;
@@ -393,6 +394,9 @@ const runMoment = async (momentDate: string) => {
                     : null
             }
           />
+        </div>
+        <div className={styles.homeFooter}>
+          © 2026 McDrive Index™ - POWERED BY
         </div>
       </div>
 

@@ -21,15 +21,19 @@
 }
 
 .barcode {
-  width: clamp(120px, 14vw, 170px);
-  height: 18px;
+  width: clamp(120px, 14vw, 160px);
+  height: 34px;
   border-radius: 0;
   border: 0;
   color: rgba(0, 0, 0, 0.62);
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='420'%20height='18'%20viewBox='0%200%20420%2018'%3E%3Crect%20width='420'%20height='18'%20fill='white'/%3E%3Cg%20fill='black'%3E%3Crect%20x='10'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='13'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='16'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='20'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='24'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='30'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='33'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='37'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='41'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='47'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='50'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='54'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='58'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='63'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='66'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='70'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='74'%20y='0'%20width='5'%20height='18'/%3E%3Crect%20x='82'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='85'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='89'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='93'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='98'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='101'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='105'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='109'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='115'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='118'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='122'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='126'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='131'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='134'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='138'%20y='0'%20width='6'%20height='18'/%3E%3Crect%20x='147'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='150'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='154'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='158'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='163'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='166'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='170'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='174'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='180'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='183'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='187'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='191'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='196'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='199'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='203'%20y='0'%20width='5'%20height='18'/%3E%3Crect%20x='211'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='214'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='218'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='222'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='227'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='230'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='234'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='238'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='244'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='247'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='251'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='255'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='260'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='263'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='267'%20y='0'%20width='6'%20height='18'/%3E%3Crect%20x='276'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='279'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='283'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='287'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='292'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='295'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='299'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='303'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='309'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='312'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='316'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='320'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='325'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='328'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='332'%20y='0'%20width='5'%20height='18'/%3E%3Crect%20x='340'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='343'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='347'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='351'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='356'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='359'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='363'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='367'%20y='0'%20width='4'%20height='18'/%3E%3Crect%20x='373'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='376'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='380'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='384'%20y='0'%20width='3'%20height='18'/%3E%3Crect%20x='389'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='392'%20y='0'%20width='2'%20height='18'/%3E%3Crect%20x='396'%20y='0'%20width='1'%20height='18'/%3E%3Crect%20x='400'%20y='0'%20width='4'%20height='18'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("/barcode.png");
   background-repeat: repeat-x;
+  background-position: right center;
   background-size: auto 100%;
-  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
   opacity: 0.78;
 }
 
@@ -162,7 +166,7 @@
   width: 280px;
   height: 72px;
   flex: 0 0 auto;
-  transition: transform 140ms ease;
+  transition: transform 140ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
@@ -190,8 +194,12 @@
   white-space: nowrap;
 }
 
-.mealButton:hover {
-  transform: translateY(-1px);
+.mealsList > .mealButton:nth-child(odd):hover {
+  transform: rotate(7deg) translateY(-8px) translateX(2px);
+}
+
+.mealsList > .mealButton:nth-child(even):hover {
+  transform: rotate(-7deg) translateY(-8px) translateX(-2px);
 }
 
 .mealButton:focus-visible {
