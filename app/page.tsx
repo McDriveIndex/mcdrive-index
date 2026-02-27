@@ -341,6 +341,37 @@ export default function Home() {
     setImgReady(false);
   }, [receiptSrc]);
 
+  // Robust: when the PNG is cached, <img onLoad> may not fire reliably.
+  // Preload the image off-DOM and flip imgReady deterministically.
+  useEffect(() => {
+    if (!receiptSrc) return;
+
+    let cancelled = false;
+
+    const im = new Image();
+    const markReady = () => {
+      if (!cancelled) setImgReady(true);
+    };
+
+    im.onload = markReady;
+    im.onerror = markReady; // fail-open: don't get stuck in PRINTING
+    im.src = receiptSrc;
+
+    // If it's already in cache, complete can be true immediately.
+    if (im.complete && im.naturalWidth > 0) {
+      markReady();
+    }
+
+    // Extra robustness for some browsers (Safari/WebKit)
+    if (!cancelled && typeof im.decode === "function") {
+      void im.decode().then(markReady).catch(markReady);
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [receiptSrc, receiptRenderKey]);
+
   useEffect(() => {
     const img = receiptImgRef.current;
     if (!img) return;
