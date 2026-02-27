@@ -409,6 +409,7 @@ const runMoment = async (momentDate: string) => {
 };
 
   const isReceiptReady = Boolean(receiptSrc) && printHoldDone;
+  const showPrinting = showModal && (!isReceiptReady || !imgReady);
   const showReceiptUi = isReceiptReady && imgReady;
 
   return (
@@ -584,31 +585,6 @@ const runMoment = async (momentDate: string) => {
             onClick={(e) => e.stopPropagation()}
           >
             <AnimatePresence mode="wait">
-              {!isReceiptReady ? (
-                <div className={styles.printingMobileScale}>
-                  <motion.div
-                    key="print-mode"
-                    initial={{ opacity: 0, scale: 1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.995 }}
-                    transition={{ duration: 0.18, ease: "easeOut" }}
-                    className={`w-full min-h-[340px] flex flex-col items-center justify-center ${styles.printModeWrap}`}
-                  >
-                    <div className={styles.printModeTitle}>
-                      PRINTING RECEIPT™
-                    </div>
-                    <div className={styles.printModeSlot}>
-                      <div className={styles.printModeTrack}>
-                        <motion.div
-                          className={styles.printModeBar}
-                          animate={{ x: ["-7px", "0px"] }}
-                          transition={{ duration: 1.8, ease: "linear", repeat: Infinity }}
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              ) : (
                 <motion.div
                   key="receipt-mode"
                   initial={{ opacity: 0, y: 18, scale: 0.94 }}
@@ -621,28 +597,32 @@ const runMoment = async (momentDate: string) => {
                   transition={{ duration: 0.28, ease: "easeOut" }}
                   className="relative w-full flex flex-col items-center"
                 >
-                  <div className="w-full mb-2 flex items-center justify-between">
-                    <div />
-                    <button
-                      onClick={() => {
-                        setShowModal(false);
-                        setReceiptSrc("");
-                        setShowReceipt(false);
-                      }}
-                      className={`text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/25 focus-visible:ring-offset-2 rounded-sm px-1 ${styles.modalClose}`}
-                    >
-                      × Close
-                    </button>
-                  </div>
+                  {!showPrinting && (
+                    <div className="w-full mb-2 flex items-center justify-between">
+                      <div />
+                      <button
+                        onClick={() => {
+                          setShowModal(false);
+                          setReceiptSrc("");
+                          setShowReceipt(false);
+                        }}
+                        className={`text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/25 focus-visible:ring-offset-2 rounded-sm px-1 ${styles.modalClose}`}
+                      >
+                        × Close
+                      </button>
+                    </div>
+                  )}
 
                   <div className="w-full flex flex-col items-center transition-opacity duration-200" style={{ opacity: showReceiptUi ? 1 : 0 }}>
                     <div className={`relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10 ${styles.receiptStage}`}>
-                      <img
-                        src={receiptSrc}
-                        alt="McDrive receipt PNG"
-                        onLoad={() => setImgReady(true)}
-                        className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
-                      />
+                      {receiptSrc ? (
+                        <img
+                          src={receiptSrc}
+                          alt="McDrive receipt PNG"
+                          onLoad={() => setImgReady(true)}
+                          className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
+                        />
+                      ) : null}
                       <motion.div
                         key={`wipe-${receiptSrc}`}
                         className={styles.thermalWipe}
@@ -698,7 +678,7 @@ const runMoment = async (momentDate: string) => {
                     </p>
                   </div>
 
-                  {!imgReady && (
+                  {showPrinting && (
                     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">
                       <div className={styles.printingMobileScale}>
                         <div className={`w-full min-h-[340px] flex flex-col items-center justify-center ${styles.printModeWrap}`}>
@@ -719,7 +699,6 @@ const runMoment = async (momentDate: string) => {
                     </div>
                   )}
                 </motion.div>
-              )}
             </AnimatePresence>
           </div>
         </div>
