@@ -118,6 +118,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [printHoldDone, setPrintHoldDone] = useState(false);
   const [imgReady, setImgReady] = useState(false);
+  const [receiptRenderKey, setReceiptRenderKey] = useState(0);
   const openedAtRef = useRef<number | null>(null);
   const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const receiptBestMatch = bestMatch;
@@ -172,6 +173,7 @@ export default function Home() {
     setIsGenerating(true);
     setShowReceipt(false);
     setShowModal(true);
+    setReceiptRenderKey((k) => k + 1);
     setReceiptSrc("");
 
     // Update URL (shareable)
@@ -358,6 +360,7 @@ const runMoment = async (momentDate: string) => {
 
   setIsGenerating(true);
   setShowModal(true);
+  setReceiptRenderKey((k) => k + 1);
   setReceiptSrc("");
 
   let nextReceiptUrl = "";
@@ -617,6 +620,7 @@ const runMoment = async (momentDate: string) => {
                     <div className={`relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10 ${styles.receiptStage}`}>
                       {receiptSrc ? (
                         <img
+                          key={receiptRenderKey}
                           src={receiptSrc}
                           alt="McDrive receipt PNG"
                           onLoad={() => setImgReady(true)}
