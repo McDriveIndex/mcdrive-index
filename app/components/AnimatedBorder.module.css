@@ -221,6 +221,14 @@
   animation-duration: var(--duration-y);
 }
 
+.bottomBrandTrack {
+  display: contents;
+}
+
+.bottomDrivingTrack {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .toLeft,
   .toRight,
@@ -232,9 +240,44 @@
 
 @media (max-width: 900px) {
   .root {
-    --border-size: 48px;
+    --border-size: 32px;
     --duration-x: 34s;
     --duration-y: 34s;
+  }
+
+  .left,
+  .right {
+    display: none;
+  }
+
+  .bottomBrandTrack {
+    display: none;
+  }
+
+  .bottomDrivingTrack {
+    display: contents;
+  }
+
+  .strip {
+    background-color: #fdfdfd !important;
+    background-image: url("/paper-grain.png") !important;
+    background-repeat: repeat !important;
+    background-size: auto !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    filter: none !important;
+  }
+
+  .top,
+  .bottom {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+  .strip::before,
+  .strip::after {
+    content: none !important;
+    display: none !important;
   }
 
   .item {

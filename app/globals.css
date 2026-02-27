@@ -78,3 +78,15 @@ body { overflow-x: hidden; }
     display: none;
   }
 }
+@media (max-width: 900px) {
+  html,
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}

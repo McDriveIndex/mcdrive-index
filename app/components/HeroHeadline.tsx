@@ -5,6 +5,9 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styles from "./HeroHeadline.module.css";
 
 const LOOP_MS = 1300;
+const CHECKER_COLS = 24;
+const CHECKER_ROWS = 4;
+const CHECKER_CELLS = CHECKER_COLS * CHECKER_ROWS;
 
 type HeroHeadlineProps = {
   onFrameWidth?: (px: number) => void;
@@ -128,6 +131,15 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
     [orWorseScale]
   );
 
+  const checkerCells = useMemo(
+    () =>
+      Array.from({ length: CHECKER_CELLS }, (_, i) => {
+        const isBlack = ((Math.floor(i / CHECKER_COLS) + (i % CHECKER_COLS)) % 2) === 0;
+        return <span key={i} className={`${styles.cell} ${isBlack ? styles.black : ""}`} />;
+      }),
+    []
+  );
+
   return (
     <section className={styles.hero} aria-label="Hero headline">
       <div className={styles.hiddenMeasure} aria-hidden="true">
@@ -147,7 +159,11 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
           className={styles.frame}
           style={frameWidth ? { width: `${frameWidth}px` } : undefined}
         >
-          <div className={styles.checker} aria-hidden="true" />
+          <div className={styles.checker} aria-hidden="true">
+            <div className={styles.checkerCells} aria-hidden="true">
+              {checkerCells}
+            </div>
+          </div>
 
           <div className={styles.headlineArea}>
             <AnimatePresence mode="wait">
@@ -163,7 +179,11 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
             </AnimatePresence>
           </div>
 
-          <div className={styles.checker} aria-hidden="true" />
+          <div className={styles.checker} aria-hidden="true">
+            <div className={styles.checkerCells} aria-hidden="true">
+              {checkerCells}
+            </div>
+          </div>
         </div>
       </div>
     </section>

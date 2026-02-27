@@ -45,12 +45,24 @@ export default function AnimatedBorder() {
       </div>
 
       <div className={`${styles.strip} ${styles.bottom}`}>
-        <div className={`${styles.track} ${styles.trackX} ${styles.toLeft}`}>
-          <div className={styles.group}>
-            <Repeater text={TOP_TEXT} count={12} />
+        <div className={styles.bottomBrandTrack}>
+          <div className={`${styles.track} ${styles.trackX} ${styles.toLeft}`}>
+            <div className={styles.group}>
+              <Repeater text={TOP_TEXT} count={12} />
+            </div>
+            <div className={styles.group} aria-hidden="true">
+              <Repeater text={TOP_TEXT} count={12} />
+            </div>
           </div>
-          <div className={styles.group} aria-hidden="true">
-            <Repeater text={TOP_TEXT} count={12} />
+        </div>
+        <div className={styles.bottomDrivingTrack}>
+          <div className={`${styles.track} ${styles.trackX} ${styles.toLeft}`}>
+            <div className={styles.group}>
+              <Repeater text={SIDE_TEXT} count={12} />
+            </div>
+            <div className={styles.group} aria-hidden="true">
+              <Repeater text={SIDE_TEXT} count={12} />
+            </div>
           </div>
         </div>
       </div>
