@@ -139,3 +139,41 @@
     padding: 0;
   }
 }
+
+.homeMain {
+  /* poster mode gestito dalle classi Tailwind, non fare nulla qui */
+}
+
+.homeFrame {
+  /* default: poster mode */
+}
+
+@media (min-width: 901px) and (max-width: 1180px),
+       (min-width: 901px) and (max-height: 780px) {
+  .homeFrame {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-top: 16px !important;
+    padding-bottom: 40px !important;
+    box-sizing: border-box;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 40px,
+      #000 40px,
+      #000 calc(100% - 40px),
+      transparent calc(100% - 40px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 40px,
+      #000 40px,
+      #000 calc(100% - 40px),
+      transparent calc(100% - 40px),
+      transparent 100%
+    );
+    clip-path: inset(40px 0 40px 0);
+  }
+}

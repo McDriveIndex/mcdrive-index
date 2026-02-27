@@ -260,9 +260,14 @@
 
   .strip {
     background-color: #fdfdfd !important;
-    background-image: url("/paper-grain.png") !important;
-    background-repeat: repeat !important;
-    background-size: auto !important;
+    background-image:
+      url("/paper-grain.png"),
+      radial-gradient(1200px 900px at 50% 0%, rgba(0, 0, 0, 0.035), transparent 60%),
+      radial-gradient(900px 700px at 50% 100%, rgba(0, 0, 0, 0.02), transparent 55%) !important;
+    background-repeat: repeat, no-repeat, no-repeat !important;
+    background-size: 900px 900px, auto, auto !important;
+    background-position: 0 0, 0 0, 0 0 !important;
+    background-blend-mode: multiply, multiply, multiply !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
     filter: none !important;
@@ -278,6 +283,52 @@
   .strip::after {
     content: none !important;
     display: none !important;
+  }
+
+  /* Disattiva overlay specifici della bottom (gradient/shadow) */
+  .bottom,
+  .bottom::before,
+  .bottom::after {
+    filter: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Se esistono pseudo-elementi su .bottom, spegnili completamente */
+  .bottom::before,
+  .bottom::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+  }
+
+  /* (Opzionale) se trovi overlay anche sul top, stessa cura */
+  .top::before,
+  .top::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  .bottomBrandTrack,
+  .bottomDrivingTrack {
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .bottomBrandTrack::before,
+  .bottomBrandTrack::after,
+  .bottomDrivingTrack::before,
+  .bottomDrivingTrack::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
   }
 
   .item {

@@ -414,10 +414,10 @@ const runMoment = async (momentDate: string) => {
   const showReceiptUi = isReceiptReady && imgReady;
 
   return (
-    <main className="h-screen min-h-[100svh] paper-bg text-black antialiased overflow-hidden max-md:h-auto max-md:min-h-0 max-md:overflow-y-auto max-md:overflow-x-hidden max-md:pt-[16px] max-md:pb-[48px]">
+    <main className={`h-screen min-h-[100svh] paper-bg text-black antialiased overflow-hidden max-md:h-auto max-md:min-h-0 max-md:overflow-y-auto max-md:overflow-x-hidden max-md:pt-[16px] max-md:pb-[48px] ${styles.homeMain}`}>
       <AnimatedBorder />
       <div
-        className="h-[100svh] max-w-full overflow-hidden max-md:h-auto max-md:overflow-visible max-md:overflow-x-hidden flex flex-col items-center justify-start px-[clamp(16px,3vw,28px)] pt-[clamp(44px,6.5vh,96px)] max-md:pt-[12px] gap-[clamp(10px,2.2vh,22px)]"
+        className={`h-[100svh] max-w-full overflow-hidden max-md:h-auto max-md:overflow-visible max-md:overflow-x-hidden flex flex-col items-center justify-start px-[clamp(16px,3vw,28px)] pt-[clamp(44px,6.5vh,96px)] max-md:pt-[12px] gap-[clamp(10px,2.2vh,22px)] ${styles.homeFrame}`}
         style={frameW ? ({ ["--headline-frame-w" as any]: `${frameW}px` } as any) : undefined}
       >
         <HeroHeadline onFrameWidth={setFrameW} />
