@@ -613,9 +613,9 @@ const runMoment = async (momentDate: string) => {
                   key="receipt-mode"
                   initial={{ opacity: 0, y: 18, scale: 0.94 }}
                   animate={{
-                    opacity: showReceiptUi ? 1 : 0,
-                    y: showReceiptUi ? 0 : 18,
-                    scale: showReceiptUi ? 1 : 0.94,
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
                   }}
                   exit={{ opacity: 0, y: 10, scale: 0.98 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
@@ -635,66 +635,68 @@ const runMoment = async (momentDate: string) => {
                     </button>
                   </div>
 
-                  <div className={`relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10 ${styles.receiptStage}`}>
-                    <img
-                      src={receiptSrc}
-                      alt="McDrive receipt PNG"
-                      onLoad={() => setImgReady(true)}
-                      className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
-                    />
-                    <motion.div
-                      key={`wipe-${receiptSrc}`}
-                      className={styles.thermalWipe}
-                      initial={{ y: "0%", opacity: 1 }}
-                      animate={{ y: "130%", opacity: 0 }}
-                      transition={{ duration: 0.36, ease: "easeOut", delay: 0.06 }}
-                    />
+                  <div className="w-full flex flex-col items-center transition-opacity duration-200" style={{ opacity: showReceiptUi ? 1 : 0 }}>
+                    <div className={`relative w-full before:content-[''] before:absolute before:inset-[-24px] before:rounded-[24px] before:bg-black/10 before:blur-2xl before:opacity-20 before:-z-10 ${styles.receiptStage}`}>
+                      <img
+                        src={receiptSrc}
+                        alt="McDrive receipt PNG"
+                        onLoad={() => setImgReady(true)}
+                        className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
+                      />
+                      <motion.div
+                        key={`wipe-${receiptSrc}`}
+                        className={styles.thermalWipe}
+                        initial={{ y: "0%", opacity: 1 }}
+                        animate={{ y: "130%", opacity: 0 }}
+                        transition={{ duration: 0.36, ease: "easeOut", delay: 0.06 }}
+                      />
+                    </div>
+
+                    <div className="mt-10 w-full flex gap-3 justify-center">
+                      <button
+                        onClick={async () => {
+                          try {
+                            const res = await fetch(receiptSrc);
+                            const blob = await res.blob();
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement("a");
+                            a.href = url;
+                            a.download = `mcdrive-receipt-${date || "date"}.png`;
+                            document.body.appendChild(a);
+                            a.click();
+                            a.remove();
+                            URL.revokeObjectURL(url);
+                          } catch {
+                            window.open(receiptSrc, "_blank");
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
+                      >
+                        Download
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          const bm = bestMatch;
+                          const carName = bm?.name ?? "something questionable";
+                          const shareUrl = new URL(window.location.href);
+                          if (date) shareUrl.searchParams.set("date", date);
+
+                          const displayDate = date ? formatDisplayDate(date) : "—";
+                          const text = `McDrive Index™ — ${displayDate}\n1 BTC → ${carName}`;
+                          const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                          window.open(intent, "_blank", "noopener,noreferrer");
+                        }}
+                        className="flex-1 px-4 py-3 rounded-xl border border-black/20 bg-white text-black font-semibold hover:bg-black/[0.03] transition"
+                      >
+                        Post on X
+                      </button>
+                    </div>
+
+                    <p className={`mt-3 text-sm ${styles.receiptHint}`}>
+                      Download the receipt → attach it to your post.
+                    </p>
                   </div>
-
-                  <div className="mt-10 w-full flex gap-3 justify-center">
-                    <button
-                      onClick={async () => {
-                        try {
-                          const res = await fetch(receiptSrc);
-                          const blob = await res.blob();
-                          const url = URL.createObjectURL(blob);
-                          const a = document.createElement("a");
-                          a.href = url;
-                          a.download = `mcdrive-receipt-${date || "date"}.png`;
-                          document.body.appendChild(a);
-                          a.click();
-                          a.remove();
-                          URL.revokeObjectURL(url);
-                        } catch {
-                          window.open(receiptSrc, "_blank");
-                        }
-                      }}
-                      className="flex-1 px-4 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition"
-                    >
-                      Download
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        const bm = bestMatch;
-                        const carName = bm?.name ?? "something questionable";
-                        const shareUrl = new URL(window.location.href);
-                        if (date) shareUrl.searchParams.set("date", date);
-
-                        const displayDate = date ? formatDisplayDate(date) : "—";
-                        const text = `McDrive Index™ — ${displayDate}\n1 BTC → ${carName}`;
-                        const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-                        window.open(intent, "_blank", "noopener,noreferrer");
-                      }}
-                      className="flex-1 px-4 py-3 rounded-xl border border-black/20 bg-white text-black font-semibold hover:bg-black/[0.03] transition"
-                    >
-                      Post on X
-                    </button>
-                  </div>
-
-                  <p className={`mt-3 text-sm ${styles.receiptHint}`}>
-                    Download the receipt → attach it to your post.
-                  </p>
 
                   {!imgReady && (
                     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">
