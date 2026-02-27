@@ -587,27 +587,29 @@ const runMoment = async (momentDate: string) => {
           >
             <AnimatePresence mode="wait">
               {!isReceiptReady ? (
-                <motion.div
-                  key="print-mode"
-                  initial={{ opacity: 0, scale: 1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.995 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className={`w-full min-h-[340px] flex flex-col items-center justify-center ${styles.printModeWrap}`}
-                >
-                  <div className={styles.printModeTitle}>
-                    PRINTING RECEIPT™
-                  </div>
-                  <div className={styles.printModeSlot}>
-                    <div className={styles.printModeTrack}>
-                      <motion.div
-                        className={styles.printModeBar}
-                        animate={{ x: ["-7px", "0px"] }}
-                        transition={{ duration: 1.8, ease: "linear", repeat: Infinity }}
-                      />
+                <div className={styles.printingMobileScale}>
+                  <motion.div
+                    key="print-mode"
+                    initial={{ opacity: 0, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.995 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className={`w-full min-h-[340px] flex flex-col items-center justify-center ${styles.printModeWrap}`}
+                  >
+                    <div className={styles.printModeTitle}>
+                      PRINTING RECEIPT™
                     </div>
-                  </div>
-                </motion.div>
+                    <div className={styles.printModeSlot}>
+                      <div className={styles.printModeTrack}>
+                        <motion.div
+                          className={styles.printModeBar}
+                          animate={{ x: ["-7px", "0px"] }}
+                          transition={{ duration: 1.8, ease: "linear", repeat: Infinity }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
               ) : (
                 <motion.div
                   key="receipt-mode"

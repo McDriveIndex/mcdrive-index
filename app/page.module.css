@@ -116,3 +116,26 @@
   border-radius: 0;
   background: repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 0 / 7px 7px;
 }
+
+.printingMobileScale {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .printingMobileScale {
+    transform: scale(0.86);
+    transform-origin: top center;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  /* Evita che la checker bar venga ricampionata dalla scale del wrapper */
+  .printModeSlot {
+    transform: scale(1.1628); /* 1 / 0.86 */
+    transform-origin: center;
+    box-shadow: none;
+    border-color: transparent;
+    background: transparent;
+    padding: 0;
+  }
+}
