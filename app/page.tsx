@@ -584,7 +584,7 @@ const runMoment = async (momentDate: string) => {
             onClick={(e) => e.stopPropagation()}
           >
             <AnimatePresence mode="wait">
-              {!isReceiptReady ? (
+              {(!isReceiptReady || !imgReady) ? (
                 <div className={styles.printingMobileScale}>
                   <motion.div
                     key="print-mode"
