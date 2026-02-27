@@ -121,6 +121,7 @@ export default function Home() {
   const [receiptRenderKey, setReceiptRenderKey] = useState(0);
   const openedAtRef = useRef<number | null>(null);
   const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const receiptImgRef = useRef<HTMLImageElement | null>(null);
   const receiptBestMatch = bestMatch;
   const receiptBtc = btcPrice;
 
@@ -339,6 +340,14 @@ export default function Home() {
   useEffect(() => {
     setImgReady(false);
   }, [receiptSrc]);
+
+  useEffect(() => {
+    const img = receiptImgRef.current;
+    if (!img) return;
+    if (img.complete && img.naturalWidth > 0) {
+      setImgReady(true);
+    }
+  }, [receiptRenderKey]);
 
   const todayMax = new Date().toISOString().slice(0, 10);
   const pickerMin = btcRange?.minDate;
@@ -621,9 +630,11 @@ const runMoment = async (momentDate: string) => {
                       {receiptSrc ? (
                         <img
                           key={receiptRenderKey}
+                          ref={receiptImgRef}
                           src={receiptSrc}
                           alt="McDrive receipt PNG"
                           onLoad={() => setImgReady(true)}
+                          onError={() => setImgReady(true)}
                           className="w-full shadow-[0_18px_30px_rgba(0,0,0,0.12)]"
                         />
                       ) : null}
