@@ -584,7 +584,7 @@ const runMoment = async (momentDate: string) => {
             onClick={(e) => e.stopPropagation()}
           >
             <AnimatePresence mode="wait">
-              {(!isReceiptReady || !imgReady) ? (
+              {!isReceiptReady ? (
                 <div className={styles.printingMobileScale}>
                   <motion.div
                     key="print-mode"
@@ -619,7 +619,7 @@ const runMoment = async (momentDate: string) => {
                   }}
                   exit={{ opacity: 0, y: 10, scale: 0.98 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="w-full flex flex-col items-center"
+                  className="relative w-full flex flex-col items-center"
                 >
                   <div className="w-full mb-2 flex items-center justify-between">
                     <div />
@@ -695,6 +695,27 @@ const runMoment = async (momentDate: string) => {
                   <p className={`mt-3 text-sm ${styles.receiptHint}`}>
                     Download the receipt → attach it to your post.
                   </p>
+
+                  {!imgReady && (
+                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">
+                      <div className={styles.printingMobileScale}>
+                        <div className={`w-full min-h-[340px] flex flex-col items-center justify-center ${styles.printModeWrap}`}>
+                          <div className={styles.printModeTitle}>
+                            PRINTING RECEIPT™
+                          </div>
+                          <div className={styles.printModeSlot}>
+                            <div className={styles.printModeTrack}>
+                              <motion.div
+                                className={styles.printModeBar}
+                                animate={{ x: ["-7px", "0px"] }}
+                                transition={{ duration: 1.8, ease: "linear", repeat: Infinity }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
