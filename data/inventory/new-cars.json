@@ -126,60 +126,6 @@
     "copy": "Spreadsheet violence.\nWith a warranty."
   },
   {
-    "id": "911",
-    "make": "Porsche",
-    "model": "911",
-    "price_usd": 120000,
-    "vibe": "cultured menace",
-    "image": "/cars/911.jpg",
-    "copy": "The safe bet.\nStill a gamble."
-  },
-  {
-    "id": "r8",
-    "make": "Audi",
-    "model": "R8",
-    "price_usd": 165000,
-    "vibe": "exit liquidity chic",
-    "image": "/cars/r8.jpg",
-    "copy": "Supercar, dailyable.\nUntil the bill arrives."
-  },
-  {
-    "id": "g63",
-    "make": "Mercedes",
-    "model": "G63 AMG",
-    "price_usd": 185000,
-    "vibe": "crypto bro boss fight",
-    "image": "/cars/g63.jpg",
-    "copy": "Boxy flex.\nFuel economy is a rumor."
-  },
-  {
-    "id": "huracan",
-    "make": "Lamborghini",
-    "model": "Huracán",
-    "price_usd": 240000,
-    "vibe": "loud money",
-    "image": "/cars/huracan.jpg",
-    "copy": "Loud money.\nEven louder startup."
-  },
-  {
-    "id": "rolls",
-    "make": "Rolls-Royce",
-    "model": "Ghost",
-    "price_usd": 360000,
-    "vibe": "villain arc complete",
-    "image": "/cars/rolls.jpg",
-    "copy": "Whispered power.\nNo one says no."
-  },
-  {
-    "id": "sf90",
-    "make": "Ferrari",
-    "model": "SF90",
-    "price_usd": 520000,
-    "vibe": "overkill, respectfully",
-    "image": "/cars/sf90.jpg",
-    "copy": "Overkill.\nIn 3.0 seconds."
-  },
-  {
     "id": "mini-cooper-s",
     "name": "Mini Cooper S (new)",
     "price_usd": 32000,

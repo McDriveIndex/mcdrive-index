@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-26T13:33:13.666Z",
+  "generatedAt": "2026-02-26T17:27:18.979Z",
   "inventoryDir": "data/inventory",
   "tierFiles": [
     "exotics.json",
@@ -11,14 +11,14 @@
   ],
   "tierStats": {
     "exotics.json": {
-      "count": 12,
-      "minPrice": 120000,
+      "count": 9,
+      "minPrice": 210000,
       "maxPrice": 1800000
     },
     "new-cars.json": {
-      "count": 36,
+      "count": 30,
       "minPrice": 16000,
-      "maxPrice": 520000
+      "maxPrice": 105000
     },
     "poverty.json": {
       "count": 33,
@@ -26,163 +26,39 @@
       "maxPrice": 900
     },
     "used-beaters.json": {
-      "count": 15,
-      "minPrice": 1900,
+      "count": 19,
+      "minPrice": 1000,
       "maxPrice": 6200
     },
     "used-icons.json": {
-      "count": 25,
+      "count": 26,
       "minPrice": 6000,
       "maxPrice": 28000
     },
     "used-legends.json": {
-      "count": 26,
-      "minPrice": 30000,
+      "count": 31,
+      "minPrice": 27000,
       "maxPrice": 185000
     }
   },
-  "duplicatesById": {
-    "911": [
-      {
-        "tierFile": "exotics.json",
-        "name": "Porsche 911 (base)",
-        "price": 120000
-      },
-      {
-        "tierFile": "new-cars.json",
-        "name": "Porsche 911",
-        "price": 120000
-      }
-    ],
-    "g63": [
-      {
-        "tierFile": "exotics.json",
-        "name": "Mercedes G63 AMG",
-        "price": 185000
-      },
-      {
-        "tierFile": "new-cars.json",
-        "name": "Mercedes G63 AMG",
-        "price": 185000
-      }
-    ],
-    "r8": [
-      {
-        "tierFile": "exotics.json",
-        "name": "Audi R8",
-        "price": 165000
-      },
-      {
-        "tierFile": "new-cars.json",
-        "name": "Audi R8",
-        "price": 165000
-      }
-    ],
-    "huracan": [
-      {
-        "tierFile": "exotics.json",
-        "name": "Lamborghini Huracán",
-        "price": 240000
-      },
-      {
-        "tierFile": "new-cars.json",
-        "name": "Lamborghini Huracán",
-        "price": 240000
-      }
-    ],
-    "sf90": [
-      {
-        "tierFile": "exotics.json",
-        "name": "Ferrari SF90",
-        "price": 520000
-      },
-      {
-        "tierFile": "new-cars.json",
-        "name": "Ferrari SF90",
-        "price": 520000
-      }
-    ]
-  },
-  "duplicatesByName": {
-    "mercedes g63 amg": [
-      {
-        "tierFile": "exotics.json",
-        "id": "g63",
-        "price": 185000,
-        "name": "Mercedes G63 AMG"
-      },
-      {
-        "tierFile": "new-cars.json",
-        "id": "g63",
-        "price": 185000,
-        "name": "Mercedes G63 AMG"
-      }
-    ],
-    "audi r8": [
-      {
-        "tierFile": "exotics.json",
-        "id": "r8",
-        "price": 165000,
-        "name": "Audi R8"
-      },
-      {
-        "tierFile": "new-cars.json",
-        "id": "r8",
-        "price": 165000,
-        "name": "Audi R8"
-      }
-    ],
-    "lamborghini huracan": [
-      {
-        "tierFile": "exotics.json",
-        "id": "huracan",
-        "price": 240000,
-        "name": "Lamborghini Huracán"
-      },
-      {
-        "tierFile": "new-cars.json",
-        "id": "huracan",
-        "price": 240000,
-        "name": "Lamborghini Huracán"
-      }
-    ],
-    "ferrari sf90": [
-      {
-        "tierFile": "exotics.json",
-        "id": "sf90",
-        "price": 520000,
-        "name": "Ferrari SF90"
-      },
-      {
-        "tierFile": "new-cars.json",
-        "id": "sf90",
-        "price": 520000,
-        "name": "Ferrari SF90"
-      }
-    ],
-    "rolls royce ghost": [
-      {
-        "tierFile": "exotics.json",
-        "id": "rolls-ghost",
-        "price": 360000,
-        "name": "Rolls-Royce Ghost"
-      },
-      {
-        "tierFile": "new-cars.json",
-        "id": "rolls",
-        "price": 360000,
-        "name": "Rolls-Royce Ghost"
-      }
-    ]
-  },
+  "duplicatesById": {},
+  "duplicatesByName": {},
   "gapHints": [
     {
       "fromTier": "poverty.json",
       "toTier": "used-beaters.json",
       "prevMaxPrice": 900,
-      "nextMinPrice": 1900,
-      "gapSize": 1000,
-      "overlaps1000to2000": true
+      "nextMinPrice": 1000,
+      "gapSize": 100,
+      "overlaps1000to2000": false
+    },
+    {
+      "fromTier": "used-legends.json",
+      "toTier": "exotics.json",
+      "prevMaxPrice": 185000,
+      "nextMinPrice": 210000,
+      "gapSize": 25000,
+      "overlaps1000to2000": false
     }
   ],
   "parseIssues": {}
