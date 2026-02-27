@@ -209,7 +209,6 @@ export default function Home() {
           tierCopy,
           extraCopy,
           image,
-          v: String(Date.now()),
         });
         const newReceiptUrl = `/api/receipt?${params.toString()}`;
         nextReceiptUrl = newReceiptUrl;
@@ -390,7 +389,6 @@ const runMoment = async (momentDate: string) => {
       tierCopy,
       extraCopy,
       image,
-      v: String(Date.now()),
     });
 
     const newReceiptUrl = `/api/receipt?${params.toString()}`;

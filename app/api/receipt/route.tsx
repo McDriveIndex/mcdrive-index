@@ -169,7 +169,7 @@ export async function GET(req: Request) {
       console.error("[receipt] car fetch failed, using placeholder", e);
     }
 
-    return new ImageResponse(
+    const response = new ImageResponse(
       (
         <div
           style={{
@@ -432,6 +432,8 @@ export async function GET(req: Request) {
         ],
       }
     );
+    response.headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
+    return response;
   } catch (error) {
     const details =
       error instanceof Error ? error.stack ?? error.message : String(error);
