@@ -133,9 +133,12 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
     };
 
     window.addEventListener("resize", onResize);
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", onResize);
     return () => {
       window.cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
+      viewport?.removeEventListener("resize", onResize);
     };
   }, [index, frameWidth]);
 
@@ -206,6 +209,8 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
     [checkerCols]
   );
 
+  const variantScale = index === 2 ? 1 : headlineScale;
+
   return (
     <section className={styles.hero} aria-label="Hero headline">
       <div className={styles.hiddenMeasure} aria-hidden="true">
@@ -246,22 +251,22 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
                 </div>
               </div>
               <div className={styles.headlineCenter}>
-                <div
-                  className={styles.headlineScaled}
-                  style={{ transform: `scale(${headlineScale})` }}
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -18 }}
-                      transition={{ duration: 0.18, ease: "linear" }}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -18 }}
+                    transition={{ duration: 0.18, ease: "linear" }}
+                  >
+                    <div
+                      className={styles.headlineScaled}
+                      style={{ transform: `scale(${variantScale})` }}
                     >
                       {renderHeadline(index)}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
