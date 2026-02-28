@@ -5,9 +5,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styles from "./HeroHeadline.module.css";
 
 const LOOP_MS = 1300;
-const CHECKER_COLS = 24;
+const CHECKER_MAX_COLS = 24;
 const CHECKER_ROWS = 4;
-const CHECKER_CELLS = CHECKER_COLS * CHECKER_ROWS;
 
 type HeroHeadlineProps = {
   onFrameWidth?: (px: number) => void;
@@ -17,6 +16,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   const [index, setIndex] = useState(0);
   const [frameWidth, setFrameWidth] = useState<number | null>(null);
   const [orWorseScale, setOrWorseScale] = useState(1);
+  const [checkerCols, setCheckerCols] = useState(CHECKER_MAX_COLS);
   const btcMeasurerRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const orWorseMeasureRef = useRef<HTMLDivElement | null>(null);
@@ -69,6 +69,44 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       onFrameWidth?.(frameWidth);
     }
   }, [frameWidth, onFrameWidth]);
+
+  useEffect(() => {
+    let rafId = 0;
+
+    const updateCheckerCols = () => {
+      // Keep mobile checker columns aligned to whole cells to reduce DPR/subpixel clipping on iOS.
+      const isMobile = window.matchMedia("(max-width: 900px)").matches;
+      if (!isMobile) {
+        setCheckerCols((prev) => (prev === CHECKER_MAX_COLS ? prev : CHECKER_MAX_COLS));
+        rafId = 0;
+        return;
+      }
+      const cell = 14;
+      const availableWidth = frameWidth ?? Math.floor(window.innerWidth * 0.8);
+      let cols = Math.min(CHECKER_MAX_COLS, Math.floor(availableWidth / cell));
+      cols = Math.max(8, cols);
+      if (cols % 2 === 1 && cols > 8) cols -= 1;
+
+      setCheckerCols((prev) => (prev === cols ? prev : cols));
+      rafId = 0;
+    };
+
+    const scheduleUpdate = () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(updateCheckerCols);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("resize", scheduleUpdate);
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", scheduleUpdate);
+      viewport?.removeEventListener("resize", scheduleUpdate);
+    };
+  }, [frameWidth]);
 
   useLayoutEffect(() => {
     const measureOrWorseScale = () => {
@@ -133,11 +171,11 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
 
   const checkerCells = useMemo(
     () =>
-      Array.from({ length: CHECKER_CELLS }, (_, i) => {
-        const isBlack = ((Math.floor(i / CHECKER_COLS) + (i % CHECKER_COLS)) % 2) === 0;
+      Array.from({ length: checkerCols * CHECKER_ROWS }, (_, i) => {
+        const isBlack = ((Math.floor(i / checkerCols) + (i % checkerCols)) % 2) === 0;
         return <span key={i} className={`${styles.cell} ${isBlack ? styles.black : ""}`} />;
       }),
-    []
+    [checkerCols]
   );
 
   return (
@@ -160,27 +198,40 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
           style={frameWidth ? { width: `${frameWidth}px` } : undefined}
         >
           <div className={styles.checker} aria-hidden="true">
-            <div className={styles.checkerCells} aria-hidden="true">
+            <div
+              className={styles.checkerCells}
+              style={{ ["--checker-cols" as any]: String(checkerCols) }}
+              aria-hidden="true"
+            >
               {checkerCells}
             </div>
           </div>
 
-          <div className={styles.headlineArea}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.18, ease: "linear" }}
-              >
-                {variants[index]}
-              </motion.div>
-            </AnimatePresence>
+          <div
+            className={styles.headlineArea}
+            style={{ ["--checker-cols" as any]: String(checkerCols) }}
+          >
+            <div className={styles.headlineInner}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.18, ease: "linear" }}
+                >
+                  {variants[index]}
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
           <div className={styles.checker} aria-hidden="true">
-            <div className={styles.checkerCells} aria-hidden="true">
+            <div
+              className={styles.checkerCells}
+              style={{ ["--checker-cols" as any]: String(checkerCols) }}
+              aria-hidden="true"
+            >
               {checkerCells}
             </div>
           </div>

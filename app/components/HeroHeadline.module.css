@@ -54,6 +54,10 @@
   padding: 0;
 }
 
+.headlineInner {
+  width: 100%;
+}
+
 .oneLine {
   font-family: "Nimbus Sans L", system-ui, sans-serif;
   font-weight: 900;
@@ -145,12 +149,12 @@
   }
 
   .checkerCells {
-    width: calc(var(--checker-cell) * 24);
+    width: calc(var(--checker-cell) * var(--checker-cols));
     max-width: 100%;
     height: 100%;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(24, var(--checker-cell));
+    grid-template-columns: repeat(var(--checker-cols), var(--checker-cell));
     grid-auto-rows: var(--checker-cell);
     justify-content: start;
     align-content: start;
@@ -180,6 +184,13 @@
 
   .headlineArea {
     height: clamp(110px, 12.5vw, 160px);
+    overflow: hidden;
+  }
+
+  .headlineInner {
+    width: calc(var(--checker-cell) * var(--checker-cols));
+    max-width: 100%;
+    margin: 0 auto;
   }
 
   .frame > .checker:first-child {
