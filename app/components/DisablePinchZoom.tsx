@@ -6,6 +6,7 @@ export default function DisablePinchZoom() {
   useEffect(() => {
     const moveOpts: AddEventListenerOptions = { passive: false, capture: true };
     const touchOpts: AddEventListenerOptions = { passive: true, capture: true };
+    const gestureOpts: AddEventListenerOptions = { passive: false, capture: true };
     let touchMoveAttached = false;
 
     const onTouchMove = (e: TouchEvent) => {
@@ -39,14 +40,21 @@ export default function DisablePinchZoom() {
       }
     };
 
+    const onGestureStart = (e: Event) => {
+      if (!("cancelable" in e) || !(e as Event).cancelable) return;
+      e.preventDefault();
+    };
+
     document.addEventListener("touchstart", onTouchStart, touchOpts);
     document.addEventListener("touchend", onTouchEndOrCancel, touchOpts);
     document.addEventListener("touchcancel", onTouchEndOrCancel, touchOpts);
+    document.addEventListener("gesturestart" as any, onGestureStart, gestureOpts);
 
     return () => {
       document.removeEventListener("touchstart", onTouchStart, touchOpts);
       document.removeEventListener("touchend", onTouchEndOrCancel, touchOpts);
       document.removeEventListener("touchcancel", onTouchEndOrCancel, touchOpts);
+      document.removeEventListener("gesturestart" as any, onGestureStart, gestureOpts);
       detachTouchMove();
     };
   }, []);

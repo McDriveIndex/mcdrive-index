@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import DisablePinchZoom from "./components/DisablePinchZoom";
+import IosScrollStabilizer from "./components/IosScrollStabilizer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <DisablePinchZoom />
+        <IosScrollStabilizer />
         {children}
       </body>
     </html>
