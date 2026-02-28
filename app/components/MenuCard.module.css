@@ -267,12 +267,15 @@
     max-width: 100%;
     margin-right: 12px;
     overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
   }
 
   .dateInput {
     width: 100%;
     max-width: 100%;
     padding-right: 40px;
+    background: transparent;
   }
 
   .dateInput::-webkit-calendar-picker-indicator {
