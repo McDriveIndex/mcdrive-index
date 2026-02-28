@@ -25,12 +25,17 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   const orWorseHiddenRef = useRef<HTMLDivElement | null>(null);
   const headlineBoxRef = useRef<HTMLDivElement | null>(null);
   const headlineTextMeasureRef = useRef<HTMLDivElement | null>(null);
+  const didMountRef = useRef(false);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setIndex((prev) => (prev + 1) % 3);
     }, LOOP_MS);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    didMountRef.current = true;
   }, []);
 
   useEffect(() => {
@@ -284,10 +289,10 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
                 </div>
               </div>
               <div className={styles.headlineCenter}>
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 18 }}
+                    initial={didMountRef.current ? { opacity: 0, y: 18 } : false}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -18 }}
                     transition={{ duration: 0.18, ease: "linear" }}
