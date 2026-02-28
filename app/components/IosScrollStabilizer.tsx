@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 export default function IosScrollStabilizer() {
   useEffect(() => {
+    const scrollOpts: AddEventListenerOptions = { passive: true };
     try {
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
@@ -12,10 +13,12 @@ export default function IosScrollStabilizer() {
       // no-op
     }
 
+    let armedUntil = 0;
+    let lastNonZeroY = 0;
     let rafId = 0;
     let stopRequested = false;
 
-    const stopLoop = () => {
+    const stopAll = () => {
       stopRequested = true;
       if (rafId) {
         window.cancelAnimationFrame(rafId);
@@ -23,59 +26,53 @@ export default function IosScrollStabilizer() {
       }
     };
 
-    const startStabilize = () => {
-      stopLoop();
-      const savedY = window.scrollY;
-      if (savedY <= 0) return;
+    const watch = () => {
+      if (stopRequested) return;
 
+      const now = performance.now();
+      const y = window.scrollY;
+
+      if (y > 0) {
+        lastNonZeroY = y;
+      }
+
+      if (y === 0 && lastNonZeroY > 0) {
+        window.scrollTo(0, lastNonZeroY);
+      }
+
+      if (now > armedUntil) {
+        stopAll();
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(watch);
+    };
+
+    const armAfterRotate = () => {
+      stopAll();
       stopRequested = false;
-      const startedAt = performance.now();
-      let frames = 0;
-      let stableFrames = 0;
-      let lastY = window.scrollY;
-
-      const tick = () => {
-        if (stopRequested) return;
-        frames += 1;
-
-        const now = performance.now();
-        const y = window.scrollY;
-
-        if (y === 0 && savedY > 0) {
-          window.scrollTo(0, savedY);
-        }
-
-        const currentY = window.scrollY;
-        if (Math.abs(currentY - lastY) < 1) {
-          stableFrames += 1;
-        } else {
-          stableFrames = 0;
-        }
-        lastY = currentY;
-
-        if (now - startedAt > 600 || frames >= 20 || stableFrames >= 3) {
-          stopLoop();
-          return;
-        }
-
-        rafId = window.requestAnimationFrame(tick);
-      };
-
-      rafId = window.requestAnimationFrame(tick);
+      armedUntil = performance.now() + 1500;
+      lastNonZeroY = 0;
+      rafId = window.requestAnimationFrame(watch);
     };
 
-    const onTouchStart = () => {
-      stopLoop();
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y > 0) lastNonZeroY = y;
     };
 
-    window.addEventListener("orientationchange", startStabilize);
-    window.addEventListener("resize", startStabilize);
+    const onTouchStart = () => stopAll();
+
+    window.addEventListener("orientationchange", armAfterRotate);
+    window.addEventListener("resize", armAfterRotate);
+    window.addEventListener("scroll", onScroll, scrollOpts);
     window.addEventListener("touchstart", onTouchStart, { passive: true });
 
     return () => {
-      stopLoop();
-      window.removeEventListener("orientationchange", startStabilize);
-      window.removeEventListener("resize", startStabilize);
+      stopAll();
+      window.removeEventListener("orientationchange", armAfterRotate);
+      window.removeEventListener("resize", armAfterRotate);
+      window.removeEventListener("scroll", onScroll, scrollOpts);
       window.removeEventListener("touchstart", onTouchStart);
     };
   }, []);
