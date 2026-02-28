@@ -110,6 +110,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
 
   useEffect(() => {
     let rafId = 0;
+    let viewportRafId = 0;
 
     const updateCheckerCols = () => {
       // Keep mobile checker columns aligned to whole cells to reduce DPR/subpixel clipping on iOS.
@@ -134,15 +135,26 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       rafId = window.requestAnimationFrame(updateCheckerCols);
     };
 
+    const onViewportResize = () => {
+      const vv = window.visualViewport;
+      if (vv && typeof vv.scale === "number" && (vv.scale > 1.01 || vv.scale < 0.99)) return;
+      if (viewportRafId) window.cancelAnimationFrame(viewportRafId);
+      viewportRafId = window.requestAnimationFrame(() => {
+        viewportRafId = 0;
+        scheduleUpdate();
+      });
+    };
+
     scheduleUpdate();
     window.addEventListener("resize", scheduleUpdate);
     const viewport = window.visualViewport;
-    viewport?.addEventListener("resize", scheduleUpdate);
+    viewport?.addEventListener("resize", onViewportResize);
 
     return () => {
       if (rafId) window.cancelAnimationFrame(rafId);
+      if (viewportRafId) window.cancelAnimationFrame(viewportRafId);
       window.removeEventListener("resize", scheduleUpdate);
-      viewport?.removeEventListener("resize", scheduleUpdate);
+      viewport?.removeEventListener("resize", onViewportResize);
     };
   }, [frameWidth, layoutNonce]);
 
@@ -165,18 +177,30 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
     measureOrWorseScale();
 
     let raf = 0;
+    let viewportRaf = 0;
     const onResize = () => {
       window.cancelAnimationFrame(raf);
       raf = window.requestAnimationFrame(measureOrWorseScale);
     };
 
+    const onViewportResize = () => {
+      const vv = window.visualViewport;
+      if (vv && typeof vv.scale === "number" && (vv.scale > 1.01 || vv.scale < 0.99)) return;
+      if (viewportRaf) window.cancelAnimationFrame(viewportRaf);
+      viewportRaf = window.requestAnimationFrame(() => {
+        viewportRaf = 0;
+        onResize();
+      });
+    };
+
     window.addEventListener("resize", onResize);
     const viewport = window.visualViewport;
-    viewport?.addEventListener("resize", onResize);
+    viewport?.addEventListener("resize", onViewportResize);
     return () => {
       window.cancelAnimationFrame(raf);
+      window.cancelAnimationFrame(viewportRaf);
       window.removeEventListener("resize", onResize);
-      viewport?.removeEventListener("resize", onResize);
+      viewport?.removeEventListener("resize", onViewportResize);
     };
   }, [index, frameWidth, layoutNonce]);
 
@@ -203,19 +227,31 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
     measure();
 
     let raf = 0;
+    let viewportRaf = 0;
     const onResize = () => {
       window.cancelAnimationFrame(raf);
       raf = window.requestAnimationFrame(measure);
     };
 
+    const onViewportResize = () => {
+      const vv = window.visualViewport;
+      if (vv && typeof vv.scale === "number" && (vv.scale > 1.01 || vv.scale < 0.99)) return;
+      if (viewportRaf) window.cancelAnimationFrame(viewportRaf);
+      viewportRaf = window.requestAnimationFrame(() => {
+        viewportRaf = 0;
+        onResize();
+      });
+    };
+
     window.addEventListener("resize", onResize);
     const viewport = window.visualViewport;
-    viewport?.addEventListener("resize", onResize);
+    viewport?.addEventListener("resize", onViewportResize);
 
     return () => {
       window.cancelAnimationFrame(raf);
+      window.cancelAnimationFrame(viewportRaf);
       window.removeEventListener("resize", onResize);
-      viewport?.removeEventListener("resize", onResize);
+      viewport?.removeEventListener("resize", onViewportResize);
     };
   }, [index, checkerCols, frameWidth, layoutNonce]);
 
