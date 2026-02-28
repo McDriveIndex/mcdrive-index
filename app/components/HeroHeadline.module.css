@@ -56,24 +56,61 @@
 
 .headlineInner {
   width: 100%;
+  position: relative;
 }
 
-.headlineMeasure {
-  display: inline-flex;
+.headlineCenter {
+  width: 100%;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.oneLine {
+.headlineScaled {
+  display: inline-block;
+  width: max-content;
+  white-space: nowrap;
+  transform-origin: center top;
+}
+
+.headlineMeasurer {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.headlineMeasureContent {
+  display: inline-block;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.oneLine,
+.oneLineMeasure {
   font-family: "Nimbus Sans L", system-ui, sans-serif;
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.95;
   white-space: nowrap;
   font-size: clamp(140px, 16vw, 300px);
-  text-align: center;
-  width: 100%;
   margin: 0;
   color: #000;
+}
+
+.oneLine {
+  text-align: center;
+  width: 100%;
+}
+
+.oneLineMeasure {
+  display: inline-block;
+  width: max-content;
+  text-align: left;
 }
 
 .orWorse {
@@ -133,7 +170,8 @@
 }
 
 @media (max-width: 900px) {
-  .oneLine {
+  .oneLine,
+  .oneLineMeasure {
     font-size: clamp(124px, 17.5vw, 190px);
   }
 
@@ -196,9 +234,6 @@
     width: calc(var(--checker-cell) * var(--checker-cols));
     max-width: 100%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .frame > .checker:first-child {

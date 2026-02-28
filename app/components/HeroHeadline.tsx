@@ -22,7 +22,8 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   const frameRef = useRef<HTMLDivElement | null>(null);
   const orWorseMeasureRef = useRef<HTMLDivElement | null>(null);
   const orWorseHiddenRef = useRef<HTMLDivElement | null>(null);
-  const headlineMeasureRef = useRef<HTMLDivElement | null>(null);
+  const headlineBoxRef = useRef<HTMLDivElement | null>(null);
+  const headlineTextMeasureRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -155,21 +156,17 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   }, [index, frameWidth]);
 
   useLayoutEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 900px)").matches;
-    if (!isMobile) {
-      setHeadlineScale(1);
-      return;
-    }
-
     const measure = () => {
-      const available = checkerCols * 14;
-      const el = headlineMeasureRef.current;
-      const measured = el ? el.scrollWidth : 0;
+      const box = headlineBoxRef.current;
+      const el = headlineTextMeasureRef.current;
+      const available = box?.clientWidth ?? 0;
+      let measured = el ? el.scrollWidth : 0;
       if (measured > 0 && available > 0) {
-        const scale = Math.max(0.75, Math.min(1, available / measured));
-        setHeadlineScale(scale);
+        const safetyPx = 6;
+        const scale = Math.max(0.75, Math.min(1, (available - safetyPx) / measured));
+        setHeadlineScale((prev) => (Math.abs(prev - scale) > 0.002 ? scale : prev));
       } else {
-        setHeadlineScale(1);
+        setHeadlineScale((prev) => (prev === 1 ? prev : 1));
       }
     };
 
@@ -188,24 +185,26 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       window.removeEventListener("resize", onResize);
       viewport?.removeEventListener("resize", onResize);
     };
-  }, [index, checkerCols, frameWidth]);
+  }, [index, checkerCols, frameWidth, orWorseScale]);
 
-  const variants = useMemo(
-    () => [
-      <div key="btc" className={styles.oneLine}>1 BTC</div>,
-      <div key="car" className={styles.oneLine}>1 CAR</div>,
+  const renderHeadline = (variantIndex: number, forMeasure = false) => {
+    if (variantIndex === 0) {
+      return <div className={forMeasure ? styles.oneLineMeasure : styles.oneLine}>1 BTC</div>;
+    }
+    if (variantIndex === 1) {
+      return <div className={forMeasure ? styles.oneLineMeasure : styles.oneLine}>1 CAR</div>;
+    }
+    return (
       <div
-        key="or-worse"
-        ref={orWorseMeasureRef}
+        ref={forMeasure ? undefined : orWorseMeasureRef}
         className={styles.orWorse}
-        style={{ transform: `scale(${orWorseScale})` }}
+        style={forMeasure ? undefined : { transform: `scale(${orWorseScale})` }}
       >
         <div className={styles.or}>OR</div>
         <div className={styles.worse}>WORSE</div>
-      </div>,
-    ],
-    [orWorseScale]
-  );
+      </div>
+    );
+  };
 
   const checkerCells = useMemo(
     () =>
@@ -249,20 +248,29 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
             className={styles.headlineArea}
             style={{ ["--checker-cols" as any]: String(checkerCols) }}
           >
-            <div className={styles.headlineInner}>
-              <div ref={headlineMeasureRef} className={styles.headlineMeasure}>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -18 }}
-                    transition={{ duration: 0.18, ease: "linear" }}
-                    style={{ transformOrigin: "center", scale: headlineScale }}
-                  >
-                    {variants[index]}
-                  </motion.div>
-                </AnimatePresence>
+            <div className={styles.headlineInner} ref={headlineBoxRef}>
+              <div className={styles.headlineMeasurer} aria-hidden="true">
+                <div ref={headlineTextMeasureRef} className={styles.headlineMeasureContent}>
+                  {renderHeadline(index, true)}
+                </div>
+              </div>
+              <div className={styles.headlineCenter}>
+                <div
+                  className={styles.headlineScaled}
+                  style={{ transform: `scale(${headlineScale})` }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 18 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -18 }}
+                      transition={{ duration: 0.18, ease: "linear" }}
+                    >
+                      {renderHeadline(index)}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </div>
