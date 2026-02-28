@@ -5,11 +5,7 @@ import { useEffect } from "react";
 export default function DisablePinchZoom() {
   useEffect(() => {
     const opts: AddEventListenerOptions = { passive: false, capture: true };
-
-    const onGesture = (e: Event) => {
-      if (!("cancelable" in e) || !(e as Event).cancelable) return;
-      e.preventDefault();
-    };
+    let touchMoveAttached = false;
 
     const onTouchMove = (e: TouchEvent) => {
       if (!e.cancelable) return;
@@ -18,16 +14,39 @@ export default function DisablePinchZoom() {
       }
     };
 
+    const attachTouchMove = () => {
+      if (touchMoveAttached) return;
+      document.addEventListener("touchmove", onTouchMove, opts);
+      touchMoveAttached = true;
+    };
+
+    const detachTouchMove = () => {
+      if (!touchMoveAttached) return;
+      document.removeEventListener("touchmove", onTouchMove, opts);
+      touchMoveAttached = false;
+    };
+
+    const onGesture = (e: Event) => {
+      if (!("cancelable" in e) || !(e as Event).cancelable) return;
+      e.preventDefault();
+
+      const type = (e as Event).type;
+      if (type === "gesturestart" || type === "gesturechange") {
+        attachTouchMove();
+      } else if (type === "gestureend") {
+        detachTouchMove();
+      }
+    };
+
     document.addEventListener("gesturestart" as any, onGesture, opts);
     document.addEventListener("gesturechange" as any, onGesture, opts);
     document.addEventListener("gestureend" as any, onGesture, opts);
-    document.addEventListener("touchmove", onTouchMove, opts);
 
     return () => {
       document.removeEventListener("gesturestart" as any, onGesture, opts);
       document.removeEventListener("gesturechange" as any, onGesture, opts);
       document.removeEventListener("gestureend" as any, onGesture, opts);
-      document.removeEventListener("touchmove", onTouchMove, opts);
+      detachTouchMove();
     };
   }, []);
 
