@@ -122,6 +122,7 @@ export default function Home() {
   const [receiptRenderKey, setReceiptRenderKey] = useState(0);
   const openedAtRef = useRef<number | null>(null);
   const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clampNoticeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const receiptImgRef = useRef<HTMLImageElement | null>(null);
   const receiptBestMatch = bestMatch;
   const receiptBtc = btcPrice;
@@ -288,6 +289,15 @@ export default function Home() {
   }, [showModal]);
 
   useEffect(() => {
+    return () => {
+      if (clampNoticeTimeoutRef.current) {
+        clearTimeout(clampNoticeTimeoutRef.current);
+        clampNoticeTimeoutRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (showModal) {
       openedAtRef.current = performance.now();
       setPrintHoldDone(false);
@@ -384,34 +394,6 @@ export default function Home() {
   const todayMax = new Date().toISOString().slice(0, 10);
   const pickerMin = btcRange?.minDate;
   const pickerMax = btcRange?.maxDate ?? todayMax;
-
-  useEffect(() => {
-    if (!date || !pickerMin || !pickerMax) return;
-
-    let adjustedDate = date;
-
-    if (date < pickerMin) {
-      adjustedDate = pickerMin;
-    } else if (date > pickerMax) {
-      adjustedDate = pickerMax;
-    }
-
-    if (adjustedDate !== date) {
-      setDate(adjustedDate);
-
-      setClampNotice(
-        `Date adjusted to available BTC range (${formatDisplayDate(
-          pickerMin
-        )} – ${formatDisplayDate(pickerMax)})`
-      );
-
-      const timeout = setTimeout(() => {
-        setClampNotice(null);
-      }, 2500);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [date, pickerMin, pickerMax]);
 
   function randomDateInRange() {
   const minDate = btcRange?.minDate;
@@ -510,7 +492,16 @@ const runMoment = async (momentDate: string) => {
             minDate={pickerMin}
             maxDate={pickerMax}
             onDateChange={(value) => {
-              setDate(value);
+              // Clamp ONLY on user change (mobile-safe, no mount loop)
+              let adjusted = value;
+
+              if (pickerMin && adjusted < pickerMin) adjusted = pickerMin;
+              if (pickerMax && adjusted > pickerMax) adjusted = pickerMax;
+
+              // Set date to adjusted value
+              setDate(adjusted);
+
+              // Reset other state as before
               setBtcPrice(null);
               setDateUsed(null);
               setWasClamped(false);
@@ -523,6 +514,27 @@ const runMoment = async (momentDate: string) => {
               setToast(null);
               setReceiptSrc("");
               setShowModal(false);
+
+              // Show notice only if we had to clamp
+              if (adjusted !== value && pickerMin && pickerMax) {
+                setClampNotice(
+                  `Date adjusted to available BTC range (${formatDisplayDate(
+                    pickerMin
+                  )} – ${formatDisplayDate(pickerMax)})`
+                );
+
+                if (clampNoticeTimeoutRef.current) {
+                  clearTimeout(clampNoticeTimeoutRef.current);
+                  clampNoticeTimeoutRef.current = null;
+                }
+
+                clampNoticeTimeoutRef.current = setTimeout(() => {
+                  setClampNotice(null);
+                  clampNoticeTimeoutRef.current = null;
+                }, 2500);
+              } else {
+                // valid date: no clamp notice needed; let any existing notice expire naturally
+              }
             }}
             onOrder={handleClick}
             meals={[
