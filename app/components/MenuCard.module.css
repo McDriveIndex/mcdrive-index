@@ -278,9 +278,10 @@
   }
 
   .dateFieldMobile {
-    flex: 1 1 0;
+    position: relative;
+    flex: 0 1 clamp(180px, 52vw, 280px);
     min-width: 0;
-    max-width: 280px;
+    max-width: 100%;
   }
 
   .dateInputMobile {
