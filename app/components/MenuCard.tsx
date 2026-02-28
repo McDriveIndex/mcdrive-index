@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./MenuCard.module.css";
 
 type Meal = {
@@ -33,27 +33,6 @@ export default function MenuCard({
   busyLabel,
 }: MenuCardProps) {
   const [isDateFocused, setIsDateFocused] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const updateIsMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 900px)").matches);
-    };
-
-    updateIsMobile();
-
-    const onResize = () => updateIsMobile();
-    window.addEventListener("resize", onResize);
-    const viewport = window.visualViewport;
-    viewport?.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      viewport?.removeEventListener("resize", onResize);
-    };
-  }, []);
-
-  const showDateHint = isMobile && !date && !isDateFocused;
 
   return (
     <section className={styles.card} aria-label="McDrive menu">
@@ -71,7 +50,11 @@ export default function MenuCard({
         </p>
 
         <div className={styles.inputRow}>
-          {!isMobile ? (
+          <div
+            className={styles.dateField}
+            data-empty={date ? "false" : "true"}
+            data-focused={isDateFocused ? "true" : "false"}
+          >
             <input
               type="date"
               value={date}
@@ -82,26 +65,9 @@ export default function MenuCard({
               onChange={(e) => onDateChange(e.target.value)}
               className={styles.dateInput}
             />
-          ) : (
-            <div className={styles.dateFieldMobile}>
-              <input
-                type="date"
-                value={date}
-                min={minDate}
-                max={maxDate}
-                onFocus={() => setIsDateFocused(true)}
-                onBlur={() => setIsDateFocused(false)}
-                onChange={(e) => onDateChange(e.target.value)}
-                className={styles.dateInputMobile}
-              />
-              {showDateHint ? (
-                <>
-                  <span className={styles.datePlaceholder} aria-hidden="true">dd/mm/yyyy</span>
-                  <span className={styles.datePlaceholderIcon} aria-hidden="true">📅</span>
-                </>
-              ) : null}
-            </div>
-          )}
+            <span className={styles.datePlaceholder} aria-hidden="true">dd/mm/yyyy</span>
+            <span className={styles.datePlaceholderIcon} aria-hidden="true">📅</span>
+          </div>
           <span className={styles.spacer} aria-hidden="true" />
           <button
             onClick={onOrder}

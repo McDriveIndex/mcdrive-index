@@ -95,29 +95,13 @@
   box-sizing: border-box;
 }
 
-.dateFieldMobile {
+.dateField {
   position: relative;
-  flex: 1 1 0;
   min-width: 0;
-  max-width: 100%;
-}
-
-.dateInputMobile {
-  position: relative;
-  width: 100%;
-  min-width: 0;
-  height: 52px;
-  border-radius: 12px;
-  border: 0;
-  background: #fff;
-  padding: 0 12px;
-  color: #000;
-  font-size: 16px;
-  box-sizing: border-box;
 }
 
 .datePlaceholder {
-  z-index: 2;
+  display: none;
   position: absolute;
   left: 12px;
   top: 50%;
@@ -127,9 +111,13 @@
   font-size: 16px;
   line-height: 1;
   white-space: nowrap;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .datePlaceholderIcon {
+  display: none;
   position: absolute;
   right: 12px;
   top: 50%;
@@ -139,6 +127,8 @@
   font-size: 16px;
   line-height: 1;
   z-index: 2;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .orderButton {
@@ -263,7 +253,7 @@
 
 @media (max-width: 900px) {
   .inputRow {
-    gap: 16px;
+    gap: 12px;
     flex-wrap: nowrap;
   }
 
@@ -271,29 +261,34 @@
     display: none;
   }
 
-  .dateInput {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
-  .dateFieldMobile {
-    position: relative;
+  .dateField {
     flex: 0 1 clamp(180px, 52vw, 280px);
     min-width: 0;
     max-width: 100%;
   }
 
-  .dateInputMobile {
+  .dateInput {
     width: 100%;
     max-width: 100%;
+  }
+
+  .datePlaceholder,
+  .datePlaceholderIcon {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .dateField[data-empty="true"][data-focused="false"] .datePlaceholder,
+  .dateField[data-empty="true"][data-focused="false"] .datePlaceholderIcon {
+    display: block;
+    opacity: 1;
+    visibility: visible;
   }
 
   .orderButton {
     flex: 0 0 auto;
     min-width: 140px;
-    position: relative;
-    z-index: 3;
   }
 }
 
