@@ -17,6 +17,12 @@ export default function IosScrollStabilizer() {
     let lastNonZeroY = 0;
     let rafId = 0;
     let stopRequested = false;
+    const getScrollTop = () =>
+      (document.scrollingElement ?? document.documentElement).scrollTop;
+    const setScrollTop = (v: number) => {
+      (document.scrollingElement ?? document.documentElement).scrollTop = v;
+      window.scrollTo(0, v);
+    };
 
     const stopAll = () => {
       stopRequested = true;
@@ -30,14 +36,16 @@ export default function IosScrollStabilizer() {
       if (stopRequested) return;
 
       const now = performance.now();
-      const y = window.scrollY;
+      const y = getScrollTop();
 
       if (y > 0) {
         lastNonZeroY = y;
       }
 
       if (y === 0 && lastNonZeroY > 0) {
-        window.scrollTo(0, lastNonZeroY);
+        setScrollTop(lastNonZeroY);
+      } else if (lastNonZeroY > 120 && y < lastNonZeroY * 0.25) {
+        setScrollTop(lastNonZeroY);
       }
 
       if (now > armedUntil) {
@@ -57,23 +65,19 @@ export default function IosScrollStabilizer() {
     };
 
     const onScroll = () => {
-      const y = window.scrollY;
+      const y = getScrollTop();
       if (y > 0) lastNonZeroY = y;
     };
-
-    const onTouchStart = () => stopAll();
 
     window.addEventListener("orientationchange", armAfterRotate);
     window.addEventListener("resize", armAfterRotate);
     window.addEventListener("scroll", onScroll, scrollOpts);
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
 
     return () => {
       stopAll();
       window.removeEventListener("orientationchange", armAfterRotate);
       window.removeEventListener("resize", armAfterRotate);
       window.removeEventListener("scroll", onScroll, scrollOpts);
-      window.removeEventListener("touchstart", onTouchStart);
     };
   }, []);
 
