@@ -266,11 +266,22 @@
     min-width: 0;
     max-width: 100%;
     margin-right: 12px;
+    overflow: hidden;
   }
 
   .dateInput {
     width: 100%;
     max-width: 100%;
+    padding-right: 40px;
+  }
+
+  .dateInput::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
+  .dateInput::-webkit-inner-spin-button,
+  .dateInput::-webkit-clear-button {
+    opacity: 0;
   }
 
   .datePlaceholder,
