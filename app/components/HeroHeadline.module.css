@@ -19,6 +19,7 @@
   flex-direction: column;
   align-items: center;
   flex: 0 0 auto;
+  width: min(1000px, 80vw);
   gap: 2px;
 }
 

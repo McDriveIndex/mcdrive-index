@@ -143,9 +143,12 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
 
   useLayoutEffect(() => {
     const measureOrWorseScale = () => {
-      const fw = frameRef.current?.clientWidth ?? 0;
-      const INNER_PAD = 16;
-      const inner = Math.max(0, fw - INNER_PAD);
+      const isMobile = window.matchMedia("(max-width: 900px)").matches;
+      const availableWidth = isMobile
+        ? (headlineBoxRef.current?.clientWidth ?? 0)
+        : (frameRef.current?.clientWidth ?? 0);
+      const SAFETY_PX = 12;
+      const inner = Math.max(0, availableWidth - SAFETY_PX);
       const ww = orWorseHiddenRef.current?.getBoundingClientRect().width ?? 0;
       if (inner > 0 && ww > 0) {
         const next = Number(Math.min(1, inner / ww).toFixed(4));
