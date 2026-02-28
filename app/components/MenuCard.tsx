@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import styles from "./MenuCard.module.css";
 
 type Meal = {
@@ -31,7 +33,27 @@ export default function MenuCard({
   busyLabel,
 }: MenuCardProps) {
   const [isDateFocused, setIsDateFocused] = useState(false);
-  const showDateHint = !date && !isDateFocused;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 900px)").matches);
+    };
+
+    updateIsMobile();
+
+    const onResize = () => updateIsMobile();
+    window.addEventListener("resize", onResize);
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      viewport?.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  const showDateHint = isMobile && !date && !isDateFocused;
 
   return (
     <section className={styles.card} aria-label="McDrive menu">
