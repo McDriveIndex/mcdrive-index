@@ -16,11 +16,13 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   const [index, setIndex] = useState(0);
   const [frameWidth, setFrameWidth] = useState<number | null>(null);
   const [orWorseScale, setOrWorseScale] = useState(1);
+  const [headlineScale, setHeadlineScale] = useState(1);
   const [checkerCols, setCheckerCols] = useState(CHECKER_MAX_COLS);
   const btcMeasurerRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const orWorseMeasureRef = useRef<HTMLDivElement | null>(null);
   const orWorseHiddenRef = useRef<HTMLDivElement | null>(null);
+  const headlineMeasureRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -152,6 +154,42 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
     };
   }, [index, frameWidth]);
 
+  useLayoutEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 900px)").matches;
+    if (!isMobile) {
+      setHeadlineScale(1);
+      return;
+    }
+
+    const measure = () => {
+      const available = checkerCols * 14;
+      const el = headlineMeasureRef.current;
+      const measured = el ? el.scrollWidth : 0;
+      if (measured > 0 && available > 0) {
+        const scale = Math.max(0.75, Math.min(1, available / measured));
+        setHeadlineScale(scale);
+      } else {
+        setHeadlineScale(1);
+      }
+    };
+
+    let raf = window.requestAnimationFrame(measure);
+    const onResize = () => {
+      window.cancelAnimationFrame(raf);
+      raf = window.requestAnimationFrame(measure);
+    };
+
+    window.addEventListener("resize", onResize);
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", onResize);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      viewport?.removeEventListener("resize", onResize);
+    };
+  }, [index, checkerCols, frameWidth]);
+
   const variants = useMemo(
     () => [
       <div key="btc" className={styles.oneLine}>1 BTC</div>,
@@ -212,17 +250,20 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
             style={{ ["--checker-cols" as any]: String(checkerCols) }}
           >
             <div className={styles.headlineInner}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.18, ease: "linear" }}
-                >
-                  {variants[index]}
-                </motion.div>
-              </AnimatePresence>
+              <div ref={headlineMeasureRef} className={styles.headlineMeasure}>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -18 }}
+                    transition={{ duration: 0.18, ease: "linear" }}
+                    style={{ transformOrigin: "center", scale: headlineScale }}
+                  >
+                    {variants[index]}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
 
