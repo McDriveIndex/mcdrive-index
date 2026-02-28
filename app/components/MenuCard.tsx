@@ -71,7 +71,7 @@ export default function MenuCard({
         </p>
 
         <div className={styles.inputRow}>
-          <div className={styles.dateField}>
+          {!isMobile ? (
             <input
               type="date"
               value={date}
@@ -82,13 +82,23 @@ export default function MenuCard({
               onChange={(e) => onDateChange(e.target.value)}
               className={styles.dateInput}
             />
-            {showDateHint ? (
-              <>
+          ) : (
+            <div className={styles.dateFieldMobile}>
+              <input
+                type="date"
+                value={date}
+                min={minDate}
+                max={maxDate}
+                onFocus={() => setIsDateFocused(true)}
+                onBlur={() => setIsDateFocused(false)}
+                onChange={(e) => onDateChange(e.target.value)}
+                className={styles.dateInputMobile}
+              />
+              {showDateHint ? (
                 <span className={styles.datePlaceholder} aria-hidden="true">gg/mm/aaaa</span>
-                <span className={styles.dateIcon} aria-hidden="true">📅</span>
-              </>
-            ) : null}
-          </div>
+              ) : null}
+            </div>
+          )}
           <span className={styles.spacer} aria-hidden="true" />
           <button
             onClick={onOrder}
