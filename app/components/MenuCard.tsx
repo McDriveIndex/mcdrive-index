@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./MenuCard.module.css";
 
 type Meal = {
@@ -29,6 +30,9 @@ export default function MenuCard({
   infoLine,
   busyLabel,
 }: MenuCardProps) {
+  const [isDateFocused, setIsDateFocused] = useState(false);
+  const showDateHint = !date && !isDateFocused;
+
   return (
     <section className={styles.card} aria-label="McDrive menu">
       <div className={styles.head}>
@@ -45,14 +49,24 @@ export default function MenuCard({
         </p>
 
         <div className={styles.inputRow}>
-          <input
-            type="date"
-            value={date}
-            min={minDate}
-            max={maxDate}
-            onChange={(e) => onDateChange(e.target.value)}
-            className={styles.dateInput}
-          />
+          <div className={styles.dateField}>
+            <input
+              type="date"
+              value={date}
+              min={minDate}
+              max={maxDate}
+              onFocus={() => setIsDateFocused(true)}
+              onBlur={() => setIsDateFocused(false)}
+              onChange={(e) => onDateChange(e.target.value)}
+              className={styles.dateInput}
+            />
+            {showDateHint ? (
+              <>
+                <span className={styles.datePlaceholder} aria-hidden="true">gg/mm/aaaa</span>
+                <span className={styles.dateIcon} aria-hidden="true">📅</span>
+              </>
+            ) : null}
+          </div>
           <span className={styles.spacer} aria-hidden="true" />
           <button
             onClick={onOrder}
