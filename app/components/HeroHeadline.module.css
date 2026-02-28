@@ -175,6 +175,10 @@
     font-size: clamp(124px, 17.5vw, 190px);
   }
 
+  .worse {
+    font-size: clamp(124px, 17.5vw, 190px);
+  }
+
   .checker {
     --checker-cell: 14px;
     width: 100%;

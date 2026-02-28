@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import styles from "./HeroHeadline.module.css";
 
 const LOOP_MS = 1300;
@@ -17,6 +17,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
   const [frameWidth, setFrameWidth] = useState<number | null>(null);
   const [orWorseScale, setOrWorseScale] = useState(1);
   const [headlineScale, setHeadlineScale] = useState(1);
+  const [layoutNonce, bumpLayoutNonce] = useReducer((x: number) => x + 1, 0);
   const [checkerCols, setCheckerCols] = useState(CHECKER_MAX_COLS);
   const btcMeasurerRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
@@ -30,6 +31,35 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       setIndex((prev) => (prev + 1) % 3);
     }, LOOP_MS);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    let raf = 0;
+
+    const kickLayout = () => {
+      bumpLayoutNonce();
+      raf = window.requestAnimationFrame(() => bumpLayoutNonce());
+    };
+
+    const onOrientationChange = () => kickLayout();
+    const onPageShow = () => kickLayout();
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") kickLayout();
+    };
+    const onFocus = () => kickLayout();
+
+    window.addEventListener("orientationchange", onOrientationChange);
+    window.addEventListener("pageshow", onPageShow);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("focus", onFocus);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener("orientationchange", onOrientationChange);
+      window.removeEventListener("pageshow", onPageShow);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("focus", onFocus);
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -65,7 +95,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       cancelled = true;
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [layoutNonce]);
 
   useEffect(() => {
     if (frameWidth != null) {
@@ -109,7 +139,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       window.removeEventListener("resize", scheduleUpdate);
       viewport?.removeEventListener("resize", scheduleUpdate);
     };
-  }, [frameWidth]);
+  }, [frameWidth, layoutNonce]);
 
   useLayoutEffect(() => {
     const measureOrWorseScale = () => {
@@ -140,7 +170,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       window.removeEventListener("resize", onResize);
       viewport?.removeEventListener("resize", onResize);
     };
-  }, [index, frameWidth]);
+  }, [index, frameWidth, layoutNonce]);
 
   useLayoutEffect(() => {
     if (index === 2) {
@@ -179,7 +209,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       window.removeEventListener("resize", onResize);
       viewport?.removeEventListener("resize", onResize);
     };
-  }, [index, checkerCols, frameWidth]);
+  }, [index, checkerCols, frameWidth, layoutNonce]);
 
   const renderHeadline = (variantIndex: number, forMeasure = false) => {
     if (variantIndex === 0) {
