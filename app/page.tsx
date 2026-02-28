@@ -112,6 +112,7 @@ export default function Home() {
   const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [clampNotice, setClampNotice] = useState<string | null>(null);
   const [showReceipt, setShowReceipt] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [receiptSrc, setReceiptSrc] = useState<string>("");
@@ -383,15 +384,55 @@ export default function Home() {
   const todayMax = new Date().toISOString().slice(0, 10);
   const pickerMin = btcRange?.minDate;
   const pickerMax = btcRange?.maxDate ?? todayMax;
-  function randomDateIn2017() {
-  const start = new Date("2017-01-01T00:00:00Z").getTime();
-  const end = new Date("2017-12-31T00:00:00Z").getTime();
+
+  useEffect(() => {
+    if (!date || !pickerMin || !pickerMax) return;
+
+    let adjustedDate = date;
+
+    if (date < pickerMin) {
+      adjustedDate = pickerMin;
+    } else if (date > pickerMax) {
+      adjustedDate = pickerMax;
+    }
+
+    if (adjustedDate !== date) {
+      setDate(adjustedDate);
+
+      setClampNotice(
+        `Date adjusted to available BTC range (${formatDisplayDate(
+          pickerMin
+        )} – ${formatDisplayDate(pickerMax)})`
+      );
+
+      const timeout = setTimeout(() => {
+        setClampNotice(null);
+      }, 2500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [date, pickerMin, pickerMax]);
+
+  function randomDateInRange() {
+  const minDate = btcRange?.minDate;
+  const maxDate = btcRange?.maxDate;
+
+  if (!minDate || !maxDate) {
+    console.warn("[randomride] range not ready, fallback to today");
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  const start = new Date(`${minDate}T00:00:00Z`).getTime();
+  const end = new Date(`${maxDate}T00:00:00Z`).getTime();
+  console.log("[randomride] range", { minDate, maxDate });
   const t = start + Math.floor(Math.random() * (end - start + 1));
-  return new Date(t).toISOString().slice(0, 10);
+  const pickedDate = new Date(t).toISOString().slice(0, 10);
+  console.log("[randomride] picked", { pickedDate });
+  return pickedDate;
 }
 
 const runMoment = async (momentDate: string) => {
-  const d = momentDate === "random" ? randomDateIn2017() : momentDate;
+  const d = momentDate === "random" ? randomDateInRange() : momentDate;
   setDate(d);
 
   const url = new URL(window.location.href);
@@ -491,11 +532,11 @@ const runMoment = async (momentDate: string) => {
               { label: "McRandom™ Ride", onClick: () => runMoment("random") },
             ]}
             infoLine={
-              wasClamped && dateUsed
-                ? `Selected date out of range. Clamped to ${formatDisplayDate(dateUsed)}.`
+              clampNotice
+                ? clampNotice
                 : toast
                   ? toast
-                  : null
+                  : undefined
             }
           />
         </div>
