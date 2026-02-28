@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { matchCars, type MatchResult } from "@/lib/matchCar";
+import { scheduleWarmReceiptIdle, warmReceipt } from "@/lib/receiptWarmup";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
 import HeroHeadline from "@/app/components/HeroHeadline";
 import MenuCard from "@/app/components/MenuCard";
@@ -120,9 +121,13 @@ export default function Home() {
   const [printHoldDone, setPrintHoldDone] = useState(false);
   const [imgReady, setImgReady] = useState(false);
   const [receiptRenderKey, setReceiptRenderKey] = useState(0);
+  const [warmReceiptUrl, setWarmReceiptUrl] = useState<string | null>(null);
   const openedAtRef = useRef<number | null>(null);
   const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const clampNoticeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const precomputedReceiptUrlsRef = useRef<Map<string, string>>(new Map());
+  const pendingRandomDateRef = useRef<string | null>(null);
+  const pendingRandomTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const receiptImgRef = useRef<HTMLImageElement | null>(null);
   const receiptBestMatch = bestMatch;
   const receiptBtc = btcPrice;
@@ -167,10 +172,77 @@ export default function Home() {
     }
   };
 
+  const buildReceiptUrl = (d: string, data: BtcPriceResponse, match: MatchResult): string => {
+    const btcUsd = data.close;
+    const best = (match.bestMatch as Car | null) ?? null;
+    const loadedTier = match.tier;
+    const extraCopy = best?.copy ?? "";
+    const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
+    const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
+    const btc = btcUsd != null ? String(btcUsd) : "—";
+    const changeValue = best ? Math.max(0, btcUsd - best.price_usd) : null;
+    const change = changeValue == null ? "—" : `$${formatUsdDisplay(changeValue)}`;
+    const image = best?.image ?? "/cars/placeholder.jpg";
+    const name = best?.name ?? "—";
+    const params = new URLSearchParams({
+      date: d,
+      dateUsed: data.dateUsed,
+      btc,
+      name,
+      price,
+      change,
+      tierCopy,
+      extraCopy,
+      image,
+    });
+    return `/api/receipt?${params.toString()}`;
+  };
+
+  const resolveReceiptUrlForDate = async (d: string): Promise<string | null> => {
+    const cached = precomputedReceiptUrlsRef.current.get(d);
+    if (cached) return cached;
+
+    try {
+      const res = await fetch(`/api/btc-price?date=${d}`);
+      const payload: unknown = await res.json();
+      if (!res.ok || !isBtcPriceResponse(payload)) return null;
+      const data = payload;
+      const match = matchCars(data.close, d);
+      const url = buildReceiptUrl(d, data, match);
+      precomputedReceiptUrlsRef.current.set(d, url);
+      return url;
+    } catch {
+      return null;
+    }
+  };
+
+  const warmDateReceiptIdle = async (d: string) => {
+    const url = await resolveReceiptUrlForDate(d);
+    if (!url) return null;
+    scheduleWarmReceiptIdle(url);
+    return url;
+  };
+
+  const warmDateReceiptNow = async (d: string) => {
+    const url = await resolveReceiptUrlForDate(d);
+    if (!url) return null;
+    void warmReceipt(url);
+    return url;
+  };
+
   const handleClick = async () => {
     if (!date) {
       alert("Pick a date first.");
       return;
+    }
+
+    const url = warmReceiptUrl ?? (await resolveReceiptUrlForDate(date));
+    if (url) {
+      const warmPromise = warmReceipt(url);
+      await Promise.race([
+        warmPromise,
+        new Promise<void>((resolve) => setTimeout(resolve, 250)),
+      ]);
     }
 
     setIsGenerating(true);
@@ -180,9 +252,9 @@ export default function Home() {
     setReceiptSrc("");
 
     // Update URL (shareable)
-    const url = new URL(window.location.href);
-    url.searchParams.set("date", date);
-    window.history.pushState({}, "", url.toString());
+    const shareUrl = new URL(window.location.href);
+    shareUrl.searchParams.set("date", date);
+    window.history.pushState({}, "", shareUrl.toString());
 
     try {
       let nextReceiptUrl = "";
@@ -193,29 +265,7 @@ export default function Home() {
       await new Promise((r) => setTimeout(r, 0));
 
       if (ok && data && match) {
-        const btcUsd = data.close;
-        const best = (match.bestMatch as Car | null) ?? null;
-        const loadedTier = match.tier;
-        const extraCopy = best?.copy ?? "";
-        const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
-        const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
-        const btc = btcUsd != null ? String(btcUsd) : "—";
-        const changeValue = best ? Math.max(0, btcUsd - best.price_usd) : null;
-        const change = changeValue == null ? "—" : `$${formatUsdDisplay(changeValue)}`;
-        const image = best?.image ?? "/cars/placeholder.jpg";
-        const name = best?.name ?? "—";
-        const params = new URLSearchParams({
-          date,
-          dateUsed: data.dateUsed,
-          btc,
-          name,
-          price,
-          change,
-          tierCopy,
-          extraCopy,
-          image,
-        });
-        const newReceiptUrl = `/api/receipt?${params.toString()}`;
+        const newReceiptUrl = buildReceiptUrl(date, data, match);
         nextReceiptUrl = newReceiptUrl;
         setReceiptUrl(newReceiptUrl);
         setReceiptSrc(newReceiptUrl);
@@ -276,6 +326,26 @@ export default function Home() {
     };
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (!date) {
+      setWarmReceiptUrl(null);
+      return;
+    }
+
+    let cancelled = false;
+    void (async () => {
+      const url = await warmDateReceiptIdle(date);
+      if (!cancelled) {
+        setWarmReceiptUrl(url);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [date]);
+
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = "hidden";
@@ -293,6 +363,10 @@ export default function Home() {
       if (clampNoticeTimeoutRef.current) {
         clearTimeout(clampNoticeTimeoutRef.current);
         clampNoticeTimeoutRef.current = null;
+      }
+      if (pendingRandomTimerRef.current) {
+        clearTimeout(pendingRandomTimerRef.current);
+        pendingRandomTimerRef.current = null;
       }
     };
   }, []);
@@ -406,15 +480,36 @@ export default function Home() {
 
   const start = new Date(`${minDate}T00:00:00Z`).getTime();
   const end = new Date(`${maxDate}T00:00:00Z`).getTime();
-  console.log("[randomride] range", { minDate, maxDate });
   const t = start + Math.floor(Math.random() * (end - start + 1));
-  const pickedDate = new Date(t).toISOString().slice(0, 10);
-  console.log("[randomride] picked", { pickedDate });
-  return pickedDate;
+  return new Date(t).toISOString().slice(0, 10);
 }
 
+const prepareRandom = () => {
+  if (pendingRandomDateRef.current) return;
+  const d = randomDateInRange();
+  pendingRandomDateRef.current = d;
+  void warmDateReceiptNow(d);
+  if (pendingRandomTimerRef.current) {
+    clearTimeout(pendingRandomTimerRef.current);
+    pendingRandomTimerRef.current = null;
+  }
+  pendingRandomTimerRef.current = setTimeout(() => {
+    pendingRandomDateRef.current = null;
+    pendingRandomTimerRef.current = null;
+  }, 15000);
+};
+
 const runMoment = async (momentDate: string) => {
-  const d = momentDate === "random" ? randomDateInRange() : momentDate;
+  const d = momentDate === "random"
+    ? pendingRandomDateRef.current ?? randomDateInRange()
+    : momentDate;
+  if (momentDate === "random") {
+    pendingRandomDateRef.current = null;
+    if (pendingRandomTimerRef.current) {
+      clearTimeout(pendingRandomTimerRef.current);
+      pendingRandomTimerRef.current = null;
+    }
+  }
   setDate(d);
 
   const url = new URL(window.location.href);
@@ -433,31 +528,7 @@ const runMoment = async (momentDate: string) => {
   const match = result.match;
   await new Promise((r) => setTimeout(r, 0));
   if (ok && data && match) {
-    const btcUsd = data.close;
-    const best = (match.bestMatch as Car | null) ?? null;
-    const loadedTier = match.tier;
-    const extraCopy = best?.copy ?? "";
-    const tierCopy = loadedTier ? (TIER_COPY[loadedTier] ?? "—") : "—";
-    const price = best ? `$${best.price_usd.toLocaleString()}` : "—";
-    const btc = btcUsd != null ? String(btcUsd) : "—";
-    const changeValue = best ? Math.max(0, btcUsd - best.price_usd) : null;
-    const change = changeValue == null ? "—" : `$${formatUsdDisplay(changeValue)}`;
-    const image = best?.image ?? "/cars/placeholder.jpg";
-    const name = best?.name ?? "—";
-
-    const params = new URLSearchParams({
-      date: d,
-      dateUsed: data.dateUsed,
-      btc,
-      name,
-      price,
-      change,
-      tierCopy,
-      extraCopy,
-      image,
-    });
-
-    const newReceiptUrl = `/api/receipt?${params.toString()}`;
+    const newReceiptUrl = buildReceiptUrl(d, data, match);
     nextReceiptUrl = newReceiptUrl;
     setReceiptUrl(newReceiptUrl);
     setReceiptSrc(newReceiptUrl);
@@ -473,6 +544,21 @@ const runMoment = async (momentDate: string) => {
 
   setIsGenerating(false);
 };
+
+  const triggerOrderWarmup = () => {
+    if (!date) return;
+    if (warmReceiptUrl) {
+      void warmReceipt(warmReceiptUrl);
+      return;
+    }
+    void warmDateReceiptNow(date).then((url) => {
+      if (url) setWarmReceiptUrl(url);
+    });
+  };
+
+  const triggerMealWarmup = (d: string) => {
+    void warmDateReceiptNow(d);
+  };
 
   const isReceiptReady = Boolean(receiptSrc) && printHoldDone;
   const showPrinting = showModal && (!isReceiptReady || !imgReady);
@@ -514,6 +600,7 @@ const runMoment = async (momentDate: string) => {
               setToast(null);
               setReceiptSrc("");
               setShowModal(false);
+              setWarmReceiptUrl(null);
 
               // Show notice only if we had to clamp
               if (adjusted !== value && pickerMin && pickerMax) {
@@ -537,11 +624,28 @@ const runMoment = async (momentDate: string) => {
               }
             }}
             onOrder={handleClick}
+            onOrderWarmup={triggerOrderWarmup}
             meals={[
-              { label: "McGME™ Big Squeeze", onClick: () => runMoment("2021-01-28") },
-              { label: "McCovid™ Flash Crash", onClick: () => runMoment("2020-03-12") },
-              { label: "McTwitter™ Takeover XXL", onClick: () => runMoment("2022-10-27") },
-              { label: "McRandom™ Ride", onClick: () => runMoment("random") },
+              {
+                label: "McGME™ Big Squeeze",
+                onClick: () => runMoment("2021-01-28"),
+                onWarmup: () => triggerMealWarmup("2021-01-28"),
+              },
+              {
+                label: "McCovid™ Flash Crash",
+                onClick: () => runMoment("2020-03-12"),
+                onWarmup: () => triggerMealWarmup("2020-03-12"),
+              },
+              {
+                label: "McTwitter™ Takeover XXL",
+                onClick: () => runMoment("2022-10-27"),
+                onWarmup: () => triggerMealWarmup("2022-10-27"),
+              },
+              {
+                label: "McRandom™ Ride",
+                onClick: () => runMoment("random"),
+                onWarmup: prepareRandom,
+              },
             ]}
             infoLine={
               clampNotice

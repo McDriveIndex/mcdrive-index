@@ -3,6 +3,7 @@ import styles from "./MenuCard.module.css";
 type Meal = {
   label: string;
   onClick: () => void;
+  onWarmup?: () => void;
 };
 
 type MenuCardProps = {
@@ -11,6 +12,7 @@ type MenuCardProps = {
   maxDate?: string;
   onDateChange: (v: string) => void;
   onOrder: () => void;
+  onOrderWarmup?: () => void;
   meals: Meal[];
   infoLine?: string | null;
   busyLabel?: string | null;
@@ -22,6 +24,7 @@ export default function MenuCard({
   maxDate,
   onDateChange,
   onOrder,
+  onOrderWarmup,
   meals,
   infoLine,
   busyLabel,
@@ -51,7 +54,13 @@ export default function MenuCard({
             className={styles.dateInput}
           />
           <span className={styles.spacer} aria-hidden="true" />
-          <button onClick={onOrder} className={styles.orderButton}>
+          <button
+            onClick={onOrder}
+            onMouseEnter={onOrderWarmup}
+            onFocus={onOrderWarmup}
+            onTouchStart={onOrderWarmup}
+            className={styles.orderButton}
+          >
             ORDER
           </button>
         </div>
@@ -66,7 +75,14 @@ export default function MenuCard({
         <p className={styles.mealsTitle}>SIGNATURE MEALS</p>
         <div className={styles.mealsList}>
           {meals.map((meal) => (
-            <button key={meal.label} onClick={meal.onClick} className={styles.mealButton}>
+            <button
+              key={meal.label}
+              onClick={meal.onClick}
+              onMouseEnter={meal.onWarmup}
+              onFocus={meal.onWarmup}
+              onTouchStart={meal.onWarmup}
+              className={styles.mealButton}
+            >
               <span className={styles.strip} aria-hidden="true" />
               <span className={styles.mealText}>{meal.label}</span>
             </button>
