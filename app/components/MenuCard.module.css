@@ -104,7 +104,6 @@
 
 .dateInputMobile {
   position: relative;
-  z-index: 1;
   width: 100%;
   min-width: 0;
   height: 52px;
@@ -264,7 +263,8 @@
 
 @media (max-width: 900px) {
   .inputRow {
-    gap: 12px;
+    gap: 16px;
+    flex-wrap: nowrap;
   }
 
   .spacer {
@@ -292,6 +292,8 @@
   .orderButton {
     flex: 0 0 auto;
     min-width: 140px;
+    position: relative;
+    z-index: 3;
   }
 }
 
