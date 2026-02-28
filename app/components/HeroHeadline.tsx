@@ -113,54 +113,43 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
 
   useLayoutEffect(() => {
     const measureOrWorseScale = () => {
-      if (index !== 2) {
-        setOrWorseScale(1);
-        return;
-      }
-
       const fw = frameRef.current?.clientWidth ?? 0;
       const INNER_PAD = 16;
       const inner = Math.max(0, fw - INNER_PAD);
       const ww = orWorseHiddenRef.current?.getBoundingClientRect().width ?? 0;
       if (inner > 0 && ww > 0) {
-        const s = Math.min(1, inner / ww);
-        setOrWorseScale(Number(s.toFixed(4)));
+        const next = Number(Math.min(1, inner / ww).toFixed(4));
+        setOrWorseScale((prev) => (Math.abs(prev - next) > 0.002 ? next : prev));
       } else {
-        setOrWorseScale(1);
+        setOrWorseScale((prev) => (prev === 1 ? prev : 1));
       }
     };
+    measureOrWorseScale();
 
-    if (index !== 2) {
-      setOrWorseScale(1);
-      return;
-    }
-
-    let raf1 = 0;
-    let raf2 = 0;
-    raf1 = window.requestAnimationFrame(() => {
-      raf2 = window.requestAnimationFrame(() => {
-        measureOrWorseScale();
-      });
-    });
-
+    let raf = 0;
     const onResize = () => {
-      if (index === 2) measureOrWorseScale();
+      window.cancelAnimationFrame(raf);
+      raf = window.requestAnimationFrame(measureOrWorseScale);
     };
 
     window.addEventListener("resize", onResize);
     return () => {
-      window.cancelAnimationFrame(raf1);
-      window.cancelAnimationFrame(raf2);
+      window.cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
     };
   }, [index, frameWidth]);
 
   useLayoutEffect(() => {
+    if (index === 2) {
+      setHeadlineScale((prev) => (prev === 1 ? prev : 1));
+      return;
+    }
+
     const measure = () => {
       const box = headlineBoxRef.current;
       const el = headlineTextMeasureRef.current;
       const available = box?.clientWidth ?? 0;
-      let measured = el ? el.scrollWidth : 0;
+      const measured = el ? el.scrollWidth : 0;
       if (measured > 0 && available > 0) {
         const safetyPx = 6;
         const scale = Math.max(0.75, Math.min(1, (available - safetyPx) / measured));
@@ -170,7 +159,9 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       }
     };
 
-    let raf = window.requestAnimationFrame(measure);
+    measure();
+
+    let raf = 0;
     const onResize = () => {
       window.cancelAnimationFrame(raf);
       raf = window.requestAnimationFrame(measure);
@@ -185,7 +176,7 @@ export default function HeroHeadline({ onFrameWidth }: HeroHeadlineProps) {
       window.removeEventListener("resize", onResize);
       viewport?.removeEventListener("resize", onResize);
     };
-  }, [index, checkerCols, frameWidth, orWorseScale]);
+  }, [index, checkerCols, frameWidth]);
 
   const renderHeadline = (variantIndex: number, forMeasure = false) => {
     if (variantIndex === 0) {
