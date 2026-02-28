@@ -95,7 +95,10 @@ export default function MenuCard({
                 className={styles.dateInputMobile}
               />
               {showDateHint ? (
-                <span className={styles.datePlaceholder} aria-hidden="true">gg/mm/aaaa</span>
+                <>
+                  <span className={styles.datePlaceholder} aria-hidden="true">gg/mm/aaaa</span>
+                  <span className={styles.datePlaceholderIcon} aria-hidden="true">📅</span>
+                </>
               ) : null}
             </div>
           )}

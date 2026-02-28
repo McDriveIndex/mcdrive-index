@@ -130,6 +130,18 @@
   white-space: nowrap;
 }
 
+.datePlaceholderIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  line-height: 1;
+  z-index: 2;
+}
+
 .orderButton {
   flex: 0 0 auto;
   height: 52px;
@@ -266,14 +278,13 @@
   }
 
   .dateFieldMobile {
-    flex: 0 0 auto;
-    width: auto;
+    flex: 1 1 0;
     min-width: 0;
-    max-width: 100%;
+    max-width: 280px;
   }
 
   .dateInputMobile {
-    width: clamp(180px, 52vw, 280px);
+    width: 100%;
     max-width: 100%;
   }
 
